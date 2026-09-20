@@ -1,0 +1,1706 @@
+/* BURHAN YUSUFOĞLU - Jeolojik Kesit & CAD Tasarım Stili */
+:root {
+    --bg-main: #0f172a;
+    --bg-panel: #1e293b;
+    --bg-panel-light: #334155;
+    --border-color: #475569;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-gold: #f59e0b;
+    --accent-gold-hover: #d97706;
+    --accent-blue: #2563eb;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --canvas-bg: #f8fafc;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* ================= ÜST ARAÇ ÇUBUĞU VE LOGO (2 KATLI CAD RIBBON) ================= */
+.top-navbar {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 12px;
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    border-bottom: 2px solid var(--accent-gold);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    z-index: 100;
+    gap: 5px;
+}
+
+.navbar-row-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+}
+
+.navbar-row-tools {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 3px 8px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    overflow-x: auto;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.brand-name {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.brand-text .subtitle {
+    font-size: 10.5px;
+    color: var(--accent-gold);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.tool-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-tool {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-main);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s;
+}
+
+.btn-tool:hover {
+    background-color: var(--bg-panel-light);
+}
+
+.btn-tool.active {
+    background-color: var(--accent-blue);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+}
+
+.zoom-indicator {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0 4px;
+    color: var(--text-muted);
+    min-width: 44px;
+    text-align: center;
+}
+
+.export-group {
+    background: transparent;
+    border: none;
+}
+
+.btn-action {
+    border: none;
+    padding: 7px 13px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s;
+    color: white;
+}
+
+.btn-add-kuyu {
+    background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.4);
+    font-weight: 700;
+}
+.btn-add-kuyu:hover { background: #059669; }
+
+.btn-svg { background-color: #8b5cf6; }
+.btn-svg:hover { background-color: #7c3aed; }
+
+.btn-dxf { background-color: #0284c7; }
+.btn-dxf:hover { background-color: #0369a1; }
+
+.btn-png { background-color: #10b981; }
+.btn-png:hover { background-color: #059669; }
+
+.btn-print { background-color: #64748b; }
+.btn-print:hover { background-color: #475569; }
+
+/* 2-Tier CAD Ribbon & Belge Kayıt Butonları */
+.badge-cad {
+    font-size: 10px;
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    padding: 1px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    font-weight: 800;
+    margin-left: 4px;
+    box-shadow: 0 1px 4px rgba(2, 132, 199, 0.4);
+}
+
+.navbar-divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0 4px;
+    flex-shrink: 0;
+}
+
+.ribbon-divider {
+    width: 1px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 0 4px;
+    flex-shrink: 0;
+}
+
+.ribbon-cluster {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.ribbon-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0 4px;
+    user-select: none;
+}
+
+/* ================= PROFESYONEL KLASÖR MENÜ SİSTEMİ (NAVBAR DROPDOWN FOLDERS) ================= */
+.nav-dropdown-folder {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-dropdown-folder {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(15, 23, 42, 0.85);
+    color: #f8fafc;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    user-select: none;
+}
+
+.btn-dropdown-folder:hover,
+.nav-dropdown-folder.open > .btn-dropdown-folder,
+.nav-dropdown-folder:hover > .btn-dropdown-folder {
+    background: rgba(30, 41, 59, 0.95);
+    border-color: #38bdf8;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
+}
+
+.btn-dropdown-folder .folder-caret {
+    font-size: 9px;
+    margin-left: 2px;
+    transition: transform 0.2s;
+    color: #94a3b8;
+}
+
+.nav-dropdown-folder.open .folder-caret,
+.nav-dropdown-folder:hover .folder-caret {
+    transform: rotate(180deg);
+    color: #38bdf8;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 270px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    padding: 6px;
+    z-index: 99990;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    backdrop-filter: blur(8px);
+}
+
+/* Hover veya .open sınıfında menüyü göster */
+.nav-dropdown-folder:hover > .nav-dropdown-menu,
+.nav-dropdown-folder.open > .nav-dropdown-menu {
+    display: flex;
+    animation: navDropdownSlideIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes navDropdownSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 7px 11px;
+    border-radius: 5px;
+    border: none;
+    background: transparent;
+    color: #f1f5f9;
+    font-size: 11.5px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.15s ease;
+}
+
+.nav-dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #38bdf8;
+    transform: translateX(3px);
+}
+
+.nav-dropdown-item.active {
+    background: rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+    font-weight: 700;
+}
+
+.nav-dropdown-item .item-main {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-dropdown-item .item-icon {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+}
+
+.nav-dropdown-item .item-badge {
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+}
+
+.nav-dropdown-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 4px 6px;
+}
+
+.nav-dropdown-header {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #94a3b8;
+    padding: 4px 8px 2px 8px;
+}
+
+.doc-export-group {
+    background: rgba(15, 23, 42, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding: 2px 6px !important;
+    gap: 5px !important;
+}
+
+.btn-adobe-pdf {
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 6px rgba(220, 38, 38, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    cursor: pointer;
+}
+.btn-adobe-pdf:hover {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%) !important;
+    transform: translateY(-1px);
+}
+
+.btn-word-doc {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 6px rgba(29, 78, 216, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    cursor: pointer;
+}
+.btn-word-doc:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    transform: translateY(-1px);
+}
+
+.btn-excel-csv {
+    background: linear-gradient(135deg, #15803d 0%, #166534 100%) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 6px rgba(21, 128, 61, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    cursor: pointer;
+}
+.btn-excel-csv:hover {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%) !important;
+    transform: translateY(-1px);
+}
+
+.btn-save-project {
+    background: rgba(99, 102, 241, 0.2) !important;
+    border: 1px solid #6366f1 !important;
+    color: #a5b4fc !important;
+    font-weight: 600 !important;
+}
+.btn-save-project:hover {
+    background: rgba(99, 102, 241, 0.35) !important;
+}
+
+.btn-undo {
+    background: rgba(99, 102, 241, 0.2) !important;
+    border: 1px solid #6366f1 !important;
+}
+.btn-delete {
+    background: rgba(239, 68, 68, 0.2) !important;
+    border: 1px solid #ef4444 !important;
+    color: #fca5a5 !important;
+}
+.btn-export-all {
+    background: linear-gradient(135deg, #475569 0%, #334155 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ================= ANA ÇALIŞMA ALANI ================= */
+.workspace {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ================= SOL YAN PANEL ================= */
+.sidebar {
+    width: 380px;
+    min-width: 340px;
+    background-color: var(--bg-panel);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 5;
+}
+
+/* ================= SOL PANEL 4 KATEGORİLİ ERGONOMİK MENÜ ================= */
+.sidebar-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    background-color: #0b1120;
+    border-bottom: 2px solid #334155;
+    padding: 5px;
+    flex-shrink: 0;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 9px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+}
+
+.tab-btn:hover {
+    background: #334155;
+    color: #ffffff;
+    border-color: #475569;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+    color: #ffffff;
+    border-color: #3b82f6;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+}
+
+.tab-btn[data-tab="tab-geotech"].active {
+    background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+    border-color: #f59e0b;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+}
+
+.tab-btn[data-tab="tab-engineer"].active {
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+    border-color: #38bdf8;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+}
+
+.tab-btn[data-tab="tab-kot-boreholes"].active {
+    background: linear-gradient(135deg, #065f46 0%, #059669 100%);
+    border-color: #10b981;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
+.tab-content {
+    display: none;
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.panel-section {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 14px;
+}
+
+.panel-section h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 5px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.form-row .col {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--text-main);
+    font-size: 12px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 7px 10px;
+    font-size: 12px;
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--accent-gold);
+}
+
+.help-text {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.btn-primary {
+    width: 100%;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background: #b45309;
+}
+
+.btn-small {
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* Sondaj Kartları */
+.borehole-item {
+    background-color: var(--bg-panel-light);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 12px;
+}
+
+.borehole-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 4px;
+}
+
+/* Litoloji Katalog Tablosu */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.catalog-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--bg-panel-light);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.catalog-card:hover {
+    border-color: var(--accent-gold);
+    background-color: rgba(245, 158, 11, 0.15);
+}
+
+.catalog-color-box {
+    width: 22px;
+    height: 18px;
+    border-radius: 3px;
+    border: 1px solid #ffffff;
+    flex-shrink: 0;
+}
+
+.strata-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--bg-panel-light);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.strata-color-box {
+    width: 22px;
+    height: 22px;
+    border-radius: 3px;
+    border: 1px solid #ffffff;
+    flex-shrink: 0;
+}
+
+/* ================= SAĞ ÇİZİM ALANI (TUVAL) ================= */
+.canvas-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--canvas-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.canvas-container {
+    flex: 1;
+    width: calc(100% - 12px);
+    height: calc(100% - 12px);
+    position: relative;
+    user-select: none;
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+/* ================= STANDART PENCERE KAYDIRMA ÇUBUKLARI (GÖRSELDEKİ ASANSÖR / GEL-GİT) ================= */
+.scrollbar-v {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 28px; /* durum çubuğunun hemen üstünde */
+    width: 12px;
+    background: #f8fafc;
+    border-left: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    z-index: 30;
+    user-select: none;
+}
+
+.scrollbar-h {
+    position: absolute;
+    left: 0;
+    right: 12px; /* dikey kaydırma çubuğuna yer bırak */
+    bottom: 28px; /* durum çubuğunun hemen üstünde */
+    height: 12px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: row;
+    z-index: 30;
+    user-select: none;
+}
+
+.scrollbar-btn {
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    border: none;
+    font-size: 7px;
+    line-height: 12px;
+    text-align: center;
+    cursor: pointer;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    flex-shrink: 0;
+    transition: color 0.15s, background 0.15s;
+}
+
+.scrollbar-btn:hover {
+    color: #0f172a;
+    background: #e2e8f0;
+}
+
+.scrollbar-track {
+    flex: 1;
+    position: relative;
+    background: #f1f5f9;
+    cursor: pointer;
+}
+
+.scrollbar-v .scrollbar-thumb {
+    position: absolute;
+    left: 2px;
+    right: 2px;
+    min-height: 28px;
+    height: 60px;
+    background: #cbd5e1;
+    border-radius: 9999px; /* GÖRSEL 2'DEKİ GİBİ TAM YUVARLAK KAPSÜL / PİLL */
+    cursor: grab;
+    transition: background 0.15s;
+}
+
+.scrollbar-v .scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.scrollbar-v .scrollbar-thumb:active {
+    cursor: grabbing;
+    background: #64748b;
+}
+
+.scrollbar-h .scrollbar-thumb {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    min-width: 28px;
+    width: 60px;
+    background: #cbd5e1;
+    border-radius: 9999px;
+    cursor: grab;
+    transition: background 0.15s;
+}
+
+.scrollbar-h .scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.scrollbar-h .scrollbar-thumb:active {
+    cursor: grabbing;
+    background: #64748b;
+}
+
+/* Çizim Tamamlama Yüzen Çubuğu */
+.draw-finish-bar {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0f172a;
+    color: #ffffff;
+    border: 1px solid #3b82f6;
+    border-radius: 30px;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    z-index: 50;
+    user-select: none;
+}
+
+/* Eski navigasyon kumandası varsa kesinlikle gizle */
+#canvas-nav-controls, .canvas-nav-controls, .d-pad-controls {
+    display: none !important;
+}
+
+.scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+.scrollbar-thumb:active {
+    cursor: grabbing;
+    background: #334155;
+}
+
+.status-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: #f1f5f9;
+    border-top: 1px solid #cbd5e1;
+    padding: 6px 16px;
+    font-size: 11px;
+    color: #475569;
+}
+
+.status-item {
+    display: flex;
+    gap: 5px;
+}
+
+.status-label {
+    font-weight: 600;
+    color: #64748b;
+}
+
+.status-value {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.status-info {
+    margin-left: auto;
+    font-style: italic;
+    color: #64748b;
+}
+
+.canvas-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* ================= YÜZEN NAVİGASYON VE D-PAD KUMANDASI ================= */
+.canvas-nav-controls {
+    position: absolute;
+    right: 18px;
+    bottom: 40px;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+    z-index: 50;
+    user-select: none;
+}
+
+.nav-dpad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.nav-middle-row {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.btn-nav {
+    width: 32px;
+    height: 32px;
+    background: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-nav:hover {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #3b82f6;
+    transform: scale(1.08);
+}
+
+.btn-nav:active {
+    transform: scale(0.95);
+}
+
+.btn-nav-center {
+    font-size: 14px;
+    background: #0f172a;
+    border-color: var(--accent-gold);
+}
+
+.btn-nav-center:hover {
+    background: var(--accent-gold);
+    color: #0f172a;
+}
+
+.nav-zoom-group {
+    display: flex;
+    gap: 5px;
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+    padding-top: 6px;
+    width: 100%;
+    justify-content: center;
+}
+
+.nav-zoom-group .btn-nav {
+    flex: 1;
+    height: 28px;
+    font-size: 15px;
+}
+
+/* ================= KUYU OLUŞTURUCU VE DİĞER SİHİRBAZ PENCERELERİ ================= */
+.modal-backdrop {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(6px) !important;
+    z-index: 99999 !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.modal-backdrop.open {
+    display: flex !important;
+}
+
+.modal-dialog {
+    background-color: var(--bg-panel);
+    border: 2px solid var(--accent-gold);
+    border-radius: 8px;
+    width: 780px;
+    max-width: 95vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+    font-size: 15px;
+    font-weight: 800;
+    color: #f8fafc;
+}
+
+.btn-close {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+}
+.btn-close:hover { color: white; }
+
+.modal-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    padding: 16px 20px;
+    gap: 20px;
+}
+
+.modal-form-col {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.modal-intervals-list {
+    margin-top: 8px;
+}
+
+.interval-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 5px 8px;
+    margin-bottom: 6px;
+    font-size: 11px;
+}
+
+.interval-item input[type="number"] {
+    width: 54px;
+    padding: 3px 5px;
+    font-size: 11px;
+}
+
+.interval-item select {
+    flex: 1;
+    padding: 3px 5px;
+    font-size: 11px;
+}
+
+.modal-preview-col {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 10px;
+    align-items: center;
+}
+
+.modal-preview-box {
+    flex: 1;
+    width: 100%;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-top: 1px solid var(--border-color);
+    gap: 10px;
+}
+
+/* ================= AÇILIR SEMBOL MENÜSÜ ================= */
+.dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--accent-gold);
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    z-index: 1000;
+    min-width: 220px;
+    padding: 4px;
+}
+
+.dropdown-menu.open {
+    display: block;
+}
+
+.menu-item {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    padding: 7px 10px;
+    font-size: 11.5px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.menu-item:hover {
+    background-color: var(--accent-blue);
+    color: white;
+}
+
+/* ================= HIZLI TABAKA VE ETİKET BUTONLARI ================= */
+.quick-strata-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.btn-quick-litho {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-main);
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 10.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-quick-litho:hover {
+    background: var(--accent-gold);
+    color: #0f172a;
+    border-color: var(--accent-gold);
+}
+
+.quick-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.btn-tag {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-main);
+    padding: 3px 7px;
+    border-radius: 3px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.btn-tag:hover {
+    background: var(--accent-blue);
+    color: white;
+}
+
+/* ================= KAROT SANDIĞI & MALZEME SINIFLANDIRMA TABLOSU ================= */
+.core-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    margin-top: 6px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.core-table th {
+    background: rgba(30, 41, 59, 0.95);
+    color: var(--accent-gold);
+    padding: 7px 8px;
+    text-align: left;
+    font-size: 10.5px;
+    border-bottom: 1px solid var(--border-color);
+}
+.core-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--text-main);
+    vertical-align: middle;
+}
+.core-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+.badge-uscs {
+    background: #0284c7;
+    color: #ffffff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 800;
+    font-size: 10px;
+    display: inline-block;
+}
+.badge-uscs.cl { background: #0284c7; }
+.badge-uscs.ch { background: #4338ca; }
+.badge-uscs.ml { background: #059669; }
+.badge-uscs.sm { background: #d97706; }
+.badge-uscs.dolgu { background: #ea580c; }
+.badge-uscs.kaya { background: #475569; }
+
+/* ================= GÖRSEL KAROT FOTOĞRAFI & AI ANALİZ BÖLÜMÜ ================= */
+.core-drop-zone {
+    border: 2px dashed #0284c7;
+    border-radius: 6px;
+    padding: 16px 12px;
+    text-align: center;
+    background: rgba(2, 132, 199, 0.06);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.core-drop-zone:hover, .core-drop-zone.dragover {
+    border-color: #38bdf8;
+    background: rgba(2, 132, 199, 0.16);
+}
+
+.drop-zone-content {
+    color: #e2e8f0;
+    font-size: 11.5px;
+    line-height: 1.4;
+}
+
+#aiAnalysisCard {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= ÇOKLU KAROT SANDIĞI & ÇOKLU EXCEL STİLLERİ ================= */
+.core-subtabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 4px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.core-subtab-btn {
+    flex: 1;
+    padding: 7px 10px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #94a3b8;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.core-subtab-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.core-subtab-btn.active {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #38bdf8;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.4);
+}
+
+.multi-core-card {
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.multi-core-card:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.multi-core-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.multi-core-thumb {
+    width: 65px;
+    height: 65px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.multi-core-kot-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.multi-core-kot-item label {
+    font-size: 9.5px;
+    color: #94a3b8;
+    display: block;
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+
+.multi-core-kot-item input {
+    width: 100%;
+    padding: 4px 6px;
+    font-size: 11px;
+    font-weight: bold;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    color: var(--text-main);
+}
+
+.btn-transfer-section {
+    width: 100%;
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    color: #ffffff;
+    font-size: 12.5px;
+    font-weight: 900;
+    padding: 11px 14px;
+    border: 1px solid #34d399;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35);
+    transition: all 0.2s ease;
+    margin-top: 12px;
+}
+
+.btn-transfer-section:hover {
+    background: linear-gradient(135deg, #047857 0%, #059669 100%);
+    box-shadow: 0 6px 15px rgba(16, 185, 129, 0.5);
+    transform: translateY(-1px);
+}
+
+.btn-transfer-section:active {
+    transform: translateY(1px);
+}
+
+/* ================= YAZDIRMA VE PDF ÇIKTISI ================= */
+@page {
+    size: landscape;
+    margin: 5mm;
+}
+
+@page {
+    size: landscape;
+    margin: 8mm;
+}
+
+@media print {
+    body, html {
+        overflow: visible !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+    .top-navbar, .sidebar, .status-bar, .modal-backdrop, .scrollbar-v, .scrollbar-h, .canvas-tools-floating {
+        display: none !important;
+    }
+    .app-container, .workspace, .canvas-wrapper, .canvas-container {
+        width: 100% !important;
+        height: 100% !important;
+        position: static !important;
+        overflow: visible !important;
+        background: #ffffff !important;
+    }
+    svg {
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+/* ==========================================================================
+   LİSANS ROZETİ VE AKTİVASYON MODALI
+   ========================================================================== */
+.license-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+.license-badge-gold {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: #f59e0b;
+    color: #fbbf24;
+}
+.license-badge-gold:hover {
+    background: rgba(245, 158, 11, 0.25);
+}
+.license-badge-green {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: #10b981;
+    color: #34d399;
+}
+.license-badge-green:hover {
+    background: rgba(16, 185, 129, 0.25);
+}
+.license-badge-warning {
+    background: rgba(249, 115, 22, 0.15);
+    border-color: #f97316;
+    color: #fb923c;
+}
+.license-badge-red {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: #ef4444;
+    color: #f87171;
+    animation: pulseRed 2s infinite;
+}
+@keyframes pulseRed {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.lic-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(11, 15, 25, 0.88);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.lic-modal-card {
+    width: 100%;
+    max-width: 560px;
+    background: #131d31;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(245, 158, 11, 0.2);
+    overflow: hidden;
+    animation: licPop 0.25s ease-out;
+}
+@keyframes licPop {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.lic-modal-header {
+    background: #0f172a;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid #1e293b;
+    position: relative;
+}
+.lic-modal-header img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid #d97706;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.lic-modal-close {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+}
+.lic-modal-close:hover { color: #f8fafc; }
+.lic-modal-body {
+    padding: 24px;
+    color: #e2e8f0;
+}
+.lic-input-group {
+    margin-bottom: 18px;
+}
+.lic-input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #cbd5e1;
+    margin-bottom: 6px;
+}
+.lic-input-box {
+    width: 100%;
+    background: #0a1120;
+    border: 1px solid #334155;
+    color: #f8fafc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+.lic-input-box:focus {
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+}
+.lic-hwid-row {
+    display: flex;
+    gap: 8px;
+}
+.lic-btn-copy {
+    background: #1e293b;
+    border: 1px solid #475569;
+    color: #f8fafc;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+}
+.lic-btn-copy:hover {
+    background: #334155;
+    border-color: #f59e0b;
+}
+.lic-btn-activate {
+    width: 100%;
+    background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #fbbf24 100%);
+    color: #0b0f19;
+    font-weight: 800;
+    font-size: 15px;
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+    transition: all 0.2s;
+    margin-top: 10px;
+}
+.lic-btn-activate:hover {
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+    transform: translateY(-1px);
+}
+
+/* Zemin İyileştirme Motoru Şablon Butonları */
+.btn-geotech-preset {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.15s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.btn-geotech-preset:hover {
+    filter: brightness(1.18);
+    transform: translateY(-1px);
+}
+
+/* ================= CAD, CBS & 3D KÖPRÜSÜ VE AKILLI KLASÖR STİLLERİ ================= */
+.bridge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 14px;
+}
+.bridge-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+}
+.bridge-card:hover {
+    border-color: #38bdf8;
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.2);
+}
+.canvas-3d-box {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    background: #090d16;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: grab;
+}
+.canvas-3d-box:active {
+    cursor: grabbing;
+}
+.batch-scan-list {
+    max-height: 220px;
+    overflow-y: auto;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.batch-file-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #1e293b;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 11.5px;
+}
+.batch-badge-ok {
+    background: #059669;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}

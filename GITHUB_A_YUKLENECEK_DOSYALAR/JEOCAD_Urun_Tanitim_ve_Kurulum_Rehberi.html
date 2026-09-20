@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BURHAN YUSUFOĞLU - JEOCAD | Ürün Tanıtım Kataloğu ve Kurulum Rehberi</title>
+    <link rel="icon" type="image/x-icon" href="app_icon.ico">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --primary-light: #1e293b;
+            --gold: #f59e0b;
+            --gold-dark: #d97706;
+            --gold-light: #fbbf24;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-page: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --accent-blue: #0284c7;
+            --accent-green: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .document-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        /* KAPAK / HEADER */
+        .header-cover {
+            background: linear-gradient(135deg, #090d16 0%, #0f172a 60%, #1e293b 100%);
+            color: #ffffff;
+            padding: 50px 40px;
+            position: relative;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .brand-block {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand-logo {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2.5px solid var(--gold);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+            background: #000;
+        }
+
+        .brand-titles h1 {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+        }
+
+        .brand-titles h1 span {
+            color: var(--gold);
+        }
+
+        .brand-titles .tagline {
+            color: #94a3b8;
+            font-size: 15px;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .badge-edition {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cover-hero-text {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cover-hero-text h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 8px;
+        }
+
+        .cover-hero-text p {
+            color: #cbd5e1;
+            font-size: 14.5px;
+            max-width: 760px;
+            line-height: 1.6;
+        }
+
+        /* İÇERİK BÖLÜMLERİ */
+        .content-body {
+            padding: 40px;
+        }
+
+        .section-block {
+            margin-bottom: 45px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .section-title .badge-num {
+            background: var(--gold);
+            color: #000;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        /* 6 DEV ÖZELLİK KARTLARI */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.05);
+            border-color: #cbd5e1;
+        }
+
+        .feature-card .icon {
+            font-size: 26px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* KURULUM ADIMLARI */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 18px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 22px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: var(--gold-light);
+            font-size: 16px;
+            font-weight: 800;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-content h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .step-highlight {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-weight: 700;
+            font-size: 12.5px;
+        }
+
+        /* KARŞILAŞTIRMA TABLOSU */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 12px 16px;
+            font-size: 13px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .check-yes {
+            color: #10b981;
+            font-weight: 800;
+        }
+
+        .check-no {
+            color: #ef4444;
+            font-weight: 800;
+        }
+
+        /* İLETİŞİM & SİPARİŞ KUTUSU */
+        .contact-box {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            border-radius: 14px;
+            padding: 30px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .contact-info h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--gold-light);
+            margin-bottom: 6px;
+        }
+
+        .contact-info p {
+            color: #cbd5e1;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-print {
+            background: var(--gold);
+            color: #000000;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            transition: all 0.2s;
+        }
+
+        .btn-print:hover {
+            background: var(--gold-light);
+            transform: translateY(-1px);
+        }
+
+        /* YAZDIRMA (PRINT / PDF) AYARLARI */
+        @media print {
+            body {
+                background: #ffffff !important;
+                padding: 0 !important;
+            }
+            .document-wrapper {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+            .btn-print {
+                display: none !important;
+            }
+            .header-cover {
+                padding: 30px 20px !important;
+            }
+            .content-body {
+                padding: 20px !important;
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="document-wrapper">
+    <!-- BAŞLIK / KAPAK -->
+    <header class="header-cover">
+        <div class="header-top">
+            <div class="brand-block">
+                <img src="logo.png" alt="Burhan Yusufoğlu By Logo" class="brand-logo">
+                <div class="brand-titles">
+                    <h1>BURHAN YUSUFOĞLU <span>JEOCAD</span></h1>
+                    <div class="tagline">Jeolojik Kesit ve Sondaj Kolon CAD Tasarım Stüdyosu</div>
+                </div>
+            </div>
+            <div class="badge-edition">👑 Resmi Sürüm v7.0</div>
+        </div>
+
+        <div class="cover-hero-text">
+            <h2>Zemin ve Jeoloji Mühendisliğinde Raporlamanın Yeni Standardı</h2>
+            <p>
+                <b>JEOCAD</b>; jeoloji, jeofizik ve geoteknik mühendislerinin zemin etüt raporlarında saatler süren enine kesit çizimlerini, sondaj logu kolonlarını ve litolojik korelasyonları <b>dakikalar içinde</b> hazırlamasını sağlayan yeni nesil yerli CAD yazılımıdır.
+            </p>
+        </div>
+    </header>
+
+    <div class="content-body">
+        <!-- BÖLÜM 1: 6 DEV ÖZELLİK -->
+        <section class="section-block">
+            <h2 class="section-title">
+                <span class="badge-num">1</span> JEOCAD Neden Tercih Ediliyor? (Öne Çıkan Özellikler)
+            </h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="icon">📘</span>
+                    <h3>Tek Tıkla Microsoft Word (.doc) Raporu</h3>
+                    <p>Çiziminizi 300 DPI yüksek çözünürlüklü kesit resmiyle, resmi antetiyle, kuyu koordinat ve kot tablolarıyla birlikte doğrudan düzenlenebilir gerçek bir Word raporu olarak hazırlar.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="icon">📕</span>
+                    <h3>Vektörel Adobe PDF Çıktısı</h3>
+                    <p>Asla kod veya teknik veri göstermez. Yatay A4 ve A3 formatında resmi kurum ve belediye onaylarına %100 uygun mimari ve jeolojik PDF baskı çıktısı üretir.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="icon">📐</span>
+                    <h3>AutoCAD & Netcad DXF Desteği</h3>
+                    <p>Hazırladığınız tüm jeolojik katmanları, sondaj kolonlarını ve seviye çizgilerini katmanlı (layered) standart DXF formatına aktararak CAD programlarıyla tam uyumlu çalışır.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="icon">🏛️</span>
+                    <h3>Otomatik Sondaj Kolonu & Litoloji</h3>
+                    <p>Kil, silt, kum, çakıl, andezit, kireçtaşı gibi onlarca jeolojik litoloji desenini tek tıkla kuyuya işler; kot hesaplamalarını ve kalınlıkları otomatik yazar.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="icon">🎛️</span>
+                    <h3>2 Katlı Profesyonel CAD Şeridi (Ribbon)</h3>
+                    <p>Tüm çizim, bükme, yazı, sembol ve boyama araçları iki katlı modern arayüzde elinizin altındadır. Hiçbir buton ekrandan taşmaz veya gizlenmez.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="icon">🛡️</span>
+                    <h3>Donanım Kilitli Güvenli Lisanslama</h3>
+                    <p>AutoCAD standartlarında bilgisayarın donanım kimliğine (Hardware-ID) kilitli çalışır. İzinsiz kopyalanamaz, 1 yıllık ticari güvence sunar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BÖLÜM 2: JEOCAD VS GELENEKSEL CAD -->
+        <section class="section-block">
+            <h2 class="section-title">
+                <span class="badge-num">2</span> Geleneksel Çizim Yöntemleri vs. JEOCAD
+            </h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Özellik & İşlem</th>
+                        <th>Geleneksel AutoCAD / Elle Çizim</th>
+                        <th>BURHAN YUSUFOĞLU - JEOCAD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Kesit Çizim Süresi</b></td>
+                        <td>2 - 4 Saat</td>
+                        <td><span class="check-yes">✔ 5 - 10 Dakika</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Word Raporuna Aktarma</b></td>
+                        <td>Ekran görüntüsü al, kırp, tabloyu elle yaz</td>
+                        <td><span class="check-yes">✔ Tek tıkla antetli ve tablolu Word raporu (.doc)</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Litoloji Deseni Boyama</b></td>
+                        <td>Hatch desenleriyle uğraş, patlama hataları</td>
+                        <td><span class="check-yes">✔ Akıllı Jeolojik Boya Kovası & Damlalık</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Sondaj Log Tablosu</b></td>
+                        <td>Excel'den tek tek elle kopyalama</td>
+                        <td><span class="check-yes">✔ Otomatik Excel entegrasyonu ve CSV çıktısı</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Lisans Maliyeti</b></td>
+                        <td>Yıllık on binlerce TL yabancı döviz lisansı</td>
+                        <td><span class="check-yes">✔ Ekonomik, yerli ve mühendise özel destek</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- BÖLÜM 3: 3 ADIMDA KOLAY KURULUM VE AKTİVASYON -->
+        <section class="section-block">
+            <h2 class="section-title">
+                <span class="badge-num">3</span> Hızlı Kurulum ve Aktivasyon Rehberi (Müşteri İçin)
+            </h2>
+
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Programı Başlatın</h4>
+                        <p>Size iletilen program klasöründeki altın By logolu <b><code>JeoCAD.exe</code></b> uygulamasına çift tıklayın. Hiçbir karmaşık kurulum gerekmez; program taşınabilir (portable) olarak saniyeler içinde açılır.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Makine Kodunuzu İletin</h4>
+                        <p>Açılışta gelen şık lisans ekranında bilgisayarınıza özel <span class="step-highlight">JC-XXXX-XXXX</span> formatında bir <b>Cihaz Kimliği (Hardware ID)</b> görünür. <b>"📋 Kopyala"</b> butonuna basarak bu kodu Burhan Yusufoğlu'na iletin.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Anahtarınızı Girin ve Başlayın!</h4>
+                        <p>Size gönderilen 1 yıllık resmi aktivasyon anahtarını <i>(Örn: <code>JC-1Y-...</code>)</i> kutuya yapıştırıp <b>"🔑 Lisansı Doğrula ve Başlat"</b> butonuna tıklayın. Programınız 365 gün boyunca tam yetkiyle kullanıma açılır!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BÖLÜM 4: İLETİŞİM & SİPARİŞ -->
+        <div class="contact-box">
+            <div class="contact-info">
+                <h3>Sipariş, Bilgi ve Kurumsal Lisanslama</h3>
+                <p><b>BURHAN YUSUFOĞLU MÜHENDİSLİK</b></p>
+                <p>Yazılım Geliştirici & Eser Sahibi: <b>Burhan Yusufoğlu (Jeoloji Mühendisi)</b></p>
+                <p>Lisans Türleri: 1 Yıllık Ticari Lisans / Süresiz Lisans / Kurumsal Çoklu Kullanıcı</p>
+            </div>
+            <div class="contact-buttons">
+                <button class="btn-print" onclick="window.print();">🖨️ PDF / Yazdır</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

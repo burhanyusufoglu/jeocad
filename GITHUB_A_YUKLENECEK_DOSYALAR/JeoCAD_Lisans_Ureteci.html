@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BURHAN YUSUFOĞLU - JeoCAD Lisans Üreteci (Yönetici Paneli)</title>
+    <link rel="icon" type="image/x-icon" href="app_icon.ico">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #0b0f19;
+            color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 760px;
+            background: #131d31;
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(245, 158, 11, 0.15);
+            padding: 36px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 24px;
+            margin-bottom: 28px;
+        }
+
+        .header img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            border: 2px solid #d97706;
+        }
+
+        .header-title h1 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #f8fafc;
+            letter-spacing: 0.5px;
+        }
+
+        .header-title h1 span {
+            color: #f59e0b;
+        }
+
+        .header-title p {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .badge-admin {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid #f59e0b;
+            color: #f59e0b;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            background: #0a1120;
+            border: 1px solid #334155;
+            color: #f8fafc;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        .duration-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .duration-card {
+            background: #0a1120;
+            border: 1px solid #334155;
+            padding: 12px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .duration-card:hover {
+            border-color: #f59e0b;
+        }
+
+        .duration-card.active {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .duration-card input {
+            accent-color: #f59e0b;
+        }
+
+        .btn-generate {
+            width: 100%;
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #fbbf24 100%);
+            color: #0b0f19;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px -5px rgba(245, 158, 11, 0.4);
+            margin-top: 10px;
+            transition: transform 0.1s, box-shadow 0.2s;
+        }
+
+        .btn-generate:hover {
+            box-shadow: 0 12px 25px -5px rgba(245, 158, 11, 0.6);
+            transform: translateY(-1px);
+        }
+
+        .btn-generate:active {
+            transform: translateY(1px);
+        }
+
+        .output-box {
+            margin-top: 30px;
+            background: #0a1120;
+            border: 1px solid #10b981;
+            border-radius: 12px;
+            padding: 24px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .output-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .output-title {
+            color: #10b981;
+            font-weight: 700;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .key-display {
+            background: #020617;
+            border: 1px dashed #334155;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: #38bdf8;
+            word-break: break-all;
+            text-align: center;
+            margin-bottom: 16px;
+            user-select: all;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-copy-key {
+            background: #3b82f6;
+            color: #fff;
+        }
+        .btn-copy-key:hover { background: #2563eb; }
+
+        .btn-copy-msg {
+            background: #10b981;
+            color: #fff;
+        }
+        .btn-copy-msg:hover { background: #059669; }
+
+        .msg-preview {
+            background: #070d18;
+            border: 1px solid #1e293b;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #cbd5e1;
+            margin-top: 14px;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <img src="logo.png" alt="Burhan Yusufoğlu">
+        <div class="header-title">
+            <h1>BURHAN YUSUFOĞLU - <span>JEOCAD</span></h1>
+            <p>Müşteri Lisans & Aktivasyon Anahtarı Üretim Sistemi</p>
+            <span class="badge-admin">🛡️ Yetkili Yönetici Paneli</span>
+        </div>
+    </div>
+
+    <form id="keyForm" onsubmit="event.preventDefault(); generate();">
+        <div class="form-group">
+            <label for="clientName">1. Müşteri / Firma Adı:</label>
+            <input type="text" id="clientName" placeholder="Örn: Ahmet Yılmaz Mühendislik Ltd. Şti." required autocomplete="off">
+            <div class="hint">Bu isim müşteriye göndereceğiniz mesajda ve lisans detaylarında yer alacaktır.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="hwid">2. Müşterinin Makine Kodu (Hardware ID):</label>
+            <input type="text" id="hwid" placeholder="Örn: JC-84F2-99B1 veya 84F299B1" required autocomplete="off">
+            <div class="hint">Müşterinizin JeoCAD açılış ekranında gördüğü ve size gönderdiği kod.</div>
+        </div>
+
+        <div class="form-group">
+            <label>3. Lisans Süresi:</label>
+            <div class="duration-grid">
+                <label class="duration-card active">
+                    <input type="radio" name="licDuration" value="1Y" checked>
+                    <div>
+                        <div style="font-weight: 700; color: #f8fafc;">1 Yıllık Lisans</div>
+                        <div style="font-size: 11px; color: #94a3b8;">Bugünden itibaren 365 gün</div>
+                    </div>
+                </label>
+
+                <label class="duration-card">
+                    <input type="radio" name="licDuration" value="2Y">
+                    <div>
+                        <div style="font-weight: 700; color: #f8fafc;">2 Yıllık Lisans</div>
+                        <div style="font-size: 11px; color: #94a3b8;">Bugünden itibaren 730 gün</div>
+                    </div>
+                </label>
+
+                <label class="duration-card">
+                    <input type="radio" name="licDuration" value="PR">
+                    <div>
+                        <div style="font-weight: 700; color: #f8fafc;">Süresiz / Ömür Boyu</div>
+                        <div style="font-size: 11px; color: #94a3b8;">Süre kısıtı olmadan sınırsız</div>
+                    </div>
+                </label>
+
+                <label class="duration-card">
+                    <input type="radio" name="licDuration" value="DM">
+                    <div>
+                        <div style="font-weight: 700; color: #f8fafc;">15 Günlük Deneme</div>
+                        <div style="font-size: 11px; color: #94a3b8;">Test amaçlı kısa lisans</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-generate">⚡ LİSANS ANAHTARI OLUŞTUR</button>
+    </form>
+
+    <div id="outputBox" class="output-box">
+        <div class="output-header">
+            <div class="output-title">✔ LİSANS ANAHTARI BAŞARIYLA OLUŞTURULDU</div>
+            <span id="outputTypeBadge" style="font-size: 12px; color: #94a3b8;"></span>
+        </div>
+
+        <div class="key-display" id="generatedKeyText"></div>
+
+        <div class="btn-row">
+            <button class="btn-action btn-copy-key" onclick="copyKey()">📋 Sadece Anahtarı Kopyala</button>
+            <button class="btn-action btn-copy-msg" onclick="copyMessage()">💬 WhatsApp / Mesaj Metnini Kopyala</button>
+        </div>
+
+        <div class="msg-preview" id="msgPreviewText"></div>
+    </div>
+</div>
+
+<script src="license_manager.js"></script>
+<script>
+    // Radio button stil tetikleyicisi
+    document.querySelectorAll('input[name="licDuration"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.querySelectorAll('.duration-card').forEach(c => c.classList.remove('active'));
+            this.closest('.duration-card').classList.add('active');
+        });
+    });
+
+    let currentGeneratedKey = "";
+    let currentMessageText = "";
+
+    function generate() {
+        const client = document.getElementById("clientName").value.trim();
+        let rawHwid = document.getElementById("hwid").value.trim().toUpperCase();
+
+        // Temizleme: JC- veya tireleri kaldır, ilk 8 hex karakteri al
+        rawHwid = rawHwid.replace(/[^A-Z0-9]/g, '');
+        if (rawHwid.startsWith('JC')) rawHwid = rawHwid.substring(2);
+        rawHwid = rawHwid.substring(0, 8);
+
+        if (rawHwid.length < 8) {
+            alert("Lütfen en az 8 karakterlik geçerli bir makine kodu giriniz! (Örn: JC-84F2-99B1)");
+            return;
+        }
+
+        const durationRadio = document.querySelector('input[name="licDuration"]:checked').value;
+
+        const now = new Date();
+        let expDate = new Date();
+        let durationLabel = "1 Yıllık Ticari Lisans";
+
+        if (durationRadio === '1Y') {
+            expDate.setFullYear(now.getFullYear() + 1);
+            durationLabel = "1 Yıllık Ticari Lisans (365 Gün)";
+        } else if (durationRadio === '2Y') {
+            expDate.setFullYear(now.getFullYear() + 2);
+            durationLabel = "2 Yıllık Ticari Lisans (730 Gün)";
+        } else if (durationRadio === 'DM') {
+            expDate.setDate(now.getDate() + 15);
+            durationLabel = "15 Günlük Deneme Sürümü";
+        } else if (durationRadio === 'PR') {
+            durationLabel = "Süresiz / Ömür Boyu Lisans";
+        }
+
+        const key = window.JeoCADLicense.generateKey(rawHwid, durationRadio, expDate);
+        currentGeneratedKey = key;
+
+        const expDateStr = (durationRadio === 'PR') ? "Süresiz (Ömür Boyu)" : expDate.toLocaleDateString('tr-TR');
+
+        currentMessageText = 
+`Sayın ${client},
+BURHAN YUSUFOĞLU - JEOCAD programı için lisansınız başarıyla tanımlanmıştır.
+
+🔑 Lisans Anahtarınız:
+${key}
+
+📋 Lisans Türü: ${durationLabel}
+⏳ Son Geçerlilik Tarihi: ${expDateStr}
+
+Aktivasyon Adımları:
+1. Bilgisayarınızda JEOCAD programını açın.
+2. Açılan lisans ekranındaki "Lisans Anahtarınızı Girin" kutusuna yukarıdaki anahtarı yapıştırın.
+3. "Lisansı Doğrula ve Başlat" butonuna tıklayın.
+
+İyi çalışmalar dileriz.
+Burhan Yusufoğlu Mühendislik`;
+
+        document.getElementById("generatedKeyText").innerText = key;
+        document.getElementById("outputTypeBadge").innerText = durationLabel + " | Bitiş: " + expDateStr;
+        document.getElementById("msgPreviewText").innerText = currentMessageText;
+        document.getElementById("outputBox").style.display = "block";
+
+        document.getElementById("outputBox").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyKey() {
+        if (!currentGeneratedKey) return;
+        navigator.clipboard.writeText(currentGeneratedKey).then(() => {
+            alert("Lisans anahtarı panoya kopyalandı!");
+        });
+    }
+
+    function copyMessage() {
+        if (!currentMessageText) return;
+        navigator.clipboard.writeText(currentMessageText).then(() => {
+            alert("Müşteriye gönderilecek WhatsApp / E-Posta metni panoya kopyalandı!");
+        });
+    }
+</script>
+
+</body>
+</html>

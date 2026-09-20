@@ -1,0 +1,2095 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>BURHAN YUSUFOĞLU - JEOCAD | Jeolojik Kesit ve Sondaj Kolon Tasarım Programı</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="theme-color" content="#0284c7">
+    <meta name="description" content="Burhan Yusufoğlu JEOCAD - Jeolojik Kesit ve Sondaj Kolon Tasarım Programı">
+    <link rel="icon" type="image/x-icon" href="app_icon.ico">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css?v=3.1.0">
+</head>
+<body>
+    <div class="app-container">
+        <!-- ÜST ARAÇ ÇUBUĞU (TOOLBAR) -->
+        <header class="top-navbar">
+            <!-- 1. KAT (TIER 1): MARKA, KLASÖRLER (KAYDET, LİTOLOJİ BOYASI, SONDAJ, ÇİZİM) & HIZLI ERİŞİM BUTONLARI -->
+            <div class="navbar-row-main" style="display:flex;align-items:center;gap:8px;padding:6px 12px;background:#0f172a;border-bottom:1px solid #334155;">
+                <!-- Sol Kısım: Marka ve Logo -->
+                <div class="brand" style="display:flex;align-items:center;gap:9px;flex-shrink:0;">
+                    <img src="logo.png" alt="B & Y JEOCAD Logo" style="height:40px;width:40px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.6), 0 0 6px rgba(245,158,11,0.35);border:1.5px solid #f59e0b;">
+                    <div class="brand-text">
+                        <h1 class="brand-name" style="margin:0;font-size:14px;font-weight:800;letter-spacing:0.5px;color:#f8fafc;display:flex;align-items:center;gap:6px;">
+                            B &amp; Y <span class="badge-cad" style="background:linear-gradient(135deg,#f59e0b,#d97706);color:#0f172a;font-weight:900;padding:2px 7px;border-radius:4px;">JEOCAD</span>
+                        </h1>
+                        <p class="subtitle" style="margin:0;font-size:10px;color:#cbd5e1;font-weight:500;">Jeolojik Kesit &amp; Sondaj Sistemleri | Burhan Yusufoğlu</p>
+                    </div>
+                </div>
+
+                <div class="navbar-divider"></div>
+
+                <!-- 1. KLASÖR: KAYDET & DIŞA AKTAR (ADOBE PDF, WORD, EXCEL, DXF, PNG, PROJE SAKLA/AÇ) -->
+                <div class="nav-dropdown-folder" id="folderSaveExport">
+                    <button type="button" class="btn-dropdown-folder" style="background:linear-gradient(135deg,#047857,#065f46);border-color:#10b981;" title="Resmi Rapor ve Dosya Kayıt Seçenekleri">
+                        <span style="font-size:14px;">💾</span> <strong>Kaydet & Dışa Aktar</strong> <span class="folder-caret">▼</span>
+                    </button>
+                    <div class="nav-dropdown-menu" style="min-width:270px;">
+                        <div class="nav-dropdown-header">📄 Resmi Rapor & CAD Çıktıları</div>
+                        <button type="button" id="btnQuickPDF" class="nav-dropdown-item" title="Adobe PDF Formatında Yatay A3/A4 Kesit ve Mühendislik Raporu">
+                            <span class="item-main"><span class="item-icon">📕</span> <strong>Adobe PDF</strong></span>
+                            <span class="item-badge" style="background:rgba(220,38,38,0.2);color:#fca5a5;">.pdf</span>
+                        </button>
+                        <button type="button" id="btnQuickWord" class="nav-dropdown-item" title="Microsoft Word Düzenlenebilir Resmi Rapor Metni">
+                            <span class="item-main"><span class="item-icon">📘</span> <strong>Word'e Kaydet</strong></span>
+                            <span class="item-badge" style="background:rgba(37,99,235,0.2);color:#93c5fd;">.docx</span>
+                        </button>
+                        <button type="button" id="btnQuickExcel" class="nav-dropdown-item" title="Sondaj Kotları ve Geoteknik Deney Parametrelerini Excel Olarak İndir">
+                            <span class="item-main"><span class="item-icon">📗</span> <strong>Excel'e Kaydet</strong></span>
+                            <span class="item-badge" style="background:rgba(22,163,74,0.2);color:#86efac;">.xlsx</span>
+                        </button>
+                        <button type="button" id="btnExportDXF" class="nav-dropdown-item" title="AutoCAD veya NetCAD için Katmanlı Vektörel CAD Çizimi">
+                            <span class="item-main"><span class="item-icon">📐</span> <strong>AutoCAD / NetCAD DXF</strong></span>
+                            <span class="item-badge" style="background:rgba(2,132,199,0.2);color:#7dd3fc;">.dxf</span>
+                        </button>
+                        <button type="button" id="btnExportPNG" class="nav-dropdown-item" title="300 DPI Yüksek Çözünürlüklü Kesit Resmi İndir">
+                            <span class="item-main"><span class="item-icon">🖼️</span> <strong>Resim Olarak Kaydet</strong></span>
+                            <span class="item-badge" style="background:rgba(16,185,129,0.2);color:#6ee7b7;">300 DPI</span>
+                        </button>
+                        <button type="button" id="btnOpenExportModal" class="nav-dropdown-item" title="Tüm Rapor ve Çıktı Ayarlarını Ayrıntılı Görüntüle">
+                            <span class="item-main"><span class="item-icon">📑</span> <strong>Detaylı Rapor Merkezi...</strong></span>
+                        </button>
+                        <div class="nav-dropdown-divider"></div>
+                        <div class="nav-dropdown-header">💾 JeoCAD Proje Dosyası</div>
+                        <button type="button" id="btnSaveProject" class="nav-dropdown-item" title="Çizimi sonradan açıp düzenlemek için proje dosyasını sakla">
+                            <span class="item-main"><span class="item-icon">💾</span> Projeyi Sakla</span>
+                            <span class="item-badge" style="background:rgba(99,102,241,0.2);color:#c7d2fe;">.jeocad</span>
+                        </button>
+                        <button type="button" id="btnSaveAsProject" class="nav-dropdown-item" title="Projeyi farklı isimle veya klasöre sakla">
+                            <span class="item-main"><span class="item-icon">📁</span> Farklı Sakla...</span>
+                        </button>
+                        <label class="nav-dropdown-item" style="margin:0;cursor:pointer;" title="Bilgisayarınızdaki kayıtlı bir projeyi açın">
+                            <span class="item-main"><span class="item-icon">📂</span> Kayıtlı Projeyi Aç</span>
+                            <input type="file" id="fileOpenProject" accept=".json,.jeocad" style="display:none;">
+                        </label>
+                        <button type="button" id="btnNewProject" class="nav-dropdown-item" title="Yeni temiz bir çalışma sayfası başlat">
+                            <span class="item-main"><span class="item-icon">📄</span> Yeni Temiz Proje</span>
+                        </button>
+                        <button type="button" id="btnLoadDemo" class="nav-dropdown-item" title="Hazır 3 kuyulu örnek kesiti yükle">
+                            <span class="item-main"><span class="item-icon">📋</span> Hazır 3 Kuyulu Örnek</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. KLASÖR: LİTOLOJİ BOYASI (BOYA KOVASI, DAMLALIK, PALET, RENKLER) -->
+                <div class="nav-dropdown-folder" id="folderLithology">
+                    <button type="button" class="btn-dropdown-folder" style="background:linear-gradient(135deg,#c2410c,#9a3412);border-color:#f97316;" title="Litoloji Boyama Araçları, Damlalık ve Renk Paleti">
+                        <span style="font-size:14px;">🎨</span> <strong>Litoloji Boyası</strong> <span class="folder-caret">▼</span>
+                    </button>
+                    <div class="nav-dropdown-menu" style="min-width:260px;">
+                        <div class="nav-dropdown-header">🖌️ Boyama Araçları</div>
+                        <button type="button" id="toolFill" class="nav-dropdown-item" title="Kesitteki tabaka alanını seçili renkle doldur">
+                            <span class="item-main"><span class="item-icon">🪣</span> <strong>Boya Kovası</strong> (Tabaka Doldur)</span>
+                        </button>
+                        <button type="button" id="toolEyedropper" class="nav-dropdown-item" title="Kolondaki veya kesitteki tabakadan rengi ve taramayı kopyala">
+                            <span class="item-main"><span class="item-icon">💧</span> <strong>Damlalık / Pipet</strong> (Renk Al)</span>
+                        </button>
+                        <button type="button" id="btnAutoSyncStrataTop" class="nav-dropdown-item" title="Sondaj kuyularındaki renk ve litolojileri tabakalara aktar">
+                            <span class="item-main"><span class="item-icon">⚡</span> <strong>Kolondan Tabakaya Aktar</strong></span>
+                        </button>
+                        <div class="nav-dropdown-divider"></div>
+                        <div class="nav-dropdown-header">🎨 Litoloji Renk & Tarama Paleti</div>
+                        <button type="button" class="nav-dropdown-item btn-palette-pick" data-name="Dolgu" data-color="#ea580c" data-pattern="hatch-fill">
+                            <span class="item-main"><span class="item-icon">🟧</span> Dolgu</span>
+                        </button>
+                        <button type="button" class="nav-dropdown-item btn-palette-pick" data-name="Sarı,Turuncu ve Kahverenkli Kumlu Kil" data-color="#a89276" data-pattern="hatch-sandy-clay">
+                            <span class="item-main"><span class="item-icon">🟫</span> Kumlu Kil (Orta Katman)</span>
+                        </button>
+                        <button type="button" class="nav-dropdown-item btn-palette-pick" data-name="Yeşilimsi Mavi Renkli Kil-Silt" data-color="#4dd0e1" data-pattern="hatch-silt">
+                            <span class="item-main"><span class="item-icon">🟦</span> Killi Silt (Suya Doygun)</span>
+                        </button>
+                        <button type="button" class="nav-dropdown-item btn-palette-pick" data-name="Kumtaşı / Kum" data-color="#facc15" data-pattern="hatch-sandstone">
+                            <span class="item-main"><span class="item-icon">🟨</span> Kumtaşı / Kum</span>
+                        </button>
+                        <button type="button" class="nav-dropdown-item btn-palette-pick" data-name="Silt / Silttaşı" data-color="#84cc16" data-pattern="hatch-silt">
+                            <span class="item-main"><span class="item-icon">🟩</span> Silt / Silttaşı</span>
+                        </button>
+                        <button type="button" class="nav-dropdown-item btn-palette-pick" data-name="Çakıl / Çakıltaşı" data-color="#fb923c" data-pattern="hatch-gravel">
+                            <span class="item-main"><span class="item-icon">🟧</span> Çakıl / Çakıltaşı</span>
+                        </button>
+                        <button type="button" class="nav-dropdown-item btn-palette-pick" data-name="Kireçtaşı (Kalker)" data-color="#94a3b8" data-pattern="hatch-limestone">
+                            <span class="item-main"><span class="item-icon">⬜</span> Kireçtaşı (Kalker)</span>
+                        </button>
+                        <button type="button" class="nav-dropdown-item btn-palette-pick" data-name="Volkanik (Bazalt)" data-color="#c084fc" data-pattern="hatch-igneous">
+                            <span class="item-main"><span class="item-icon">🟪</span> Volkanik (Bazalt)</span>
+                        </button>
+                        <button type="button" class="nav-dropdown-item btn-palette-pick" data-name="Boş Tabaka (Renksiz)" data-color="none" data-pattern="none">
+                            <span class="item-main"><span class="item-icon">⚪</span> Renksiz / Şeffaf Tabaka</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. KLASÖR: SONDAJ & KOLONLAR (YENİ KUYU, KOLON ÇİZ, METRAJ, SEMBOLLER) -->
+                <div class="nav-dropdown-folder" id="folderBoreholes">
+                    <button type="button" class="btn-dropdown-folder" style="background:linear-gradient(135deg,#0284c7,#0369a1);border-color:#38bdf8;" title="Sondaj Kolonları ve Jeolojik Semboller">
+                        <span style="font-size:14px;">🏛️</span> <strong>Sondaj & Kolon</strong> <span class="folder-caret">▼</span>
+                    </button>
+                    <div class="nav-dropdown-menu" style="min-width:250px;">
+                        <div class="nav-dropdown-header">🏛️ Kuyu & Kolon Yönetimi</div>
+                        <button type="button" id="btnOpenBoreholeModal" class="nav-dropdown-item" title="Koordinat, kot ve litoloji tabakalarıyla yeni kuyu ekle">
+                            <span class="item-main"><span class="item-icon">➕</span> <strong>Yeni Sondaj Kuyusu Ekle</strong></span>
+                            <span class="item-badge">Sihirbaz</span>
+                        </button>
+                        <button type="button" id="toolDrawBorehole" class="nav-dropdown-item" title="Kesit tuvali üzerinde etkileşimli kolon çiz">
+                            <span class="item-main"><span class="item-icon">🏛️</span> <strong>Kolon Çizim Aparatı</strong></span>
+                        </button>
+                        <button type="button" id="btnOpenBoreholeEditor" class="nav-dropdown-item" title="Mevcut kuyuların derinlik ve kot metrajlarını düzenle">
+                            <span class="item-main"><span class="item-icon">📏</span> <strong>Kolon Metraj & Kot Düzenle</strong></span>
+                        </button>
+                        <div class="nav-dropdown-divider"></div>
+                        <div class="nav-dropdown-header">🔺 Jeolojik Semboller</div>
+                        <button type="button" class="nav-dropdown-item btn-insert-sym" data-sym="arrow">
+                            <span class="item-main"><span class="item-icon">➡️</span> Eğim / Akış Yön Oku</span>
+                        </button>
+                        <button type="button" class="nav-dropdown-item btn-insert-sym" data-sym="double-arrow">
+                            <span class="item-main"><span class="item-icon">↔️</span> Çift Yönlü Kalınlık Oku</span>
+                        </button>
+                        <button type="button" class="nav-dropdown-item btn-insert-sym" data-sym="kot-triangle">
+                            <span class="item-main"><span class="item-icon">▽</span> Kot Seviye İşareti (YAS)</span>
+                        </button>
+                        <button type="button" class="nav-dropdown-item btn-insert-sym" data-sym="square">
+                            <span class="item-main"><span class="item-icon">⬛</span> Kare / Dikdörtgen</span>
+                        </button>
+                        <button type="button" class="nav-dropdown-item btn-insert-sym" data-sym="circle">
+                            <span class="item-main"><span class="item-icon">⭕</span> Daire / Yuvarlak</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4. KLASÖR: ÇİZİM & GEOMETRİ (SEÇİM, ÇİZGİ, DÜĞÜM BÜK, YAZI, SİL) -->
+                <div class="nav-dropdown-folder" id="folderDrawing">
+                    <button type="button" class="btn-dropdown-folder" style="background:linear-gradient(135deg,#4f46e5,#4338ca);border-color:#818cf8;" title="CAD Geometri ve Çizim Araçları">
+                        <span style="font-size:14px;">✏️</span> <strong>Çizim & Geometri</strong> <span class="folder-caret">▼</span>
+                    </button>
+                    <div class="nav-dropdown-menu" style="min-width:240px;">
+                        <div class="nav-dropdown-header">📐 Geometri & Çizim Araçları</div>
+                        <button type="button" id="toolSelect" class="nav-dropdown-item active" title="Nesneleri seçip taşıyın">
+                            <span class="item-main"><span class="item-icon">↖</span> <strong>Seçim & Taşıma</strong></span>
+                            <span class="item-badge">V</span>
+                        </button>
+                        <button type="button" id="toolDrawLine" class="nav-dropdown-item" title="Fareyle serbest çizgi veya tabaka sınırı çizin">
+                            <span class="item-main"><span class="item-icon">✏️</span> <strong>Serbest Çizgi Çiz</strong></span>
+                            <span class="item-badge">L</span>
+                        </button>
+                        <button type="button" id="toolNode" class="nav-dropdown-item" title="Çizgileri ve sınırları fareyle çekerek kavisli bükün">
+                            <span class="item-main"><span class="item-icon">⬡</span> <strong>Düğüm Bük & Kavis Ver</strong></span>
+                            <span class="item-badge">N</span>
+                        </button>
+                        <button type="button" id="toolText" class="nav-dropdown-item" title="Kesite serbest yazı ve etiket ekleyin">
+                            <span class="item-main"><span class="item-icon">🔤</span> <strong>Yazı & Etiket Ekle</strong></span>
+                            <span class="item-badge">T</span>
+                        </button>
+                        <button type="button" id="toolPan" class="nav-dropdown-item" title="Tuvali sürükleyerek kaydırın">
+                            <span class="item-main"><span class="item-icon">✋</span> <strong>Tuvali Kaydır</strong></span>
+                            <span class="item-badge">Pan</span>
+                        </button>
+                        <div class="nav-dropdown-divider"></div>
+                        <button type="button" id="btnUndo" class="nav-dropdown-item" title="Son işlemi geri al">
+                            <span class="item-main"><span class="item-icon">↩</span> <strong>Geri Al</strong></span>
+                            <span class="item-badge">Ctrl+Z</span>
+                        </button>
+                        <button type="button" id="btnDeleteSelected" class="nav-dropdown-item" style="color:#fca5a5;" title="Seçili nesneyi sil">
+                            <span class="item-main"><span class="item-icon">🗑️</span> <strong>Seçiliyi Sil</strong></span>
+                            <span class="item-badge">Del</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 5. KLASÖR: CAD, CBS & 3D KÖPRÜSÜ (AUTOCAD, NETCAD, ARCGIS, BIM, 3D, AKILLI KLASÖR) -->
+                <div class="nav-dropdown-folder" id="folderIntegrations">
+                    <button type="button" class="btn-dropdown-folder" style="background:linear-gradient(135deg,#0d9488,#0f766e);border-color:#2dd4bf;" title="AutoCAD, NetCAD, ArcGIS, BIM, 3D ve Akıllı Klasör Aktarımı">
+                        <span style="font-size:14px;">🌐</span> <strong>CAD, CBS & 3D</strong> <span class="folder-caret">▼</span>
+                    </button>
+                    <div class="nav-dropdown-menu" style="min-width:280px;">
+                        <div class="nav-dropdown-header">📂 Akıllı Klasör İçe Aktarma</div>
+                        <button type="button" id="btnTriggerFolderUpload" class="nav-dropdown-item" style="background:rgba(13,148,136,0.25);border-left:3px solid #2dd4bf;" title="Dışarıdan oluşturacağınız klasörü seçin; kuyu, deney, logo ve fotoğrafları otomatik ayrıştırsın">
+                            <span class="item-main"><span class="item-icon">⚡</span> <strong>Akıllı Klasör Yükle & Ayrıştır</strong></span>
+                            <span class="item-badge" style="background:#0d9488;">Otomatik</span>
+                        </button>
+                        <div class="nav-dropdown-divider"></div>
+                        <div class="nav-dropdown-header">📐 Harici Mühendislik Yazılımları</div>
+                        <button type="button" id="btnOpenAutoCadBridge" class="nav-dropdown-item" title="AutoCAD ve Civil 3D için katmanlı DXF ve otomatik çizim scripti (.scr)">
+                            <span class="item-main"><span class="item-icon">📐</span> <strong>AutoCAD & Autodesk (.dxf / .scr)</strong></span>
+                            <span class="item-badge">DWG/DXF</span>
+                        </button>
+                        <button type="button" id="btnOpenNetCadBridge" class="nav-dropdown-item" title="NetCAD ile %100 uyumlu tabaka, kuyu ve kot formatı">
+                            <span class="item-main"><span class="item-icon">🗺️</span> <strong>NetCAD (.dxf / .kml)</strong></span>
+                            <span class="item-badge">NCZ Uyumlu</span>
+                        </button>
+                        <button type="button" id="btnOpenArcGisBridge" class="nav-dropdown-item" title="ArcGIS ve QGIS için coğrafi öznitelik tablosu ve GeoJSON katmanı">
+                            <span class="item-main"><span class="item-icon">🌍</span> <strong>ArcGIS & QGIS (CBS / GIS)</strong></span>
+                            <span class="item-badge">GeoJSON/KML</span>
+                        </button>
+                        <button type="button" id="btnOpenBimBridge" class="nav-dropdown-item" title="Autodesk Revit, ArchiCAD ve Mimarlar için Df, YAS ve zemin yatak parametreleri">
+                            <span class="item-main"><span class="item-icon">🏢</span> <strong>Autodesk Revit & Mimari BIM</strong></span>
+                            <span class="item-badge">Mimarlık</span>
+                        </button>
+                        <button type="button" id="btnOpenStatikBridge" class="nav-dropdown-item" title="ideCAD Statik, SAP2000, ProtaStructure için zemin yatak katsayısı ve taşıma gücü">
+                            <span class="item-main"><span class="item-icon">🏗️</span> <strong>İnşaat / Statik (ideCAD / SAP)</strong></span>
+                            <span class="item-badge">Statik</span>
+                        </button>
+                        <div class="nav-dropdown-divider"></div>
+                        <div class="nav-dropdown-header">🧊 3D Katı Model & Görselleştirme</div>
+                        <button type="button" id="btnOpen3DViewer" class="nav-dropdown-item" title="Kesitteki kuyuları 3 boyutlu silindir tüpler olarak döndürün ve 3D OBJ indirin">
+                            <span class="item-main"><span class="item-icon">🧊</span> <strong>3D Katı Model Görselleştirici</strong></span>
+                            <span class="item-badge">3D OBJ</span>
+                        </button>
+                    </div>
+                </div>
+
+                <input type="file" id="fileFolderBatchUpload" webkitdirectory directory multiple style="display:none;">
+
+                <!-- Dikey Çizgi Ayırıcı -->
+                <div class="navbar-divider"></div>
+
+                <!-- Zemin İyileştirme Karar Motoru (Altın Parlayan Buton) -->
+                <button type="button" id="btnOpenGeotechModal" class="btn-action" style="background:linear-gradient(135deg, #d97706 0%, #b45309 100%);color:#ffffff;font-weight:bold;font-size:12px;padding:6px 13px;border-radius:6px;box-shadow:0 0 10px rgba(217,119,6,0.5);cursor:pointer;flex-shrink:0;" title="TBDY 2018 Zemin İyileştirme Karar Motoru ve Geoteknik Tasarım Raporu">
+                    <span class="icon">🏗️</span> <strong>Zemin İyileştirme</strong>
+                </button>
+
+                <!-- Firma Bilgileri & Özel Logo Yönetimi Butonu -->
+                <button type="button" id="btnOpenCompanySettingsModal" class="btn-action" style="background:linear-gradient(135deg, #0284c7 0%, #0369a1 100%);color:#ffffff;font-weight:bold;font-size:12px;padding:6px 13px;border-radius:6px;box-shadow:0 0 8px rgba(2,132,199,0.4);cursor:pointer;flex-shrink:0;" title="Raporlarda ve Kesit Antetinde Çıkacak Şirket Adı, Firma Logosu ve Kaşe Damgasını Ayarlayın">
+                    <span class="icon">🏢</span> <strong>Firma & Logo</strong>
+                </button>
+
+                <!-- Windows Masaüstü Kurulum Butonu -->
+                <button type="button" id="btnInstallApp" class="btn-action" style="background:linear-gradient(135deg, #f59e0b 0%, #d97706 100%);color:#ffffff;font-weight:bold;font-size:12px;padding:6px 12px;border-radius:6px;box-shadow:0 0 8px rgba(245,158,11,0.5);cursor:pointer;flex-shrink:0;" title="JEOCAD'i Windows Masaüstü Programı Olarak Bilgisayara Kur">
+                    <span class="icon">💻</span> <strong>Windows'a Kur</strong>
+                </button>
+
+                <!-- Sağ Kısım: Lisans & Zoom -->
+                <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
+                    <div id="licenseStatusBadge" class="license-badge" onclick="window.JeoCADLicense && window.JeoCADLicense.showActivationModal(null, true)" style="display:none;" title="Lisans Bilgilerini Görüntüle"></div>
+                    <div class="tool-group" style="display:flex;align-items:center;gap:2px;background:#1e293b;border:1px solid #334155;border-radius:6px;padding:2px 4px;">
+                        <button id="btnZoomOut" class="btn-tool" style="width:24px;height:24px;font-weight:bold;" title="Uzaklaş">-</button>
+                        <span id="zoomLevel" class="zoom-indicator" style="font-size:11px;min-width:38px;">100%</span>
+                        <button id="btnZoomIn" class="btn-tool" style="width:24px;height:24px;font-weight:bold;" title="Yakınlaş">+</button>
+                        <button id="btnZoomFit" class="btn-tool" style="font-size:11px;padding:2px 6px;" title="Kesiti Ekrana Tam Sığdır">⛶ Sığdır</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. KAT (TIER 2): HIZLI CAD VE ÇİZİM KISAYOLLARI (EN SIK KULLANILANLAR) -->
+            <div class="navbar-row-tools" style="display:flex;align-items:center;gap:6px;padding:4px 12px;background:#1e293b;border-bottom:1px solid #334155;">
+                <span class="ribbon-label">Hızlı Araçlar:</span>
+                <button type="button" id="toolSelectRibbon" class="btn-tool active" title="Seçim (V)"><span class="icon">↖</span> Seçim</button>
+                <button type="button" id="toolDrawLineRibbon" class="btn-tool" title="Çizgi Çiz (L)"><span class="icon">✏️</span> Çizgi Çiz</button>
+                <button type="button" id="toolNodeRibbon" class="btn-tool" title="Düğüm Bük (N)"><span class="icon">⬡</span> Düğüm Bük</button>
+                <button type="button" id="toolTextRibbon" class="btn-tool" title="Yazı Ekle (T)"><span class="icon">🔤</span> Yazı Yaz</button>
+                <button type="button" id="toolFillRibbon" class="btn-tool" style="background:rgba(234,88,12,0.2);border:1px solid #ea580c;color:#fb923c;" title="Boya Kovası"><span class="icon">🪣</span> Boya Kovası</button>
+                <button type="button" id="toolEyedropperRibbon" class="btn-tool" style="background:rgba(14,165,233,0.2);border:1px solid #0ea5e9;color:#7dd3fc;" title="Damlalık"><span class="icon">💧</span> Damlalık</button>
+                <button type="button" id="btnRibbonNewBorehole" class="btn-tool" style="background:rgba(16,185,129,0.2);border:1px solid #10b981;color:#6ee7b7;" title="Yeni Kuyu Ekle"><span class="icon">➕</span> Yeni Kuyu</button>
+                <button type="button" id="toolDrawBoreholeRibbon" class="btn-tool" style="background:rgba(245,158,11,0.2);border:1px solid #f59e0b;color:#fcd34d;" title="Kolon Çiz"><span class="icon">🏛️</span> Kolon Çiz</button>
+                <button type="button" id="toolPanRibbon" class="btn-tool" title="Kaydır (Pan)"><span class="icon">✋</span> Kaydır</button>
+                <div class="ribbon-divider"></div>
+                <button type="button" id="toolExcelTable" class="btn-tool" style="background:rgba(5,150,105,0.25);border:1px solid #059669;color:#6ee7b7;" title="Excel Tablosunu Doğrudan Sayfaya Koy"><span class="icon">📊</span> Excel Tablosu Koy</button>
+                <button type="button" id="toolExcelImage" class="btn-tool" style="background:rgba(2,132,199,0.25);border:1px solid #0284c7;color:#7dd3fc;" title="Excel Tablosunu Resim Olarak Sayfaya Koy"><span class="icon">📷</span> Excel Resmini Koy</button>
+                <div class="ribbon-divider"></div>
+                <button type="button" id="btnQuickSwitch3D" class="btn-tool" style="background:rgba(56,189,248,0.2);border:1px solid #38bdf8;color:#38bdf8;font-weight:bold;" title="3D Katı Model Görünümünü Aç (Orbit / Döndür)"><span class="icon">🧊</span> 3D Katı Model</button>
+            </div>
+        </header>
+
+        <!-- ANA ÇALIŞMA ALANI -->
+        <main class="workspace">
+            <!-- SOL PANEL (KULLANICI TALEBİ: 4 KATEGORİLİ ERGONOMİK DÜZEN) -->
+            <aside class="sidebar">
+                <div class="sidebar-tabs">
+                    <button class="tab-btn active" data-tab="tab-strata">📂 1. Litoloji & Tabaka</button>
+                    <button class="tab-btn" data-tab="tab-geotech">🏗️ 2. Zemin & Deneyler</button>
+                    <button class="tab-btn" data-tab="tab-kot-boreholes">📏 3. Kot, Kuyu & Temel</button>
+                    <button class="tab-btn" data-tab="tab-engineer">🏢 4. Firma & Antet</button>
+                </div>
+
+                <!-- TAB 1: TABAKALAR VE LEJANT (Kullanıcının isteği: Sola koy, basınca direk alta geçsin) -->
+                <div id="tab-strata" class="tab-content active">
+                    <div class="panel-section">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                            <h3>🧱 Kesit Tabakaları</h3>
+                            <button id="btnAutoSyncStrata" class="btn-small" style="background:#2563eb;" title="Kolon metrajındaki renkleri tabakalara anında aktar">⚡ Kolondan Aktar</button>
+                        </div>
+                        <p class="help-text">Burada düzenlediğiniz isim ve renkler anında aşağıdaki Lejanta ve kesite geçer:</p>
+                        
+                        <div id="strataList" class="strata-list"></div>
+
+                        <div style="margin-top:12px;border-top:1px solid var(--border-color);padding-top:10px;">
+                            <h4 style="font-size:12px;color:var(--accent-gold);margin-bottom:6px;">+ Hızlı Tabaka / Litoloji Ekle:</h4>
+                            <div class="quick-strata-buttons">
+                                <button class="btn-quick-litho" data-name="Dolgu" data-color="#ea580c">🟧 Dolgu</button>
+                                <button class="btn-quick-litho" data-name="Sarı,Turuncu ve Kahverenkli Kumlu Kil" data-color="#a89276">🟫 Kumlu Kil</button>
+                                <button class="btn-quick-litho" data-name="Yeşilimsi Mavi Renkli, Kum İçerikli Katı, Yüksek Plastisiteli, Kil-Silt" data-color="#4dd0e1">🟦 Killi Silt</button>
+                                <button class="btn-quick-litho" data-name="Kumtaşı / Kum" data-color="#facc15">🟨 Kumtaşı</button>
+                                <button class="btn-quick-litho" data-name="Kireçtaşı (Kalker)" data-color="#94a3b8">⬜ Kireçtaşı</button>
+                                <button class="btn-quick-litho" data-name="Çakıl / Çakıltaşı" data-color="#fb923c">🟧 Çakıl</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: MÜHENDİS İMZA BİLGİLERİ & ŞİRKET ANTETİ -->
+                <!-- TAB 2: MÜHENDİS İMZA BİLGİLERİ & ŞİRKET ANTETİ (TEK YERDE, DİREKT LOGO EKLEME) -->
+                <div id="tab-engineer" class="tab-content">
+                    <div class="panel-section" style="padding:12px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                            <h3 style="margin:0;display:flex;align-items:center;gap:6px;color:#f8fafc;font-size:13.5px;">
+                                <span>🏢</span> Firma & Şirket Logosu
+                            </h3>
+                            <span style="font-size:9.5px;background:#0284c7;color:#ffffff;padding:2px 6px;border-radius:4px;font-weight:bold;">TEK MERKEZİ PANEL</span>
+                        </div>
+                        
+                        <!-- 1. DOĞRUDAN ŞİRKET LOGOSU EKLEME ALANI (DİREKT EKLE - FOTOĞRAF KAYBOLMAZ) -->
+                        <div id="directLogoSection" style="background:#0f172a;border:1.5px solid #0284c7;border-radius:8px;padding:10px;margin-bottom:12px;box-shadow:0 3px 10px rgba(0,0,0,0.3);">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                                <span style="font-size:11.5px;color:#38bdf8;font-weight:bold;display:flex;align-items:center;gap:5px;">
+                                    <span>🖼️</span> Şirket Logosu:
+                                </span>
+                                <span id="directLogoStatusBadge" style="font-size:10px;padding:1px 6px;border-radius:3px;background:#1e293b;color:#94a3b8;">Henüz Yüklenmedi</span>
+                            </div>
+
+                            <!-- Gizli Dosya Seçici -->
+                            <input type="file" id="inpDirectCompanyLogo" accept="image/png,image/jpeg,image/webp,image/svg+xml" style="display:none;">
+
+                            <!-- Tıklanabilir & Sürükle-Bırak Alanı -->
+                            <div id="directLogoDropZone" style="border:2px dashed #38bdf8;border-radius:6px;background:#1e293b;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;" title="Bilgisayarınızdan logo dosyası seçmek veya buraya sürüklemek için tıklayın">
+                                <div id="directLogoPrompt" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                                    <span style="font-size:22px;">📁</span>
+                                    <span style="font-size:11px;font-weight:bold;color:#f1f5f9;">Logoyu Seçmek İçin Tıklayın</span>
+                                    <span style="font-size:9.5px;color:#94a3b8;">veya fotoğrafı buraya sürükleyip bırakın (PNG, JPG)</span>
+                                </div>
+                                
+                                <div id="directLogoPreviewContainer" style="display:none;flex-direction:column;align-items:center;gap:6px;">
+                                    <img id="directLogoImg" src="" alt="Firma Logosu" style="max-height:48px;max-width:180px;object-fit:contain;background:#ffffff;padding:4px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">
+                                    <div style="display:flex;gap:6px;align-items:center;margin-top:2px;">
+                                        <button type="button" id="btnDirectChangeLogo" class="btn-small" style="background:#0284c7;font-size:10px;padding:2px 8px;cursor:pointer;">🔄 Değiştir</button>
+                                        <button type="button" id="btnDirectRemoveLogo" class="btn-small" style="background:#dc2626;font-size:10px;padding:2px 8px;cursor:pointer;">🗑️ Kaldır</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Doğrudan Ekle Butonu -->
+                            <button type="button" id="btnDirectAddLogoClick" style="width:100%;margin-top:8px;background:linear-gradient(135deg, #0284c7 0%, #2563eb 100%);color:#ffffff;font-weight:bold;font-size:11.5px;padding:7px 10px;border:none;border-radius:5px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 2px 8px rgba(2,132,199,0.3);">
+                                <span>➕</span>
+                                <span>Direkt Şirket Logosu Ekle (Dosya Seç)</span>
+                            </button>
+                            
+                            <div id="directLogoSuccessMsg" style="display:none;margin-top:6px;font-size:10.5px;color:#10b981;font-weight:bold;text-align:center;">
+                                ✓ Logo başarıyla eklendi ve antete işlendi!
+                            </div>
+                        </div>
+
+                        <!-- 2. FİRMA & MÜHENDİS BİLGİLERİ -->
+                        <div class="form-group" style="margin-bottom:6px;">
+                            <label for="inpCompanyName" style="font-size:11px;">Firma / Şirket Adı:</label>
+                            <input type="text" id="inpCompanyName" placeholder="Örn: Avrasya Geoteknik Mühendislik" style="font-size:11.5px;padding:6px 8px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:6px;">
+                            <label for="inpEngineerTitle" style="font-size:11px;">Mühendis Unvanı:</label>
+                            <input type="text" id="inpEngineerTitle" value="Jeoloji Mühendisi" placeholder="Örn: Jeoloji Mühendisi" style="font-size:11.5px;padding:6px 8px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:6px;">
+                            <label for="inpEngineerName" style="font-size:11px;">Mühendis Adı Soyadı:</label>
+                            <input type="text" id="inpEngineerName" placeholder="Örn: Burhan YUSUFOĞLU" style="font-size:11.5px;padding:6px 8px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:8px;">
+                            <label for="inpEngineerRegNo" style="font-size:11px;">Oda Sicil / Belge No:</label>
+                            <input type="text" id="inpEngineerRegNo" placeholder="Örn: Sicil No: 12345" style="font-size:11.5px;padding:6px 8px;">
+                        </div>
+
+                        <!-- 3. GÖRÜNÜM & SEÇİM (TEK YERDE - KULLANICI İSTEĞİ) -->
+                        <div style="margin-top:8px;border-top:1px solid var(--border-color);padding-top:8px;">
+                            <div style="font-size:11px;color:#38bdf8;font-weight:bold;margin-bottom:6px;">📐 Antet & Lejant Seçenekleri:</div>
+                            <label style="display:flex;align-items:center;gap:8px;font-size:11.5px;cursor:pointer;margin-bottom:6px;">
+                                <input type="checkbox" id="chkShowEngineerBlock" checked>
+                                Kesitte imza ve antet bloğunu göster
+                            </label>
+                            <label style="display:flex;align-items:center;gap:8px;font-size:11.5px;cursor:pointer;margin-bottom:6px;">
+                                <input type="checkbox" id="chkShowSymbolsLegend" checked>
+                                Semboller Lejantını göster
+                            </label>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:11px;color:#94a3b8;margin-top:6px;padding-top:6px;border-top:1px dashed #334155;">
+                                <span>Antet Konumu:</span>
+                                <label style="display:inline-flex;align-items:center;gap:4px;cursor:pointer;color:#f8fafc;">
+                                    <input type="radio" name="radAntetPosition" id="radAntetBottom" value="bottom" checked>
+                                    Aşağıda (Kesit Altı)
+                                </label>
+                                <label style="display:inline-flex;align-items:center;gap:4px;cursor:pointer;color:#f8fafc;">
+                                    <input type="radio" name="radAntetPosition" id="radAntetTop" value="top">
+                                    Yukarıda (Kesit Üstü)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: KOT VE KUYULAR -->
+                <div id="tab-kot-boreholes" class="tab-content">
+                    <div class="panel-section">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                            <h3>📏 Kot Ayarları</h3>
+                            <button id="btnAutoFitKot" class="btn-small" style="background:#10b981;" title="Kuyu derinliklerine göre kot aralığını otomatik ayarla">⚡ Otomatik Kot Belirle</button>
+                        </div>
+                        <p class="help-text">Sadece 10m ile sınırlı değil; 71m, 88m vb. her kotu belirleyebilirsiniz:</p>
+
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="inpMaxKot">Üst Kot (m):</label>
+                                <input type="number" id="inpMaxKot" value="91.00" step="1.0">
+                            </div>
+                            <div class="form-group col">
+                                <label for="inpMinKot">Alt Kot (m):</label>
+                                <input type="number" id="inpMinKot" value="71.00" step="1.0">
+                            </div>
+                            <div class="form-group col">
+                                <label for="inpElevationStep">Adım (m):</label>
+                                <input type="number" id="inpElevationStep" value="2.0" step="0.5" min="0.5">
+                            </div>
+                        </div>
+
+                        <div style="display:flex;gap:6px;margin-top:8px;">
+                            <button id="btnApplyKot" class="btn-action btn-primary" style="flex:1;font-size:11px;padding:5px;">✓ Kotu Uygula</button>
+                            <button id="btnAddCustomKotLine" class="btn-action" style="background:#2563eb;font-size:11px;padding:5px;">+ Özel Kot Çizgisi Ekle</button>
+                        </div>
+                    </div>
+
+                    <!-- ÖLÇEK & ORAN EKLENTİSİ (KULLANICI İSTEĞİ: 1X1, 1X2 VB. & OTOMATİK ORAN) -->
+                    <div class="panel-section" style="border: 1px solid #0284c7; background: rgba(2, 132, 199, 0.06); margin-top: 10px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                            <h3 style="color:#38bdf8;font-size:12px;margin:0;">📐 Ölçek & Oran Eklentisi</h3>
+                            <span id="badgeActiveScale" style="font-size:10.5px;font-weight:bold;background:#0284c7;color:#fff;padding:2px 8px;border-radius:10px;">1x1 (Doğal)</span>
+                        </div>
+                        <p class="help-text" style="margin-bottom:8px;">X ve Y eksen orantısını belirleyin (Düşey abartma ile tabaka kalınlıklarını netleştirin):</p>
+                        
+                        <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:4px;margin-bottom:8px;">
+                            <button type="button" class="btn-scale-ratio btn-small" data-ratio="1" style="background:#0284c7;border:1px solid #38bdf8;color:#fff;font-weight:bold;padding:5px 2px;cursor:pointer;">1X1</button>
+                            <button type="button" class="btn-scale-ratio btn-small" data-ratio="2" style="background:#1e293b;border:1px solid #475569;color:#fff;font-weight:bold;padding:5px 2px;cursor:pointer;">1X2</button>
+                            <button type="button" class="btn-scale-ratio btn-small" data-ratio="5" style="background:#1e293b;border:1px solid #475569;color:#fff;font-weight:bold;padding:5px 2px;cursor:pointer;">1X5</button>
+                            <button type="button" class="btn-scale-ratio btn-small" data-ratio="10" style="background:#1e293b;border:1px solid #475569;color:#fff;font-weight:bold;padding:5px 2px;cursor:pointer;">1X10</button>
+                        </div>
+
+                        <div style="display:flex;gap:6px;align-items:center;margin-bottom:6px;">
+                            <button id="btnAutoDetermineScale" class="btn-action" style="flex:1;background:#0284c7;color:#fff;font-size:11px;font-weight:bold;padding:6px;" title="X uzunluğu ve Y kot farkına göre en estetik ölçek oranını otomatik hesapla">
+                                ⚡ Otomatik Oran Belirle
+                            </button>
+                        </div>
+
+                        <!-- Kesit Ölçek Metni Seçeneği (Kullanıcı İsteği: Varsayılan Kapalı, ölçek belirlendiğinde veya istendiğinde gelir) -->
+                        <label style="display:flex;align-items:center;gap:8px;font-size:11px;color:#cbd5e1;cursor:pointer;margin-top:6px;border-top:1px solid rgba(255,255,255,0.08);padding-top:6px;">
+                            <input type="checkbox" id="chkShowScaleText">
+                            <span>Kesit Üzerinde Ölçek Oranını Yazdır (Örn: ÖLÇEK: 1X1)</span>
+                        </label>
+
+                        <!-- Damalı L-Ölçek Seçeneği (Kullanıcı İsteği: Varsayılan Kapalı) -->
+                        <label style="display:flex;align-items:center;gap:8px;font-size:11px;color:#94a3b8;cursor:pointer;margin-top:4px;">
+                            <input type="checkbox" id="chkShowGraphicScale">
+                            Damalı L-Ölçeği (0, 1, 2) Göster (İsteğe Bağlı)
+                        </label>
+                    </div>
+
+                    <div class="panel-section">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                            <h3>📍 Sondaj Kuyuları</h3>
+                            <button id="btnSidebarAddBorehole" class="btn-small" style="background:#10b981;">+ Yeni Kuyu</button>
+                        </div>
+                        <label style="display:flex;align-items:center;gap:8px;font-size:11.5px;color:#cbd5e1;cursor:pointer;margin-bottom:8px;">
+                            <input type="checkbox" id="chkShowBoreholeDepths">
+                            <span>Kolon üstünde metrajları yaz (Varsayılan: Sade)</span>
+                        </label>
+                        <div id="boreholeList" class="borehole-list"></div>
+                    </div>
+
+                    <!-- EXCEL SONDAJ LOGU AKTARIMI & EĞİME GÖRE KESİT ÇİZİMİ -->
+                    <div class="panel-section" style="border:1px solid #10b981;background:rgba(16,185,129,0.06);margin-top:10px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                            <h3 style="color:#34d399;">📊 Excel Logu Yapıştır & Çiz</h3>
+                            <button id="btnFillSampleExcel" class="btn-small" style="background:#0f766e;font-size:10.5px;" title="Örnek 3 SK Excel tablosunu yapıştır">Örnek Veri</button>
+                        </div>
+                        <p class="help-text">Excel'de tuttuğunuz sondaj tablosunu (Ctrl+C) kopyalayıp buraya yapıştırın; eğime göre kesit anında çizilsin:</p>
+                        <textarea id="txtExcelInput" rows="5" style="width:100%;font-size:10.5px;font-family:monospace;background:var(--bg-input);border:1px solid var(--border-color);border-radius:4px;color:var(--text-main);padding:6px;" placeholder="KuyuAdı	X	Kot	Başlangıç	Bitiş	TabakaTanımı
+SK-1	2.0	98.0	0.0	3.0	Dolgu
+SK-1	2.0	98.0	3.0	12.0	Kumlu Kil
+SK-1	2.0	98.0	12.0	23.0	Killi Silt
+SK-2	7.0	95.5	0.0	2.0	Dolgu
+SK-2	7.0	95.5	2.0	10.0	Kumlu Kil
+SK-2	7.0	95.5	10.0	20.0	Killi Silt
+SK-3	12.0	92.0	0.0	1.5	Dolgu
+SK-3	12.0	92.0	1.5	8.0	Kumlu Kil
+SK-3	12.0	92.0	8.0	18.0	Killi Silt"></textarea>
+                        <div style="display:flex;gap:6px;margin-top:6px;">
+                            <button id="btnImportExcelAndCorrelate" class="btn-action" style="flex:1;background:#10b981;color:#fff;font-size:11px;font-weight:bold;padding:7px;" title="Kuyuları oluştur ve tabaka sınırlarını eğime göre bağla">
+                                ⚡ Excel'den Çiz & Eğime Göre Bağla
+                            </button>
+                            <button id="btnCorrelateBySlope" class="btn-action" style="background:#2563eb;color:#fff;font-size:11px;padding:7px;" title="Mevcut kuyuları eğime göre bağla">
+                                📐 Eğime Göre Bağla
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 4: PROJE, YÖNLER VE MÜHENDİSLİK ÇİZGİLERİ -->
+                <div id="tab-project" class="tab-content">
+                    <div class="panel-section">
+                        <h3>📋 Proje ve Kesit Başlığı</h3>
+                        <div class="form-group">
+                            <label for="inpTitle">Ana Başlık (İl / İlçe / Ada / Parsel):</label>
+                            <textarea id="inpTitle" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="inpSubtitle">Alt Başlık (Kesit Bilgisi):</label>
+                            <input type="text" id="inpSubtitle">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="inpLineStart">Başlangıç & Yön:</label>
+                                <input type="text" id="inpLineStart" value="A">
+                                <input type="text" id="inpDirStart" value="K.Batı" style="margin-top:4px;">
+                            </div>
+                            <div class="form-group col">
+                                <label for="inpLineEnd">Bitiş & Yön:</label>
+                                <input type="text" id="inpLineEnd" value="A'">
+                                <input type="text" id="inpDirEnd" value="G.Doğu" style="margin-top:4px;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inpDist">Kesit Boyu (m):</label>
+                            <input type="number" id="inpDist" value="12.0" step="0.5">
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <h3>Mühendislik Çizgileri</h3>
+                        <div class="form-group">
+                            <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;">
+                                <input type="checkbox" id="chkDf" checked>
+                                <strong>Bina Temel Altı Çizgisi (Df)</strong>
+                            </label>
+                            <div class="form-row" style="margin-top:6px;">
+                                <div class="form-group col">
+                                    <label for="inpDfElevation">Df Kotu (m):</label>
+                                    <input type="number" id="inpDfElevation" value="85.42" step="0.01">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="inpDfLabel">Etiket:</label>
+                                    <input type="text" id="inpDfLabel" value="Df=85,42">
+                                </div>
+                            </div>
+                            <div id="dfStratumInfo" style="margin-top:6px;font-size:11px;display:flex;align-items:center;gap:6px;padding:5px 8px;background:rgba(255,255,255,0.06);border-radius:4px;border:1px solid rgba(255,255,255,0.12);">
+                                <span id="dfStratumSwatch" style="width:14px;height:14px;border-radius:3px;display:inline-block;border:1px solid rgba(255,255,255,0.4);background:#a89276;flex-shrink:0;"></span>
+                                <span id="dfStratumName" style="color:#e2e8f0;font-weight:600;">Oturduğu Tabaka: Kumlu Kil</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top:10px;">
+                            <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;">
+                                <input type="checkbox" id="chkGw" checked>
+                                <strong>Yeraltı Su Seviyesi (YAS)</strong>
+                            </label>
+                            <div class="form-group" style="margin-top:6px;">
+                                <label for="inpGwElevation">YAS Kotu (m):</label>
+                                <input type="number" id="inpGwElevation" value="83.00" step="0.1">
+                            </div>
+                        </div>
+
+                        <button id="btnGenerateSection" class="btn-action btn-primary" style="width:100%;margin-top:10px;">✓ Kesiti Güncelle</button>
+                    </div>
+                </div>
+
+                <!-- TAB 5: ÇOKLU KAROT SANDIĞI & ÇOKLU EXCEL YÖNETİCİSİ -->
+                <div id="tab-corebox" class="tab-content">
+                    <!-- Alt Sekmeler: Karot Sandığı vs Excel Logları -->
+                    <div class="core-subtabs">
+                        <button id="btnSubTabCore" class="core-subtab-btn active">📸 Çoklu Karot Sandığı</button>
+                        <button id="btnSubTabExcel" class="core-subtab-btn">📊 Çoklu Excel Logu</button>
+                    </div>
+
+                    <!-- BÖLÜM 1: ÇOKLU KAROT SANDIKLARI VE KESİTE AKTARIM -->
+                    <div id="subContentCore" class="panel-section" style="border:1px solid #0284c7;background:rgba(2,132,199,0.06);padding:10px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                            <h3 style="color:#38bdf8;font-size:12.5px;">📸 Çoklu Karot Sandığı Analizörü</h3>
+                            <span style="font-size:9.5px;background:#0284c7;color:#fff;padding:2px 6px;border-radius:4px;font-weight:bold;">AI VİZYON</span>
+                        </div>
+                        <p class="help-text" style="margin-bottom:8px;font-size:11px;">
+                            İstediğiniz kadar karot sandığı fotoğrafı ekleyin; AI litolojiyi ve renkleri tespit eder. <b>Sadece kotları girin ve sağdaki kesite aktarın!</b>
+                        </p>
+
+                        <!-- Hızlı Eylem Butonları -->
+                        <div style="display:flex;gap:4px;margin-bottom:8px;">
+                            <button id="btnPickMultiCorePhotos" class="btn-small" style="background:#0284c7;flex:1.2;font-weight:bold;" title="Bilgisayardan 1 veya birden fazla karot sandığı fotoğrafı seçin">➕ Fotoğraf Ekle</button>
+                            <button id="btnLoadSample3Cores" class="btn-small" style="background:#0f766e;flex:1.4;font-weight:bold;" title="Test etmek için 3 adet hazır karot sandığı örneği yükle (Dolgu + Kumlu Kil + Killi Silt)">📁 3 Örnek Sandık</button>
+                            <button id="btnClearAllCoreBoxes" class="btn-small" style="background:#ef4444;flex:0.6;" title="Tüm eklenen karot sandıklarını temizle">🗑️</button>
+                        </div>
+
+                        <!-- Gizli Çoklu Dosya Seçici -->
+                        <input type="file" id="inputCorePhoto" accept="image/*" multiple style="display:none;">
+
+                        <!-- Sürükle Bırak Alanı -->
+                        <div id="coreDropZone" class="core-drop-zone" style="padding:10px 8px;margin-bottom:8px;">
+                            <div class="drop-zone-content" id="dropZoneContent">
+                                <span style="font-size:18px;display:block;">📥 📸</span>
+                                <strong style="font-size:11.5px;">Fotoğrafları Buraya Sürükleyin veya Tıklayın</strong>
+                                <span style="font-size:10px;color:#94a3b8;display:block;">Aynı anda birden fazla fotoğraf seçebilir veya <b>Ctrl+V</b> ile yapıştırabilirsiniz</span>
+                            </div>
+                        </div>
+
+                        <!-- Eklenen Karot Sandıkları Listesi -->
+                        <div id="multiCoreBoxList" style="display:flex;flex-direction:column;gap:8px;max-height:380px;overflow-y:auto;padding-right:2px;">
+                            <!-- Dinamik olarak JS tarafından oluşturulur -->
+                        </div>
+
+                        <!-- KESİTE AKTAR BUTONU -->
+                        <button id="btnTransferCoresToSection" class="btn-transfer-section">
+                            <span>🚀 Karot Sonuçlarını Sağdaki Kesite Aktar</span>
+                        </button>
+                        <p id="coreTransferFeedback" style="font-size:11px;color:#10b981;margin-top:4px;text-align:center;display:none;font-weight:bold;"></p>
+                    </div>
+
+                    <!-- BÖLÜM 2: ÇOKLU EXCEL SONDAJ LOGLARI VE KESİTE AKTARIM -->
+                    <div id="subContentExcel" class="panel-section" style="border:1px solid #059669;background:rgba(5,150,105,0.06);padding:10px;display:none;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                            <h3 style="color:#34d399;font-size:12.5px;">📊 Çoklu Excel Sondaj Logları</h3>
+                            <span style="font-size:9.5px;background:#059669;color:#fff;padding:2px 6px;border-radius:4px;font-weight:bold;">SONDAJ LOGU EXCEL</span>
+                        </div>
+                        <p class="help-text" style="margin-bottom:8px;font-size:11px;">
+                            Parseldeki birden çok sondaj kuyusunun (SK-1, SK-2, SK-3...) Excel loglarını ekleyin. <b>Siz sadece kotları girin, kesit sağ tarafta otomatik çizilsin!</b>
+                        </p>
+
+                        <!-- Hızlı Eylem Butonları -->
+                        <div style="display:flex;gap:4px;margin-bottom:8px;">
+                            <button id="btnAddExcelBorehole" class="btn-small" style="background:#059669;flex:1;font-weight:bold;">➕ Yeni Kuyu Ekle</button>
+                            <button id="btnLoadSampleExcelMulti" class="btn-small" style="background:#0f766e;flex:1.4;font-weight:bold;">📁 Örnek 3 Kuyu (SK-1,2,3)</button>
+                            <button id="btnOpenPasteExcelModal" class="btn-small" style="background:#2563eb;flex:1.2;font-weight:bold;">📋 Tablo Yapıştır</button>
+                        </div>
+
+                        <!-- Çoklu Excel Kuyuları Listesi -->
+                        <div id="multiExcelLogList" style="display:flex;flex-direction:column;gap:8px;max-height:380px;overflow-y:auto;padding-right:2px;">
+                            <!-- Dinamik olarak JS tarafından oluşturulur -->
+                        </div>
+
+                        <!-- EXCEL'DEN KESİTE AKTAR BUTONU -->
+                        <button id="btnTransferExcelToSection" class="btn-transfer-section" style="background:linear-gradient(135deg, #047857 0%, #059669 100%);">
+                            <span>🚀 Excel Verilerini Sağdaki Kesite Aktar</span>
+                        </button>
+                        <p id="excelTransferFeedback" style="font-size:11px;color:#10b981;margin-top:4px;text-align:center;display:none;font-weight:bold;"></p>
+                    </div>
+
+                    <!-- BÖLÜM 3: KUYU TABAKALARI & 1m / TABAKA ÖZETİ -->
+                    <div class="panel-section" style="margin-top:10px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                            <h3>📦 Kuyu Sandık Listesi & Rapor</h3>
+                            <button id="btnToggleCoreCard" class="btn-small" style="background:#0284c7;" title="Kesit üzerine taşınabilir bilgi kartı ekle / gizle">📋 Kesite Ekle</button>
+                        </div>
+
+                        <!-- Görünüm Seçimi: Her 1 Metrede vs Tabaka Özeti -->
+                        <div style="display:flex;gap:4px;margin-bottom:8px;">
+                            <button id="btnCoreView1m" class="btn-small active" style="flex:1;background:#2563eb;padding:5px;font-weight:bold;" title="0-1m, 1-2m... adım adım her metre analizi">📐 Her 1 Metrede Analiz</button>
+                            <button id="btnCoreViewStrata" class="btn-small" style="flex:1;background:#475569;padding:5px;" title="Ana jeolojik tabakalar özeti">🧱 Tabaka Özeti</button>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:12px;">
+                            <label for="selCoreBorehole">İncelenecek Kuyu:</label>
+                            <select id="selCoreBorehole" style="width:100%;padding:6px 10px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:4px;color:var(--text-main);font-weight:bold;"></select>
+                        </div>
+
+                        <div id="coreBoxTableContainer" style="overflow-x:auto;margin-top:10px;">
+                            <!-- Otomatik hesaplanan karot sandığı tablosu -->
+                        </div>
+
+                        <div style="margin-top:14px;border-top:1px solid var(--border-color);padding-top:10px;display:flex;flex-direction:column;gap:8px;">
+                            <button id="btnCopy1mReport" class="btn-action" style="background:#0284c7;color:#ffffff;font-size:11.5px;padding:8px;" title="Her 1 metredeki zemin sınıflandırma ve mühendislik yorumu raporunu kopyala">
+                                📋 Her 1 Metredeki Ayrıntılı Raporu Kopyala
+                            </button>
+                            <button id="btnCopyCoreReport" class="btn-action" style="background:#0f766e;color:#ffffff;font-size:11.5px;padding:8px;" title="Kuyu tabaka özet rapor metnini kopyala">
+                                📄 Kuyu Tabaka Özetini Kopyala
+                            </button>
+                            <p id="coreCopyFeedback" style="font-size:11px;color:#10b981;margin:0;display:none;">✓ Rapor metni panoya kopyalandı!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 6: PDF VE OFFICE PROGRAMLARINA DÖNÜŞTÜRÜCÜ (KULLANICI İSTEĞİ) -->
+                <div id="tab-export" class="tab-content">
+                    <div class="panel-section" style="border:1px solid #0284c7;background:rgba(2,132,199,0.06);padding:12px;">
+                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                            <span style="font-size:22px;">📑</span>
+                            <div>
+                                <h3 style="color:#38bdf8;margin:0;font-size:13px;">PDF & Office Dönüştürücü</h3>
+                                <span style="font-size:10px;color:#94a3b8;">Resmi Jeoteknik Rapor Formatlarına Çevir</span>
+                            </div>
+                        </div>
+                        <p class="help-text" style="font-size:11px;margin-bottom:12px;">
+                            Hazırladığınız jeolojik kesiti tek tıkla resmi kurum raporlarına (PDF, Word, Excel, AutoCAD) aktarın:
+                        </p>
+
+                        <!-- 1. PDF RAPORU -->
+                        <div style="background:#1e293b;border:1px solid #334155;border-radius:6px;padding:10px;margin-bottom:10px;">
+                            <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                                <span style="font-size:16px;">📄</span>
+                                <strong style="color:#38bdf8;font-size:12px;">Vektörel PDF Raporu (A4 / A3)</strong>
+                            </div>
+                            <p style="font-size:10.5px;color:#cbd5e1;margin:0 0 8px 0;">Belediye ve resmi kurumlara sunulabilir, antetli ve imza bloklu vektörel PDF çıktısı:</p>
+                            <button id="btnTabExportPDF" class="btn-action" style="width:100%;background:#0284c7;color:#fff;font-weight:bold;font-size:11.5px;padding:7px;cursor:pointer;">
+                                🖨️ PDF Olarak Kaydet / Yazdır
+                            </button>
+                        </div>
+
+                        <!-- 2. MICROSOFT WORD (RAPOR & BELGE) -->
+                        <div style="background:#1e293b;border:1px solid #334155;border-radius:6px;padding:10px;margin-bottom:10px;">
+                            <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                                <span style="font-size:16px;">📝</span>
+                                <strong style="color:#60a5fa;font-size:12px;">Microsoft Word & Jeoteknik Rapor</strong>
+                            </div>
+                            <p style="font-size:10.5px;color:#cbd5e1;margin:0 0 8px 0;">Doğrudan Word belgesi (.doc) olarak indirin veya panoya kopyalayıp Word'e yapıştırın:</p>
+                            <div style="display:flex;flex-direction:column;gap:5px;">
+                                <button id="btnTabExportWordDoc" class="btn-action" style="background:linear-gradient(135deg, #1d4ed8, #1e40af);color:#fff;font-weight:bold;font-size:11px;padding:7px;cursor:pointer;">
+                                    📘 Word Rapor Belgesi İndir (.doc)
+                                </button>
+                                <div style="display:flex;gap:5px;">
+                                    <button id="btnTabCopyWord" class="btn-action" style="flex:1.3;background:#2563eb;color:#fff;font-size:10.5px;padding:6px;cursor:pointer;">
+                                        📋 Panoya Kopyala (Ctrl+V)
+                                    </button>
+                                    <button id="btnTabDownloadPNG" class="btn-action" style="flex:1;background:#3b82f6;color:#fff;font-size:10.5px;padding:6px;cursor:pointer;">
+                                        💾 PNG İndir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. MICROSOFT EXCEL (TABLOLAR) -->
+                        <div style="background:#1e293b;border:1px solid #334155;border-radius:6px;padding:10px;margin-bottom:10px;">
+                            <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                                <span style="font-size:16px;">📊</span>
+                                <strong style="color:#34d399;font-size:12px;">Microsoft Excel (Kuyu & Kot Tablosu)</strong>
+                            </div>
+                            <p style="font-size:10.5px;color:#cbd5e1;margin:0 0 8px 0;">Kuyu koordinatları, zemin kotları, tabaka kalınlıkları ve Df kotlarını Excel formatına aktarın:</p>
+                            <div style="display:flex;gap:6px;">
+                                <button id="btnTabDownloadExcel" class="btn-action" style="flex:1.3;background:#059669;color:#fff;font-weight:bold;font-size:11px;padding:7px;cursor:pointer;">
+                                    📥 Excel Dosyası (.csv)
+                                </button>
+                                <button id="btnTabCopyExcel" class="btn-action" style="flex:1;background:#10b981;color:#fff;font-size:11px;padding:7px;cursor:pointer;">
+                                    📋 Excel'e Kopyala
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 4. AUTOCAD (DXF) VE CORELDRAW (SVG) -->
+                        <div style="background:#1e293b;border:1px solid #334155;border-radius:6px;padding:10px;margin-bottom:10px;">
+                            <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                                <span style="font-size:16px;">📐</span>
+                                <strong style="color:#f59e0b;font-size:12px;">AutoCAD & CAD Programları</strong>
+                            </div>
+                            <p style="font-size:10.5px;color:#cbd5e1;margin:0 0 8px 0;">AutoCAD ve Netcad uyumlu katmanlı DXF çizim dosyası:</p>
+                            <div style="display:flex;gap:6px;">
+                                <button id="btnTabDownloadDXF" class="btn-action" style="flex:1.2;background:#d97706;color:#fff;font-weight:bold;font-size:11px;padding:7px;cursor:pointer;">
+                                    📐 AutoCAD (DXF)
+                                </button>
+                                <button id="btnTabDownloadSVG" class="btn-action" style="flex:1;background:#b45309;color:#fff;font-size:11px;padding:7px;cursor:pointer;">
+                                    🎨 Corel (SVG)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Geri Bildirim Bildirimi -->
+                        <div id="tabExportFeedback" style="display:none;padding:8px;background:rgba(16,185,129,0.15);border:1px solid #10b981;border-radius:5px;font-size:11.5px;color:#34d399;font-weight:bold;text-align:center;margin-top:8px;"></div>
+                    </div>
+                </div>
+
+                <!-- TAB 7: ÇOKLU KUYU VE METRAJ BAZLI AKILLI ZEMİN İYİLEŞTİRME MOTORU (TBDY 2018) -->
+                <div id="tab-geotech" class="tab-content">
+                    <div class="panel-section" style="border:1px solid #f59e0b;background:rgba(245,158,11,0.05);padding:10px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                            <div style="display:flex;align-items:center;gap:6px;">
+                                <span style="font-size:20px;">🏗️</span>
+                                <div>
+                                    <h3 style="color:#f59e0b;margin:0;font-size:12.5px;">Çoklu Kuyu & Metraj Zemin Analizi</h3>
+                                    <span style="font-size:9.5px;color:#94a3b8;">TBDY 2018 & Eurocode 7 Derinlik Profilli</span>
+                                </div>
+                            </div>
+                            <span style="font-size:9px;background:#f59e0b;color:#0f172a;padding:2px 5px;border-radius:3px;font-weight:bold;">DERİNLİK PROFİLLİ</span>
+                        </div>
+                        <p class="help-text" style="font-size:10.5px;margin-bottom:8px;">
+                            Tüm kuyulardaki (SK-1, SK-2...) farklı derinliklerdeki SPT, Presiyometre, Nokta Yük, Direkt Kesme ve Plastisite deneylerini ekleyin; zemin iyileştirmeyi metraja göre projelendirin:
+                        </p>
+
+                        <!-- Hızlı Eylem Butonları (Kullanıcı İsteği: Yeni Ekle ve Excel'den Getir Belirgin ve Tam Aktif) -->
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">
+                            <button type="button" id="btnAddNewTestRow" class="btn-action" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;font-size:11.5px;font-weight:bold;padding:8px 6px;justify-content:center;box-shadow:0 2px 8px rgba(37,99,235,0.4);border-radius:5px;cursor:pointer;" title="Yeni kuyu / metraj deney satırı ekleme penceresini aç">
+                                <span>➕</span> Yeni Deney Ekle
+                            </button>
+                            <button type="button" id="btnOpenPasteGeotechModal" class="btn-action" style="background:linear-gradient(135deg,#059669,#047857);color:#fff;font-size:11.5px;font-weight:bold;padding:8px 6px;justify-content:center;box-shadow:0 2px 8px rgba(5,150,105,0.4);border-radius:5px;cursor:pointer;" title="Excel tablosundan kopyalanan deney verilerini tek tıkla yapıştır / dosya seç">
+                                <span>📋</span> Excel'den Getir / Yapıştır
+                            </button>
+                        </div>
+                        <div style="display:flex;gap:4px;margin-bottom:8px;">
+                            <button type="button" id="btnLoadDefaultMultiBorehole" class="btn-small" style="background:#0284c7;font-size:10.5px;padding:5px 8px;font-weight:bold;flex:1;" title="SK-1, SK-2, SK-3 kuyuları ve tüm derinlik deneylerini içeren hazır parsel örneği yükle">
+                                📁 3 Kuyulu Parsel Örneği
+                            </button>
+                            <button type="button" id="btnClearAllGeotechRows" class="btn-small" style="background:#ef4444;font-size:10.5px;padding:5px 10px;" title="Tüm deney tablosunu temizle">
+                                🗑️ Temizle
+                            </button>
+                        </div>
+
+                        <!-- Çoklu SK & Firma Hızlı Erişim Butonları -->
+                        <div style="display:flex;gap:6px;margin-bottom:8px;">
+                            <button type="button" id="btnGeotechAddNewSK" style="flex:1;background:linear-gradient(135deg,#059669,#047857);color:#ffffff;border:none;border-radius:4px;padding:7px 8px;font-size:11px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;box-shadow:0 2px 6px rgba(5,150,105,0.3);" title="Projeye Yeni Sondaj Kolonu (SK-2, SK-3...) Tanımlayın">
+                                <span>📍</span> Yeni SK Ekle
+                            </button>
+                            <button type="button" id="btnGeotechOpenCompany" style="flex:1;background:linear-gradient(135deg,#0284c7,#0369a1);color:#ffffff;border:none;border-radius:4px;padding:7px 8px;font-size:11px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;box-shadow:0 2px 6px rgba(2,132,199,0.3);" title="Firma Adı, Logo ve Kaşe Düzenle">
+                                <span>🏢</span> Firma & Logo
+                            </button>
+                        </div>
+
+                        <!-- Kuyu Filtresi & Deney Sayacı -->
+                        <div style="display:flex;justify-content:space-between;align-items:center;background:#1e293b;border:1px solid #334155;border-radius:4px;padding:4px 8px;margin-bottom:8px;">
+                            <div style="display:flex;align-items:center;gap:6px;font-size:11px;">
+                                <label for="selFilterBorehole" style="margin:0;color:#94a3b8;font-size:10.5px;">Kuyu Filtresi:</label>
+                                <select id="selFilterBorehole" style="padding:3px 6px;background:#0f172a;border:1px solid #475569;border-radius:3px;color:#f8fafc;font-size:10.5px;font-weight:bold;">
+                                    <option value="all">Tüm Kuyular (Genel Parsel)</option>
+                                </select>
+                            </div>
+                            <span id="geotechRowCountBadge" style="font-size:10.5px;color:#38bdf8;font-weight:bold;">0 Deney</span>
+                        </div>
+
+                        <!-- KULLANICI İSTEĞİ: FERAH 2 KATLI HIZLI VERİ GİRİŞ ÇUBUĞU (KENDİM YAZMAK İSTİYORUM) -->
+                        <div id="inlineFastGeoEntryBar" style="background:#1e293b;border:1px solid #0284c7;border-radius:6px;padding:8px;margin-bottom:10px;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                                <span style="font-size:11px;color:#38bdf8;font-weight:bold;">✍️ Manuel Deney Girişi (Çoklu SK):</span>
+                                <span style="font-size:9.5px;color:#94a3b8;">Enter: sonraki derinliğe (+1.5m) geçer</span>
+                            </div>
+
+                            <!-- 1. Satır: Kuyu Seçimi, Derinlik, SPT-N, c'/phi -->
+                            <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:6px;margin-bottom:6px;">
+                                <div>
+                                    <span style="font-size:9px;color:#94a3b8;display:block;margin-bottom:2px;">Kuyu (SK)</span>
+                                    <input list="dlBoreholes" type="text" id="inpFastBh" placeholder="SK-1" value="SK-1" style="width:100%;box-sizing:border-box;background:#0f172a;color:#38bdf8;font-weight:bold;border:1px solid #475569;border-radius:4px;padding:5px 4px;font-size:11px;text-align:center;" title="Mevcut kuyulardan birini seçin veya yeni bir SK adı yazın">
+                                    <datalist id="dlBoreholes">
+                                        <option value="SK-1"></option>
+                                        <option value="SK-2"></option>
+                                        <option value="SK-3"></option>
+                                    </datalist>
+                                </div>
+                                <div>
+                                    <span style="font-size:9px;color:#94a3b8;display:block;margin-bottom:2px;">Derinlik (m)</span>
+                                    <input type="text" id="inpFastDepth" placeholder="1.50" value="1.50" style="width:100%;box-sizing:border-box;background:#0f172a;color:#f8fafc;font-weight:bold;border:1px solid #475569;border-radius:4px;padding:5px 4px;font-size:11px;text-align:center;">
+                                </div>
+                                <div>
+                                    <span style="font-size:9px;color:#94a3b8;display:block;margin-bottom:2px;">SPT-N</span>
+                                    <input type="text" id="inpFastSpt" placeholder="N" value="12" style="width:100%;box-sizing:border-box;background:#0f172a;color:#f8fafc;font-weight:bold;border:1px solid #475569;border-radius:4px;padding:5px 4px;font-size:11px;text-align:center;">
+                                </div>
+                                <div>
+                                    <span style="font-size:9px;color:#94a3b8;display:block;margin-bottom:2px;">c' / φ'</span>
+                                    <input type="text" id="inpFastCPhi" placeholder="15/20" value="15/20" style="width:100%;box-sizing:border-box;background:#0f172a;color:#cbd5e1;border:1px solid #475569;border-radius:4px;padding:5px 4px;font-size:11px;text-align:center;">
+                                </div>
+                            </div>
+
+                            <!-- 2. Satır: Pl, Em, Is, PI -->
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:8px;">
+                                <div>
+                                    <span style="font-size:9px;color:#94a3b8;display:block;margin-bottom:2px;">Pl (MPa)</span>
+                                    <input type="text" id="inpFastPl" placeholder="0.50" value="0.50" style="width:100%;box-sizing:border-box;background:#0f172a;color:#cbd5e1;border:1px solid #475569;border-radius:4px;padding:5px 4px;font-size:11px;text-align:center;">
+                                </div>
+                                <div>
+                                    <span style="font-size:9px;color:#94a3b8;display:block;margin-bottom:2px;">Em (MPa)</span>
+                                    <input type="text" id="inpFastEm" placeholder="5.0" value="5.0" style="width:100%;box-sizing:border-box;background:#0f172a;color:#cbd5e1;border:1px solid #475569;border-radius:4px;padding:5px 4px;font-size:11px;text-align:center;">
+                                </div>
+                                <div>
+                                    <span style="font-size:9px;color:#94a3b8;display:block;margin-bottom:2px;">Is(50)</span>
+                                    <input type="text" id="inpFastIs" placeholder="0.0" value="0.0" style="width:100%;box-sizing:border-box;background:#0f172a;color:#cbd5e1;border:1px solid #475569;border-radius:4px;padding:5px 4px;font-size:11px;text-align:center;">
+                                </div>
+                                <div>
+                                    <span style="font-size:9px;color:#94a3b8;display:block;margin-bottom:2px;">PI (%)</span>
+                                    <input type="text" id="inpFastPI" placeholder="16" value="16" style="width:100%;box-sizing:border-box;background:#0f172a;color:#cbd5e1;border:1px solid #475569;border-radius:4px;padding:5px 4px;font-size:11px;text-align:center;">
+                                </div>
+                            </div>
+
+                            <!-- 3. Satır: Belirgin, Geniş, Canlı Ekleme Butonu -->
+                            <button type="button" id="btnFastAddGeoRow" style="width:100%;height:32px;background:linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);color:#ffffff;border:none;border-radius:4px;font-weight:bold;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 2px 6px rgba(37,99,235,0.4);" title="Bu deney satırını tabloya ekle (veya Enter'a basın)">
+                                <span>➕</span> Deney Satırını Tabloya Ekle (Enter)
+                            </button>
+                        </div>
+
+                        <!-- DENEY VERİ TABLOSU (KAYDIRILABİLİR) -->
+                        <div id="geotechTableContainer" style="max-height:220px;overflow-x:auto;overflow-y:auto;border:1px solid #334155;border-radius:4px;background:#0f172a;margin-bottom:10px;">
+                            <table style="width:100%;border-collapse:collapse;font-size:10px;text-align:center;color:#f8fafc;">
+                                <thead style="background:#1e293b;color:#cbd5e1;position:sticky;top:0;z-index:2;">
+                                    <tr>
+                                        <th style="padding:4px 5px;border:1px solid #334155;">Kuyu</th>
+                                        <th style="padding:4px 5px;border:1px solid #334155;">Derinlik</th>
+                                        <th style="padding:4px 5px;border:1px solid #334155;">SPT N</th>
+                                        <th style="padding:4px 5px;border:1px solid #334155;">Pl (MPa)</th>
+                                        <th style="padding:4px 5px;border:1px solid #334155;">Em (MPa)</th>
+                                        <th style="padding:4px 5px;border:1px solid #334155;">Is(50)</th>
+                                        <th style="padding:4px 5px;border:1px solid #334155;">c'/φ'</th>
+                                        <th style="padding:4px 5px;border:1px solid #334155;">PI(%)</th>
+                                        <th style="padding:4px 5px;border:1px solid #334155;">Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="geotechTableBody"></tbody>
+                            </table>
+                        </div>
+
+                        <!-- PROJE & TBDY 2018 SİSMİK AYARLAR -->
+                        <div style="background:#1e293b;border:1px solid #334155;border-radius:6px;padding:8px;margin-bottom:10px;">
+                            <strong style="color:#fbbf24;font-size:11px;display:block;margin-bottom:4px;">⚙️ Proje ve TBDY 2018 Parametreleri:</strong>
+                            <div class="form-row" style="margin-bottom:6px;">
+                                <div class="form-group col" style="margin-bottom:0;">
+                                    <label for="selMultiGeoZeminSinifi" style="font-size:10px;">Zemin Sınıfı:</label>
+                                    <select id="selMultiGeoZeminSinifi" style="font-weight:bold;color:#f59e0b;padding:4px 6px;font-size:11px;">
+                                        <option value="ZA">ZA - Sağlam Kaya</option>
+                                        <option value="ZB">ZB - Az Ayrışmış Kaya</option>
+                                        <option value="ZC">ZC - Çok Sıkı / Katı</option>
+                                        <option value="ZD">ZD - Orta Sıkı / Katı</option>
+                                        <option value="ZE" selected>ZE - Gevşek / Yumuşak</option>
+                                        <option value="ZF">ZF - Sıvılaşabilir / Özel</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col" style="margin-bottom:0;">
+                                    <label for="selMultiGeoDepremDD" style="font-size:10px;">Deprem Düzeyi:</label>
+                                    <select id="selMultiGeoDepremDD" style="padding:4px 6px;font-size:11px;">
+                                        <option value="DD-1">DD-1 (2475 Yıl)</option>
+                                        <option value="DD-2" selected>DD-2 (475 Yıl)</option>
+                                        <option value="DD-3">DD-3 (72 Yıl)</option>
+                                        <option value="DD-4">DD-4 (43 Yıl)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin-bottom:0;">
+                                <div class="form-group col" style="margin-bottom:0;">
+                                    <label for="inpMultiGeoGwDepth" style="font-size:10px;">YAS Derinliği (m):</label>
+                                    <input type="number" id="inpMultiGeoGwDepth" step="0.1" value="2.2" style="padding:4px 6px;font-size:11px;">
+                                </div>
+                                <div class="form-group col" style="margin-bottom:0;">
+                                    <label for="selMultiGeoStructureType" style="font-size:10px;">Üstyapı Yükü:</label>
+                                    <select id="selMultiGeoStructureType" style="padding:4px 6px;font-size:11px;">
+                                        <option value="light">1-3 Kat (Hafif)</option>
+                                        <option value="medium" selected>4-8 Kat (Orta)</option>
+                                        <option value="heavy">>8 Kat (Ağır)</option>
+                                        <option value="industrial">Sanayi / Fabrika</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- HESAPLA BUTONU -->
+                        <button id="btnRunMultiGeotechAnalysis" class="btn-primary" style="font-size:12.5px;padding:10px;font-weight:800;background:linear-gradient(135deg, #f59e0b 0%, #d97706 100%);box-shadow:0 3px 10px rgba(245,158,11,0.4);cursor:pointer;">
+                            ⚡ Çoklu Kuyu & Metraj İyileştirme Analizini Yap
+                        </button>
+
+                        <!-- DİNAMİK SONUÇ VE İYİLEŞTİRME REÇETESİ KUTUSU -->
+                        <div id="geotechResultBox" style="margin-top:12px;display:none;"></div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- ORTA ÇİZİM ALANI (CANVAS) -->
+            <section class="canvas-wrapper">
+                <div id="canvasContainer" class="canvas-container"></div>
+
+                <!-- Çizim Bitirme Yüzen Çubuğu (Kullanıcı çizgi çizerken rahatça bitirebilsin) -->
+                <div id="drawFinishBar" class="draw-finish-bar" style="display:none;">
+                    <span>✏️ Çizgi Çiziliyor (Tıklayarak veya basılı tutup sürükleyerek çizin)</span>
+                    <button id="btnFinishLine" class="btn-small" style="background:#10b981;font-weight:bold;padding:4px 10px;cursor:pointer;">✓ Çizimi Tamamla</button>
+                    <button id="btnCancelLine" class="btn-small" style="background:#ef4444;padding:4px 8px;cursor:pointer;">✕ İptal</button>
+                </div>
+
+                <!-- Dikey Kaydırma Çubuğu (Sağda - Normal Sayfalarda Olan Gel-Git Asansör İmgesi) -->
+                <div class="scrollbar-v" id="scrollbarV" title="Yukarı / Aşağı Kaydır">
+                    <button class="scrollbar-btn" id="scrollBtnUp" title="Yukarı">▲</button>
+                    <div class="scrollbar-track" id="scrollTrackV">
+                        <div class="scrollbar-thumb" id="scrollThumbV" title="Tut ve Yukarı/Aşağı Kaydır"></div>
+                    </div>
+                    <button class="scrollbar-btn" id="scrollBtnDown" title="Aşağı">▼</button>
+                </div>
+
+                <!-- Yatay Kaydırma Çubuğu (Altta - Sağa / Sola Kaydırma Çubuğu) -->
+                <div class="scrollbar-h" id="scrollbarH" title="Sağa / Sola Kaydır">
+                    <button class="scrollbar-btn" id="scrollBtnLeft" title="Sola">◀</button>
+                    <div class="scrollbar-track" id="scrollTrackH">
+                        <div class="scrollbar-thumb" id="scrollThumbH" title="Tut ve Sağa/Sola Kaydır"></div>
+                    </div>
+                    <button class="scrollbar-btn" id="scrollBtnRight" title="Sağa">▶</button>
+                </div>
+
+                <!-- Durum Çubuğu -->
+                <div class="status-bar">
+                    <span id="statusTool">Seçim Modu (Nesneleri tıklayarak seçebilir veya taşıyabilirsiniz)</span>
+                    <span id="statusSelected" class="status-selected">Seçim yok</span>
+                    <span id="statusCoords" class="status-coords">X: 0.00m | Kot: 0.00m</span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ================= YAZI EKLE / DÜZENLE POPUP MODAL ================= -->
+    <div id="textModal" class="modal-backdrop">
+        <div class="modal-dialog" style="max-width:440px;">
+            <div class="modal-header">
+                <h2 id="textModalTitle">🔤 Metin / Yazı Ekle</h2>
+                <button id="btnCloseTextModal" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body" style="flex-direction:column;gap:12px;padding:16px;">
+                <div class="form-group">
+                    <label for="inpAnnotationText">Yazılacak Metin:</label>
+                    <input type="text" id="inpAnnotationText" placeholder="Örn: Dolgu, Kumlu Kil, Fay Zonu vb." style="font-size:14px;padding:8px;" autofocus>
+                </div>
+
+                <div>
+                    <span style="font-size:11px;color:var(--accent-gold);font-weight:bold;">Hızlı Etiketler:</span>
+                    <div class="quick-tags" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;">
+                        <button class="btn-tag" data-val="Dolgu">Dolgu</button>
+                        <button class="btn-tag" data-val="Kumlu Kil">Kumlu Kil</button>
+                        <button class="btn-tag" data-val="Killi Silt">Killi Silt</button>
+                        <button class="btn-tag" data-val="Df=85,42">Df=85,42</button>
+                        <button class="btn-tag" data-val="YAS (83,00m)">YAS (83,00m)</button>
+                        <button class="btn-tag" data-val="Fay Zonu">Fay Zonu</button>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="inpTextFontSize">Yazı Boyutu:</label>
+                        <select id="inpTextFontSize">
+                            <option value="10">10 pt (Küçük)</option>
+                            <option value="12" selected>12 pt (Normal)</option>
+                            <option value="14">14 pt (Orta)</option>
+                            <option value="16">16 pt (Büyük)</option>
+                            <option value="20">20 pt (Başlık)</option>
+                        </select>
+                    </div>
+                    <div class="form-group col">
+                        <label for="inpTextColor">Renk:</label>
+                        <input type="color" id="inpTextColor" value="#0f172a" style="width:100%;height:32px;border:none;cursor:pointer;">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCancelText" class="btn-action" style="background:#475569;">Vazgeç</button>
+                <button id="btnSaveText" class="btn-action btn-primary">✓ Kesite Yerleştir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= ÖZEL KOT ÇİZGİSİ EKLEME POPUP ================= -->
+    <div id="kotModal" class="modal-backdrop">
+        <div class="modal-dialog" style="max-width:380px;">
+            <div class="modal-header">
+                <h2>📏 Özel Kot Seviyesi Ekle</h2>
+                <button id="btnCloseKotModal" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body" style="flex-direction:column;gap:12px;padding:16px;">
+                <div class="form-group">
+                    <label for="inpCustomKotZ">Kot Değeri (m):</label>
+                    <input type="number" id="inpCustomKotZ" step="0.01" value="85.42">
+                </div>
+                <div class="form-group">
+                    <label for="inpCustomKotLabel">Açıklama / Etiket:</label>
+                    <input type="text" id="inpCustomKotLabel" value="Temel Altı">
+                </div>
+                <div class="form-group">
+                    <label for="inpCustomKotColor">Çizgi Rengi:</label>
+                    <input type="color" id="inpCustomKotColor" value="#dc2626" style="width:100%;height:32px;border:none;cursor:pointer;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCancelKot" class="btn-action" style="background:#475569;">Vazgeç</button>
+                <button id="btnSaveCustomKot" class="btn-action btn-primary">✓ Çizgiyi Ekle</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= KUYU / KOLON OLUŞTURUCU SİHİRBAZI ================= -->
+    <div id="boreholeModal" class="modal-backdrop">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h2 id="modalTitle">📍 Sondaj Kolonu Oluşturucu & Tabaka Editörü</h2>
+                <button id="btnCloseModal" class="btn-close">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-form-col">
+                    <div class="form-row">
+                        <div class="form-group col" style="max-width:120px;">
+                            <label for="mInpName">Kuyu Adı:</label>
+                            <input type="text" id="mInpName" value="SK-1">
+                        </div>
+                        <div class="form-group col" style="max-width:130px;">
+                            <label for="mInpX">Kesit X Mesafesi (m):</label>
+                            <input type="number" id="mInpX" value="3.0" step="0.5">
+                        </div>
+                        <div class="form-group col">
+                            <label for="mInpKot" style="color:#f59e0b;font-weight:bold;">Ağız Kotu Z (m):</label>
+                            <input type="number" id="mInpKot" value="98.00" step="0.01" title="Başlangıç zemin kotu (Örn: 98.00)">
+                        </div>
+                        <div class="form-group col">
+                            <label for="mInpBottomKot" style="color:#38bdf8;font-weight:bold;">Taban Kotu Z (m):</label>
+                            <input type="number" id="mInpBottomKot" value="75.00" step="0.01" title="Kuyu taban kotu (Örn: 75.00)">
+                        </div>
+                        <div class="form-group col" style="max-width:110px;">
+                            <label for="mInpTotalDepth">Kuyu Boyu (m):</label>
+                            <input type="number" id="mInpTotalDepth" value="23.00" step="0.5" title="Toplam kuyu derinliği (m)">
+                        </div>
+                    </div>
+
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;margin-bottom:6px;gap:8px;">
+                        <h3 style="font-size:13px;color:#facc15;">🧱 Tabakalar & Metraj Seviyeleri:</h3>
+                        <div style="display:flex;gap:6px;">
+                            <button id="mBtnAddRow" class="btn-small" style="background:#2563eb;">+ Yeni Tabaka Ekle</button>
+                            <button id="mBtnFillRemaining" class="btn-small" style="background:#10b981;" title="Kalan aralığı taban kotuna kadar tek tıkla doldur">⚡ Tabana Tamamla</button>
+                        </div>
+                    </div>
+                    <p class="help-text">Metrajı ister derinlik (0m - 3m), ister kot (98m - 95m) olarak girin; otomatik hesaplanır:</p>
+
+                    <div style="display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap;">
+                        <span style="font-size:11px;color:#94a3b8;align-self:center;">Hızlı Parçalama:</span>
+                        <button id="mBtnPreset1" class="btn-small" style="background:#475569;" title="Tek parça bütün kolon">🔘 1 Parça (Bütün)</button>
+                        <button id="mBtnPreset2" class="btn-small" style="background:#475569;" title="Kolonu 2 eşit parçaya böl">✂️ 2 Tabaka</button>
+                        <button id="mBtnPreset3" class="btn-small" style="background:#475569;" title="Kolonu 3 parçaya böl">✂️ 3 Tabaka</button>
+                        <button id="mBtnClearAllRows" class="btn-small" style="background:#ef4444;" title="Tüm tabakaları sil">🗑️ Temizle</button>
+                    </div>
+
+                    <div id="mIntervalsList" class="modal-intervals-list"></div>
+                </div>
+
+                <div class="modal-preview-col">
+                    <h4 style="font-size:12px;color:#0f172a;font-weight:bold;margin-bottom:6px;text-align:center;">Canlı Kolon Önizlemesi</h4>
+                    <div id="modalColumnPreview" class="modal-preview-box"></div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="mBtnCancel" class="btn-action" style="background:#475569;">Vazgeç</button>
+                <button id="mBtnSave" class="btn-action btn-primary" style="background:#10b981;font-size:13px;padding:8px 18px;">✓ Kolonu Kesite Kaydet</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= EXCEL TABLOSU DÜZENLEME & YAPAY ZEKA POPUP ================= -->
+    <div id="excelModal" class="modal-backdrop">
+        <div class="modal-dialog" style="max-width:620px;">
+            <div class="modal-header">
+                <h2>📊 Excel Sondaj Tablosunu Sayfaya Koy</h2>
+                <button id="btnCloseExcelModal" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body" style="flex-direction:column;gap:10px;padding:16px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <p class="help-text" style="margin:0;">Excel'deki sondaj tablonuzu kopyalayıp buraya yapıştırın (Sütunlar: Kuyu, X, Kot, Başlangıç, Bitiş, Litoloji):</p>
+                    <button id="btnExcelModalSample" class="btn-small" style="background:#0f766e;">Örnek Veri Yükle</button>
+                </div>
+                <textarea id="txtExcelModalData" rows="9" style="width:100%;font-family:monospace;font-size:11px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:4px;color:var(--text-main);padding:8px;" placeholder="Kuyu	X	Kot	Başlangıç	Bitiş	Litoloji
+SK-1	3.0	98.0	0.0	3.0	Bitkisel Toprak ve Dolgu
+SK-1	3.0	98.0	3.0	11.5	Kumlu Kil (CL)
+SK-1	3.0	98.0	11.5	23.0	Killi Silt (ML)
+SK-2	8.0	95.5	0.0	2.0	Dolgu
+SK-2	8.0	95.5	2.0	9.5	Kumlu Kil (CL)
+SK-2	8.0	95.5	9.5	20.5	Killi Silt (ML)
+SK-3	13.0	92.0	0.0	1.5	Dolgu
+SK-3	13.0	92.0	1.5	7.5	Kumlu Kil (CL)
+SK-3	13.0	92.0	7.5	18.0	Killi Silt (ML)"></textarea>
+                <label style="display:flex;align-items:center;gap:8px;font-size:11.5px;color:#cbd5e1;cursor:pointer;">
+                    <input type="checkbox" id="chkSyncBoreholesFromExcel" checked>
+                    <span>Kesit üzerindeki sondaj kuyu kolonlarını da bu verilerle güncelle</span>
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCancelExcelModal" class="btn-action" style="background:#475569;">Vazgeç</button>
+                <button id="btnPlaceExcelModalOnly" class="btn-action" style="background:#2563eb;font-weight:bold;font-size:12px;padding:8px 14px;">📌 Sayfaya Koy</button>
+                <button id="btnSaveExcelModal" class="btn-action btn-primary" style="background:#10b981;font-weight:bold;font-size:12.5px;padding:8px 16px;">🧠 AI İle Yorumla & Sayfaya Koy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXCEL RESMİ YÜKLEME / YAPIŞTIRMA MODALİ -->
+    <div id="excelImageModal" class="modal-backdrop">
+        <div class="modal-dialog" style="max-width:640px;">
+            <div class="modal-header" style="background:#0284c7;">
+                <h2 style="color:#ffffff;">📷 Excel Sondaj Tablosu Görselini Sayfaya Ekle</h2>
+                <button id="btnCloseExcelImageModal" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body" style="flex-direction:column;gap:14px;padding:18px;">
+                <p class="help-text" style="margin:0;font-size:12px;line-height:1.5;">
+                    Excel'deki sondaj tablonuzun ekran görüntüsünü buraya <b>Ctrl+V</b> ile doğrudan yapıştırabilir, bilgisayarınızdan resim dosyası seçebilir veya örnek görsel oluşturabilirsiniz:
+                </p>
+
+                <!-- Ekran Görüntüsü Yapıştırma & Sürükle-Bırak Alanı -->
+                <div id="excelImageDropZone" style="border:2px dashed #0284c7;border-radius:8px;padding:24px 16px;text-align:center;background:rgba(2,132,199,0.06);cursor:pointer;transition:all 0.2s ease;">
+                    <div style="font-size:32px;margin-bottom:6px;">📋 📷</div>
+                    <div style="font-weight:bold;font-size:13px;color:var(--text-main);">Excel Ekran Görüntüsünü Buraya Yapıştırın (Ctrl + V)</div>
+                    <div style="font-size:11.5px;color:#94a3b8;margin-top:4px;">veya buraya tıklayarak bilgisayarınızdan resim dosyası (PNG, JPG) seçin</div>
+                    <input type="file" id="inputExcelImageFile" accept="image/*" style="display:none;">
+                </div>
+
+                <!-- Önizleme Alanı -->
+                <div id="excelImagePreviewContainer" style="display:none;flex-direction:column;gap:6px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <span style="font-size:11.5px;font-weight:bold;color:#38bdf8;">✓ Yüklenecek Görsel Önizlemesi:</span>
+                        <button id="btnRemoveExcelImagePreview" class="btn-small" style="background:#ef4444;padding:2px 8px;">✕ Temizle</button>
+                    </div>
+                    <div style="max-height:220px;overflow:hidden;border-radius:6px;border:1px solid #334155;text-align:center;background:#0f172a;">
+                        <img id="imgExcelPreview" src="" style="max-width:100%;max-height:220px;object-fit:contain;vertical-align:middle;">
+                    </div>
+                </div>
+
+                <!-- Örnek Görsel Yükle Butonu -->
+                <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(15,23,42,0.4);padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.08);">
+                    <span style="font-size:11.5px;color:#cbd5e1;">Test için hazır Excel sondaj tablosu görseli kullanmak ister misiniz?</span>
+                    <button id="btnGenerateSampleExcelImage" class="btn-small" style="background:#0f766e;color:#ffffff;font-weight:bold;padding:6px 12px;">📄 Örnek Excel Görseli Yükle</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCancelExcelImageModal" class="btn-action" style="background:#475569;">Vazgeç</button>
+                <button id="btnPlaceExcelImageOnly" class="btn-action" style="background:#2563eb;font-weight:bold;font-size:12px;padding:8px 16px;">📌 Sadece Sayfaya Koy</button>
+                <button id="btnSaveExcelImageWithAi" class="btn-action btn-primary" style="background:#059669;font-weight:bold;font-size:12.5px;padding:8px 18px;">🧠 Sayfaya Koy & AI İle Ayrıntılı Yorumla</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXCEL GÖRSELİ DETAYLI JEOTEKNİK RAPOR MODALİ -->
+    <div id="excelImageReportModal" class="modal-backdrop">
+        <div class="modal-dialog" style="max-width:760px;max-height:90vh;display:flex;flex-direction:column;">
+            <div class="modal-header" style="background:#0f172a;border-bottom:2px solid #0284c7;">
+                <h2>🧠 EXCEL SONDAJ LOGU AYRINTILI AI JEOTEKNİK RAPORU</h2>
+                <button id="btnCloseExcelImageReportModal" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body" id="excelImageReportModalBody" style="flex-direction:column;gap:14px;padding:20px;overflow-y:auto;font-family:Arial,sans-serif;">
+                <!-- Rapor İçeriği JS Tarafından Dinamik Doldurulur -->
+            </div>
+            <div class="modal-footer" style="justify-content:space-between;">
+                <span style="font-size:11px;color:#94a3b8;">Standartlar: TS 1500 / TBDY 2018 / Eurocode 7</span>
+                <div style="display:flex;gap:10px;">
+                    <button id="btnCopyExcelImageFullReport" class="btn-action btn-primary" style="background:#7c3aed;font-weight:bold;font-size:12px;padding:8px 16px;">📋 Detaylı Raporu Kopyala (Word/Excel)</button>
+                    <button id="btnCloseReportModalBtn" class="btn-action" style="background:#475569;">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BULGU MÜHENDİSLİK - ZEMİN / KAYA SONDAJ LOGU ARAZİ FORMU EXCEL MODALİ -->
+    <div id="excelSondajLogModal" class="modal-backdrop">
+        <div class="modal-dialog" style="max-width:980px;width:96vw;max-height:94vh;display:flex;flex-direction:column;">
+            <div class="modal-header" style="background:#1e3a8a;border-bottom:2px solid #38bdf8;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:22px;">📊</span>
+                    <div>
+                        <h2 style="color:#ffffff;font-size:14px;margin:0;">ZEMİN / KAYA SONDAJ LOGU ARAZİ FORMU</h2>
+                        <span style="font-size:11px;color:#93c5fd;">Microsoft Excel Formatı | Jeoteknik Rapor Log Tablosu</span>
+                    </div>
+                </div>
+                <button id="btnCloseExcelSondajLogModal" class="btn-close">&times;</button>
+            </div>
+            <!-- Excel Araç Çubuğu -->
+            <div style="background:#0f172a;padding:8px 16px;border-bottom:1px solid #334155;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                <button id="btnDownloadBulguExcel" class="btn-action btn-primary" style="background:#059669;font-weight:bold;font-size:12px;padding:7px 16px;" title="Bu formu doğrudan Microsoft Excel dosyası (.xls) olarak bilgisayarınıza indirin">
+                    📥 Excel Dosyasını İndir (.xls)
+                </button>
+                <button id="btnCopyBulguExcelClipboard" class="btn-action" style="background:#2563eb;color:#ffffff;font-weight:bold;font-size:12px;padding:7px 16px;" title="Tüm tabloyu Excel formatında panoya kopyalayın, Excel'e doğrudan Ctrl+V yapın">
+                    📋 Excel'e Kopyala (Ctrl+V)
+                </button>
+                <button id="btnSyncBulguToSection" class="btn-action" style="background:#d97706;color:#ffffff;font-weight:bold;font-size:12px;padding:7px 14px;" title="Bu formdaki 0-2m Dolgu, 2-8m Kumlu Kil, 8-15m Killi Silt tabakalarını kesite aktar">
+                    📌 Kesite & Kolonlara Aktar
+                </button>
+                <span id="excelSondajFeedback" style="font-size:11.5px;color:#10b981;font-weight:bold;margin-left:auto;display:none;">✓ Kopyalandı!</span>
+            </div>
+            <!-- Excel Sayfa Alanı (media_1789755200532.png ile birebir aynı görünüm) -->
+            <div class="modal-body" id="excelSondajLogContainer" style="padding:16px;overflow:auto;background:#e2e8f0;display:flex;justify-content:center;">
+                <!-- HTML Table burada dinamik oluşturulur -->
+            </div>
+            <div class="modal-footer" style="justify-content:space-between;background:#f8fafc;">
+                <span style="font-size:11.5px;color:#475569;font-weight:bold;">Proje: SARIYER – DEMİRCİKÖY MAHALLESİ - 1109 ADA – 29 PARSEL | Sondaj No: SK-1 (Derinlik: 15.00 m)</span>
+                <button id="btnCloseBulguExcelBtn" class="btn-action" style="background:#475569;color:#fff;">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIŞA AKTAR / OFFICE & PDF RAPOR MODALI -->
+    <div id="exportReportModal" class="modal-backdrop">
+        <div class="modal-dialog" style="max-width:760px;width:95vw;max-height:90vh;display:flex;flex-direction:column;border:1px solid #0284c7;border-radius:10px;box-shadow:0 15px 40px rgba(0,0,0,0.8);background:#0f172a;">
+            <div class="modal-header" style="background:linear-gradient(135deg, #0f172a, #1e293b);border-bottom:2px solid #0284c7;padding:12px 18px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:24px;">📑</span>
+                    <div>
+                        <h2 style="color:#ffffff;font-size:15px;margin:0;">📑 JEOLOJİK KESİT RAPOR & DIŞA AKTAR</h2>
+                        <span style="font-size:11px;color:#94a3b8;">PDF, Microsoft Word, Excel ve AutoCAD formatlarına aktarma</span>
+                    </div>
+                </div>
+                <button id="btnCloseExportModal" class="btn-close" style="background:transparent;border:none;color:#94a3b8;font-size:22px;cursor:pointer;">&times;</button>
+            </div>
+
+            <div class="modal-body" style="padding:18px;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;gap:14px;background:#0b1120;">
+                
+                <!-- KART 1: PDF RAPORU (BASKI / A4 / A3) -->
+                <div class="export-card" style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
+                    <div>
+                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                            <span style="font-size:22px;">📄</span>
+                            <div>
+                                <h4 style="margin:0;color:#38bdf8;font-size:13px;">Vektörel PDF Raporu</h4>
+                                <span style="font-size:10.5px;color:#94a3b8;">A4 / A3 Yatay Baskı ve Resmi Sunum</span>
+                            </div>
+                        </div>
+                        <p style="font-size:11px;color:#cbd5e1;line-height:1.4;margin:0 0 10px 0;">
+                            Kesiti doğrudan anteti, mühendis imza bloğu ve tabaka lejantı ile birlikte temiz bir sayfa olarak PDF'e aktarın veya yazdırın.
+                        </p>
+                    </div>
+                    <button id="btnModalPrintPDF" class="btn-action" style="background:#0284c7;color:#fff;font-weight:bold;font-size:11.5px;padding:8px;width:100%;cursor:pointer;">
+                        🖨️ PDF Olarak Kaydet / Yazdır
+                    </button>
+                </div>
+
+                <!-- KART 2: MICROSOFT WORD (RAPORA KOPYALA / RESİM) -->
+                <div class="export-card" style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
+                    <div>
+                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                            <span style="font-size:22px;">📝</span>
+                            <div>
+                                <h4 style="margin:0;color:#60a5fa;font-size:13px;">Microsoft Word & Rapor</h4>
+                                <span style="font-size:10.5px;color:#94a3b8;">Jeoteknik Rapora Doğrudan Yapıştırma (300 DPI)</span>
+                            </div>
+                        </div>
+                        <p style="font-size:11px;color:#cbd5e1;line-height:1.4;margin:0 0 10px 0;">
+                            Kesit çizimini yüksek çözünürlükte panoya kopyalar; Word raporunuzu açıp doğrudan <b>Ctrl + V</b> ile yapıştırabilirsiniz.
+                        </p>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:6px;">
+                        <button id="btnModalExportWordDoc" class="btn-action" style="background:linear-gradient(135deg, #1d4ed8, #1e40af);color:#fff;font-weight:bold;font-size:11.5px;padding:8px;cursor:pointer;" title="Doğrudan Microsoft Word Rapor Belgesi (.doc) oluştur">
+                            📘 Word Rapor Belgesi İndir (.doc)
+                        </button>
+                        <div style="display:flex;gap:6px;">
+                            <button id="btnModalCopyWord" class="btn-action" style="flex:1;background:#2563eb;color:#fff;font-size:11px;padding:7px;cursor:pointer;" title="Panoya kopyalayıp Word'de Ctrl+V yapın">
+                                📋 Panoya Kopyala (Ctrl+V)
+                            </button>
+                            <button id="btnModalDownloadPNG" class="btn-action" style="background:#3b82f6;color:#fff;font-size:11px;padding:7px;cursor:pointer;" title="300 DPI PNG olarak indir">
+                                💾 PNG İndir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KART 3: MICROSOFT EXCEL (TABLO VE METRAJLAR) -->
+                <div class="export-card" style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
+                    <div>
+                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                            <span style="font-size:22px;">📊</span>
+                            <div>
+                                <h4 style="margin:0;color:#34d399;font-size:13px;">Microsoft Excel (Kuyu Tablosu)</h4>
+                                <span style="font-size:10.5px;color:#94a3b8;">Koordinatlar, Metrajlar ve Kot Listesi</span>
+                            </div>
+                        </div>
+                        <p style="font-size:11px;color:#cbd5e1;line-height:1.4;margin:0 0 10px 0;">
+                            Kuyuların X koordinatları, zemin kotları, litoloji geçişleri, tabaka kalınlıkları ve Df kotlarını Excel formatında dışa aktarın.
+                        </p>
+                    </div>
+                    <div style="display:flex;gap:6px;">
+                        <button id="btnModalDownloadExcel" class="btn-action" style="flex:1;background:#059669;color:#fff;font-weight:bold;font-size:11px;padding:8px;cursor:pointer;" title="Excel CSV/XLS dosyası olarak kaydet">
+                            📥 Excel Dosyası (.csv)
+                        </button>
+                        <button id="btnModalCopyExcel" class="btn-action" style="background:#10b981;color:#fff;font-size:11px;padding:8px;cursor:pointer;" title="Excel'e yapıştırmak için kopyala">
+                            📋 Excel'e Kopyala
+                        </button>
+                    </div>
+                </div>
+
+                <!-- KART 4: AUTOCAD & NETCAD (DXF & SVG) -->
+                <div class="export-card" style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
+                    <div>
+                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                            <span style="font-size:22px;">📐</span>
+                            <div>
+                                <h4 style="margin:0;color:#f59e0b;font-size:13px;">AutoCAD & CAD Yazılımları</h4>
+                                <span style="font-size:10.5px;color:#94a3b8;">Katmanlı Vektörel DXF ve Corel SVG</span>
+                            </div>
+                        </div>
+                        <p style="font-size:11px;color:#cbd5e1;line-height:1.4;margin:0 0 10px 0;">
+                            AutoCAD, NetCAD, İdeCAD ve CorelDRAW ile %100 uyumlu katmanlı (Topografya, Tabakalar, Sondajlar, Kotlar) vektör çizim dosyası.
+                        </p>
+                    </div>
+                    <div style="display:flex;gap:6px;">
+                        <button id="btnModalDownloadDXF" class="btn-action" style="flex:1;background:#d97706;color:#fff;font-weight:bold;font-size:11px;padding:8px;cursor:pointer;">
+                            📐 AutoCAD (DXF) İndir
+                        </button>
+                        <button id="btnModalDownloadSVG" class="btn-action" style="background:#b45309;color:#fff;font-size:11px;padding:8px;cursor:pointer;">
+                            🎨 Corel (SVG)
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer" style="background:#0f172a;border-top:1px solid #334155;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;">
+                <span id="exportModalFeedback" style="font-size:11.5px;color:#38bdf8;font-weight:bold;"></span>
+                <button id="btnCloseExportModalBtn" class="btn-action" style="background:#475569;color:#fff;padding:6px 14px;cursor:pointer;">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WINDOWS KURULUM BİLGİLENDİRME MODALI -->
+    <div id="modalInstallWindows" class="modal-backdrop" style="display:none;align-items:center;justify-content:center;z-index:9999;">
+        <div class="modal-content" style="background:#0f172a;border:2px solid #f59e0b;border-radius:10px;width:90%;max-width:580px;box-shadow:0 10px 30px rgba(0,0,0,0.8);overflow:hidden;">
+            <div class="modal-header" style="background:linear-gradient(135deg, #1e293b, #0f172a);padding:14px 18px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:24px;">💻</span>
+                    <div>
+                        <h3 style="margin:0;color:#f59e0b;font-size:15px;font-weight:bold;">JEOCAD Windows Kurulum Rehberi</h3>
+                        <span style="font-size:11px;color:#94a3b8;">Programı bilgisayarınızda bağımsız masaüstü yazılımı olarak kullanın</span>
+                    </div>
+                </div>
+                <button id="btnCloseInstallModal" class="btn-tool" style="font-size:18px;color:#cbd5e1;cursor:pointer;">&times;</button>
+            </div>
+            <div class="modal-body" style="padding:18px;max-height:75vh;overflow-y:auto;display:flex;flex-direction:column;gap:12px;">
+                
+                <!-- 1. Seçenek: Masaüstü Kısayolu -->
+                <div style="background:#1e293b;border:1px solid #10b981;border-radius:8px;padding:12px;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                        <span style="font-size:18px;">⭐</span>
+                        <strong style="color:#34d399;font-size:13px;">1. Yol: Masaüstü Kısayolunuz Hazır!</strong>
+                    </div>
+                    <p style="font-size:11.5px;color:#cbd5e1;margin:0 0 8px 0;line-height:1.4;">
+                        Masaüstünüze (Desktop) <b>"BURHAN YUSUFOĞLU - JEOCAD"</b> ve <b>"JeoCAD"</b> kısayolu yerleştirildi. Masaüstünüzdeki logolu simgeye çift tıkladığınız anda program tarayıcı çubukları olmadan, tıpkı AutoCAD gibi bağımsız bir pencerede açılır.
+                    </p>
+                    <span style="display:inline-block;background:rgba(16,185,129,0.2);color:#34d399;padding:4px 8px;border-radius:4px;font-size:11px;font-weight:bold;">
+                        ✓ Masaüstünüzde simge hazır bulunuyor
+                    </span>
+                </div>
+
+                <!-- 2. Seçenek: Tarayıcıdan Uygulama Olarak Yükle -->
+                <div style="background:#1e293b;border:1px solid #38bdf8;border-radius:8px;padding:12px;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                        <span style="font-size:18px;">🌐</span>
+                        <strong style="color:#38bdf8;font-size:13px;">2. Yol: Tarayıcınızı Windows Uygulamasına Dönüştürün (PWA)</strong>
+                    </div>
+                    <p style="font-size:11.5px;color:#cbd5e1;margin:0 0 6px 0;line-height:1.4;">
+                        Kullandığınız <b>Microsoft Edge</b> veya <b>Google Chrome</b> tarayıcısında:
+                    </p>
+                    <ol style="font-size:11px;color:#cbd5e1;margin:0 0 8px 18px;padding:0;line-height:1.5;">
+                        <li>Sağ üstteki <b>üç nokta (...)</b> menüsüne tıklayın.</li>
+                        <li><b>"Uygulamalar" (Apps)</b> menüsüne gelin.</li>
+                        <li><b>"Bu siteyi bir uygulama olarak yükle"</b> seçeneğine tıklayın.</li>
+                    </ol>
+                    <p style="font-size:11px;color:#94a3b8;margin:0;">
+                        Bu işlem JEOCAD'i doğrudan Windows Başlat Menünüze ve Görev Çubuğunuza ekler.
+                    </p>
+                </div>
+
+                <!-- 3. Seçenek: Bağımsız EXE -->
+                <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                        <span style="font-size:18px;">📁</span>
+                        <strong style="color:#f59e0b;font-size:13px;">3. Yol: Klasördeki Doğrudan EXE Dosyası</strong>
+                    </div>
+                    <p style="font-size:11px;color:#cbd5e1;margin:0;line-height:1.4;">
+                        Program klasörünüzdeki <b><code>JeoCAD.exe</code></b> dosyasını flash bellekle başka bilgisayarlara taşıyabilir ve kurulum yapmadan doğrudan çift tıklayarak çalıştırabilirsiniz.
+                    </p>
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background:#0f172a;border-top:1px solid #334155;padding:10px 18px;display:flex;justify-content:flex-end;">
+                <button id="btnCloseInstallModalBtn" class="btn-action" style="background:#0284c7;color:#fff;font-weight:bold;padding:7px 18px;cursor:pointer;">Tamam, Anladım</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lisans ve Aktivasyon Modalı -->
+    <div id="licenseModal" class="lic-modal-overlay" style="display:none;">
+        <div class="lic-modal-card">
+            <div class="lic-modal-header">
+                <img src="logo.png" alt="Burhan Yusufoğlu Logo">
+                <div>
+                    <h3 style="margin:0;font-size:17px;color:#f8fafc;font-weight:800;">BURHAN YUSUFOĞLU - <span style="color:#f59e0b;">JEOCAD</span></h3>
+                    <p style="margin:2px 0 0 0;font-size:12px;color:#94a3b8;">Donanım Kilitli Lisans & Aktivasyon Sistemi</p>
+                </div>
+                <button id="licModalCloseBtn" class="lic-modal-close" onclick="document.getElementById('licenseModal').style.display='none';" title="Kapat" style="display:none;">✕</button>
+            </div>
+            <div class="lic-modal-body">
+                <div id="licCurrentInfoBox" style="display:none;"></div>
+
+                <div class="lic-input-group">
+                    <label>1. Bu Bilgisayarın Cihaz / Makine Kodu (Hardware ID):</label>
+                    <div class="lic-hwid-row">
+                        <input type="text" id="licHwidDisplay" class="lic-input-box" readonly style="font-family:'Courier New', monospace; font-weight:700; color:#38bdf8; letter-spacing:1px;" value="...">
+                        <button type="button" class="lic-btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('licHwidDisplay').value); alert('Makine kodunuz panoya kopyalandı! Bu kodu Burhan Yusufoğlu\'na iletebilirsiniz.');">📋 Kopyala</button>
+                    </div>
+                    <div style="font-size:11.5px;color:#94a3b8;margin-top:5px;">
+                        📌 Yıllık aktivasyon anahtarınızı almak için bu kodu <b>Burhan Yusufoğlu Mühendislik</b> ile paylaşınız.
+                    </div>
+                </div>
+
+                <div class="lic-input-group">
+                    <label for="licKeyInput">2. Lisans Anahtarınızı Girin:</label>
+                    <input type="text" id="licKeyInput" class="lic-input-box" placeholder="Örn: JC-1Y-XXXX-XXXXXXXX-XXXXXXXXXXXX" autocomplete="off" style="font-family:'Courier New', monospace; font-size:13px;">
+                    <div id="licModalMessage" style="font-size:12px;margin-top:6px;min-height:18px;"></div>
+                </div>
+
+                <button type="button" class="lic-btn-activate" onclick="window.JeoCADLicense && window.JeoCADLicense.activateWithKey(document.getElementById('licKeyInput').value);">
+                    🔑 LİSANSI DOĞRULA VE BAŞLAT
+                </button>
+
+                <div style="margin-top:18px;padding-top:14px;border-top:1px solid #1e293b;display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:#64748b;">
+                    <span>Telif & Mülkiyet: <b>Burhan Yusufoğlu</b></span>
+                    <span>Burhan Yusufoğlu Mühendislik</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= FİRMA BİLGİLERİ, ÖZEL LOGO & KAŞE DAMGASI MODALI ================= -->
+    <div id="modalCompanySettings" class="modal-backdrop" style="display:none;z-index:9999;">
+        <div class="modal-dialog" style="max-width:650px;width:95%;">
+            <div class="modal-header" style="background:#0f172a;border-bottom:2px solid #0284c7;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <span style="font-size:22px;">🏢</span>
+                    <div>
+                        <h3 style="margin:0;font-size:15px;color:#f8fafc;font-weight:700;">Firma Bilgileri, Antet & Özel Logo Yönetimi</h3>
+                        <p style="margin:2px 0 0 0;font-size:11px;color:#94a3b8;">Word, Excel, A4 PDF raporları ve kesit antetinde kendi şirket logonuzu ve damganızı kullanın</p>
+                    </div>
+                </div>
+                <button id="btnCloseCompanySettingsModal" class="btn-close" style="font-size:22px;color:#fff;background:transparent;border:none;cursor:pointer;">&times;</button>
+            </div>
+            <div class="modal-body" style="background:#1e293b;padding:16px;flex-direction:column;gap:12px;max-height:80vh;overflow-y:auto;">
+                
+                <!-- 1. Firma / Şirket Bilgileri -->
+                <div style="background:#0f172a;border:1px solid #334155;border-radius:6px;padding:12px;">
+                    <strong style="color:#38bdf8;font-size:12px;display:block;margin-bottom:8px;">🏢 1. Şirket / Büro / Kurum Bilgileri:</strong>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                        <div>
+                            <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Firma / Şirket Adı:</label>
+                            <input type="text" id="inpProfileCompanyName" placeholder="Örn: Avrasya Geoteknik Mühendislik Ltd. Şti." style="width:100%;box-sizing:border-box;background:#1e293b;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;font-weight:bold;">
+                        </div>
+                        <div>
+                            <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Faaliyet / Alt Başlık:</label>
+                            <input type="text" id="inpProfileCompanySubtitle" placeholder="Örn: Zemin Mekaniği ve Geoteknik Müşavirlik" style="width:100%;box-sizing:border-box;background:#1e293b;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                        </div>
+                        <div>
+                            <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Telefon / İletişim:</label>
+                            <input type="text" id="inpProfileCompanyPhone" placeholder="Örn: 0212 XXX XX XX / 05XX XXX XX XX" style="width:100%;box-sizing:border-box;background:#1e293b;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                        </div>
+                        <div>
+                            <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">E-Posta / Web:</label>
+                            <input type="text" id="inpProfileCompanyEmail" placeholder="Örn: info@firmamiz.com" style="width:100%;box-sizing:border-box;background:#1e293b;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                        </div>
+                    </div>
+                    <div style="margin-top:8px;">
+                        <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Firma Adresi:</label>
+                        <input type="text" id="inpProfileCompanyAddress" placeholder="Örn: Çankaya / Ankara" style="width:100%;box-sizing:border-box;background:#1e293b;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                    </div>
+                </div>
+
+                <!-- 2. Mühendis Bilgileri -->
+                <div style="background:#0f172a;border:1px solid #334155;border-radius:6px;padding:12px;">
+                    <strong style="color:#fbbf24;font-size:12px;display:block;margin-bottom:8px;">👷 2. Raporu Hazırlayan Yetkili Mühendis:</strong>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+                        <div>
+                            <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Mühendis Adı Soyadı:</label>
+                            <input type="text" id="inpProfileEngineerName" placeholder="Örn: Ahmet Yılmaz" style="width:100%;box-sizing:border-box;background:#1e293b;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;font-weight:bold;">
+                        </div>
+                        <div>
+                            <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Unvanı:</label>
+                            <input type="text" id="inpProfileEngineerTitle" placeholder="Örn: Jeoloji Yüksek Mühendisi" style="width:100%;box-sizing:border-box;background:#1e293b;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                        </div>
+                        <div>
+                            <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Oda Sicil / Belge No:</label>
+                            <input type="text" id="inpProfileEngineerRegNo" placeholder="Örn: Sicil No: 12345" style="width:100%;box-sizing:border-box;background:#1e293b;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Firma Logosu & Kaşe / Damga Yükleme -->
+                <div style="background:#0f172a;border:1px solid #334155;border-radius:6px;padding:12px;">
+                    <strong style="color:#10b981;font-size:12px;display:block;margin-bottom:8px;">🖼️ 3. Özel Firma Logosu ve Kaşe Damgası (PNG / JPG):</strong>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                        
+                        <!-- Logo Yükleme -->
+                        <div style="background:#1e293b;border:1px dashed #475569;border-radius:6px;padding:10px;text-align:center;">
+                            <label style="font-size:11px;color:#cbd5e1;font-weight:bold;display:block;margin-bottom:6px;">Şirket Logosu:</label>
+                            <div id="boxProfileLogoPreview" style="min-height:65px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0f172a;border:1px dashed #475569;border-radius:4px;margin-bottom:8px;padding:6px;cursor:pointer;" title="Resim seçmek için tıklayın, buraya sürükleyin veya Ctrl+V ile yapıştırın">
+                                <span id="txtNoLogo" style="font-size:10px;color:#94a3b8;">(Logo Seçmek İçin Tıklayın / Sürükleyin / Ctrl+V)</span>
+                                <img id="imgProfileLogoPreview" src="" alt="Logo Önizleme" style="max-height:55px;max-width:160px;display:none;object-fit:contain;">
+                            </div>
+                            <div style="display:flex;gap:4px;justify-content:center;">
+                                <label class="btn-action" style="background:#0284c7;color:#fff;font-size:10.5px;padding:5px 10px;cursor:pointer;border-radius:3px;">
+                                    📁 Logo Seç
+                                    <input type="file" id="fileProfileLogo" accept="image/png,image/jpeg,image/webp" style="display:none;">
+                                </label>
+                                <button type="button" id="btnRemoveProfileLogo" class="btn-action" style="background:#ef4444;color:#fff;font-size:10.5px;padding:5px 8px;cursor:pointer;border-radius:3px;" title="Logoyu Kaldır">🗑️</button>
+                            </div>
+                        </div>
+
+                        <!-- Kaşe / Damga Yükleme -->
+                        <div style="background:#1e293b;border:1px dashed #475569;border-radius:6px;padding:10px;text-align:center;">
+                            <label style="font-size:11px;color:#cbd5e1;font-weight:bold;display:block;margin-bottom:6px;">Mühendis Kaşesi / İmzası:</label>
+                            <div id="boxProfileStampPreview" style="min-height:65px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0f172a;border:1px dashed #475569;border-radius:4px;margin-bottom:8px;padding:6px;cursor:pointer;" title="Kaşe seçmek için tıklayın, buraya sürükleyin veya Ctrl+V ile yapıştırın">
+                                <span id="txtNoStamp" style="font-size:10px;color:#94a3b8;">(Kaşe Seçmek İçin Tıklayın / Sürükleyin / Ctrl+V)</span>
+                                <img id="imgProfileStampPreview" src="" alt="Kaşe Önizleme" style="max-height:55px;max-width:160px;display:none;object-fit:contain;">
+                            </div>
+                            <div style="display:flex;gap:4px;justify-content:center;">
+                                <label class="btn-action" style="background:#0284c7;color:#fff;font-size:10.5px;padding:5px 10px;cursor:pointer;border-radius:3px;">
+                                    📁 Kaşe Seç
+                                    <input type="file" id="fileProfileStamp" accept="image/png,image/jpeg,image/webp" style="display:none;">
+                                </label>
+                                <button type="button" id="btnRemoveProfileStamp" class="btn-action" style="background:#ef4444;color:#fff;font-size:10.5px;padding:5px 8px;cursor:pointer;border-radius:3px;" title="Kaşeyi Kaldır">🗑️</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background:#0f172a;border-top:1px solid #334155;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+                <button type="button" id="btnLoadSampleCompanyProfile" class="btn-action" style="background:#0284c7;color:#fff;font-weight:bold;font-size:11px;padding:6px 14px;cursor:pointer;" title="Örnek Mühendislik Şirketi Bilgileri, Kurumsal Logo ve Kaşe Damgası Yükle">✨ Örnek Firma & Logo Yükle</button>
+                <span id="txtCompanySaveFeedback" style="font-size:11px;color:#10b981;font-weight:bold;display:none;">✓ Firma bilgileri ve logo kaydedildi!</span>
+                <div style="display:flex;gap:8px;margin-left:auto;">
+                    <button id="btnCloseCompanySettingsModalBottom" class="btn-action" style="background:#475569;color:#fff;padding:6px 14px;cursor:pointer;">Kapat</button>
+                    <button id="btnSaveCompanyProfile" class="btn-action" style="background:#10b981;color:#fff;font-weight:bold;padding:6px 18px;cursor:pointer;">💾 Bilgileri ve Logoyu Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= EXCEL DENEY VERİSİ YAPIŞTIRMA MODALI ================= -->
+    <div id="modalPasteGeotechExcel" class="modal-backdrop" style="display:none;">
+        <div class="modal-dialog" style="max-width:680px;width:90%;">
+            <div class="modal-header" style="background:#0f172a;border-bottom:2px solid #059669;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <span style="font-size:22px;">📋</span>
+                    <div>
+                        <h3 style="margin:0;font-size:15px;color:#f8fafc;font-weight:700;">Excel'den Çoklu Kuyu & Deney Verisi Getir / Yapıştır</h3>
+                        <p style="margin:2px 0 0 0;font-size:11px;color:#94a3b8;">Excel tablosundan kopyaladığınız verileri veya CSV/Excel dosyasını doğrudan JeoCAD Geoteknik Karar Motoruna aktarın</p>
+                    </div>
+                </div>
+                <button id="btnClosePasteGeotechModal" class="btn-close" style="font-size:22px;color:#fff;background:transparent;border:none;cursor:pointer;">&times;</button>
+            </div>
+            <div class="modal-body" style="background:#1e293b;padding:14px;flex-direction:column;gap:10px;">
+                <div style="background:#0f172a;border:1px solid #334155;border-radius:6px;padding:10px;font-size:11px;color:#cbd5e1;line-height:1.4;">
+                    <strong style="color:#38bdf8;">📌 Excel Sütun Sırası (Sekme / Tab ile kopyalanır):</strong><br>
+                    <code>Kuyu No | Derinlik(m) | SPT N60 | Presiyometre Pl(MPa) | Em(MPa) | Is(50) | c'(kPa) | φ'(°) | PI(%) | LL(%) | Litoloji</code><br>
+                    <span style="color:#94a3b8;font-size:10px;">* Başlık satırı olsa da otomatik algılanır. Eksik sütunlar varsayılan değerlerle tamamlanır.</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                    <span style="font-size:11px;font-weight:bold;color:#f8fafc;">Aşağıdaki kutudan yapıştırın (Ctrl+V) veya dosyadan seçin:</span>
+                    <div>
+                        <label class="btn-action" style="background:#0284c7;color:#fff;font-size:11px;font-weight:bold;padding:5px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;" title="Excel (.xlsx, .csv) dosyası yükleyin">
+                            <span>📁</span> Excel / CSV Dosyası Seç...
+                            <input type="file" id="filePasteExcelUpload" accept=".csv,.tsv,.txt" style="display:none;">
+                        </label>
+                    </div>
+                </div>
+                <textarea id="txtPasteGeotechExcel" rows="8" style="width:100%;box-sizing:border-box;background:#0f172a;color:#38bdf8;border:1px solid #475569;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;resize:vertical;" placeholder="Excel'den seçip kopyaladığınız satırları buraya yapıştırın (Ctrl+V)...
+Örnek:
+SK-1	1.5	4	0.32	2.8	0	10	12	38	64	Yumuşak Kil
+SK-1	6.0	8	0.45	4.1	0	8	22	12	26	Killi Silt (Sıvılaşabilir)
+SK-2	7.5	9	0.55	5.6	0	6	24	10	24	Gevşek İnce Kum"></textarea>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:11.5px;color:#cbd5e1;">
+                    <div style="display:flex;align-items:center;gap:15px;">
+                        <label style="display:flex;align-items:center;gap:5px;cursor:pointer;">
+                            <input type="radio" name="pasteGeoMode" value="replace" checked> Mevcut verilerin yerine yaz (Sıfırla)
+                        </label>
+                        <label style="display:flex;align-items:center;gap:5px;cursor:pointer;">
+                            <input type="radio" name="pasteGeoMode" value="append"> Mevcut tablonun altına ekle
+                        </label>
+                    </div>
+                    <span id="txtExcelFileStatus" style="font-size:11px;color:#10b981;font-weight:bold;"></span>
+                </div>
+            </div>
+            <div class="modal-footer" style="background:#0f172a;border-top:1px solid #334155;padding:10px 18px;display:flex;justify-content:flex-end;gap:8px;">
+                <button id="btnClosePasteGeotechModalBottom" class="btn-action" style="background:#475569;color:#fff;padding:6px 14px;cursor:pointer;">İptal</button>
+                <button id="btnParseAndApplyGeotechExcel" class="btn-action" style="background:#059669;color:#fff;font-weight:bold;padding:6px 16px;cursor:pointer;">✓ Verileri Aktar ve Analiz Et</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MANUEL YENİ DENEY SATIRI EKLEME MODALI ================= -->
+    <div id="modalAddGeotechRow" class="modal-backdrop" style="display:none;">
+        <div class="modal-dialog" style="max-width:580px;width:90%;">
+            <div class="modal-header" style="background:#0f172a;border-bottom:2px solid #2563eb;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <span style="font-size:22px;">➕</span>
+                    <div>
+                        <h3 style="margin:0;font-size:15px;color:#f8fafc;font-weight:700;">Yeni Kuyu / Metraj Deneyi Ekle</h3>
+                        <p style="margin:2px 0 0 0;font-size:11px;color:#94a3b8;">Kuyu adı, derinlik ve geoteknik deney parametrelerini girin</p>
+                    </div>
+                </div>
+                <button id="btnCloseAddGeotechModal" class="btn-close" style="font-size:22px;color:#fff;background:transparent;border:none;cursor:pointer;">&times;</button>
+            </div>
+            <div class="modal-body" style="background:#1e293b;padding:14px;flex-direction:column;gap:10px;">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;">
+                    <div>
+                        <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Kuyu Adı / No:</label>
+                        <input type="text" id="inpAddGeoBorehole" value="SK-1" style="width:100%;box-sizing:border-box;background:#0f172a;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;font-weight:bold;">
+                    </div>
+                    <div>
+                        <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Deney Derinliği (m):</label>
+                        <input type="number" id="inpAddGeoDepth" step="0.5" value="4.5" style="width:100%;box-sizing:border-box;background:#0f172a;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;font-weight:bold;">
+                    </div>
+                    <div>
+                        <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">SPT N60 Darbe Sayısı:</label>
+                        <input type="number" id="inpAddGeoSpt" value="8" style="width:100%;box-sizing:border-box;background:#0f172a;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                    </div>
+                    <div>
+                        <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Presiyometre Limit Pl (MPa):</label>
+                        <input type="number" id="inpAddGeoPl" step="0.05" value="0.55" style="width:100%;box-sizing:border-box;background:#0f172a;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                    </div>
+                    <div>
+                        <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Presiyometre Modülü Em (MPa):</label>
+                        <input type="number" id="inpAddGeoEm" step="0.1" value="5.6" style="width:100%;box-sizing:border-box;background:#0f172a;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                    </div>
+                    <div>
+                        <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Nokta Yük Is(50) (MPa):</label>
+                        <input type="number" id="inpAddGeoPointLoad" step="0.1" value="0.0" style="width:100%;box-sizing:border-box;background:#0f172a;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                    </div>
+                    <div>
+                        <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Efektif Kohezyon c' (kPa):</label>
+                        <input type="number" id="inpAddGeoCohesion" value="12" style="width:100%;box-sizing:border-box;background:#0f172a;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                    </div>
+                    <div>
+                        <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">İçsel Sürtünme Açısı φ' (°):</label>
+                        <input type="number" id="inpAddGeoFriction" value="20" style="width:100%;box-sizing:border-box;background:#0f172a;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                    </div>
+                    <div>
+                        <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Plastisite İndisi PI (%):</label>
+                        <input type="number" id="inpAddGeoPI" value="25" style="width:100%;box-sizing:border-box;background:#0f172a;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                    </div>
+                    <div>
+                        <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Likit Limit LL (%):</label>
+                        <input type="number" id="inpAddGeoLL" value="45" style="width:100%;box-sizing:border-box;background:#0f172a;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                    </div>
+                </div>
+                <div style="width:100%;">
+                    <label style="font-size:11px;color:#cbd5e1;display:block;margin-bottom:3px;">Litolojik Zemin Tanımı / Tabaka Açıklaması:</label>
+                    <input type="text" id="inpAddGeoLithology" value="Siltli Kum / Katı Kil" style="width:100%;box-sizing:border-box;background:#0f172a;border:1px solid #475569;border-radius:4px;padding:6px;color:#f8fafc;">
+                </div>
+            </div>
+            <div class="modal-footer" style="background:#0f172a;border-top:1px solid #334155;padding:10px 18px;display:flex;justify-content:flex-end;gap:8px;">
+                <button id="btnCloseAddGeotechModalBottom" class="btn-action" style="background:#475569;color:#fff;padding:6px 14px;cursor:pointer;">İptal</button>
+                <button id="btnSubmitAddGeotechRow" class="btn-action" style="background:#2563eb;color:#fff;font-weight:bold;padding:6px 16px;cursor:pointer;">✓ Deney Satırını Ekle</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= RESMİ JEOTEKNİK İYİLEŞTİRME RAPORU MODAL ================= -->
+    <div id="geotechModal" class="modal-backdrop">
+        <div class="modal-dialog" style="max-width:940px;width:95%;height:90vh;display:flex;flex-direction:column;">
+            <div class="modal-header" style="background:#0f172a;border-bottom:2px solid #f59e0b;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:24px;">🏗️</span>
+                    <div>
+                        <h2 style="margin:0;font-size:16px;color:#f8fafc;font-weight:800;">JeoCAD - <span style="color:#f59e0b;">Zemin İyileştirme & Geoteknik Tasarım Raporu</span></h2>
+                        <p style="margin:2px 0 0 0;font-size:11.5px;color:#94a3b8;">TBDY 2018 & Eurocode 7 Derinlik Profilli Resmi Mühendislik Raporu</p>
+                    </div>
+                </div>
+                <button id="btnCloseGeotechModal" class="btn-close" style="font-size:24px;color:#fff;background:transparent;border:none;cursor:pointer;">&times;</button>
+            </div>
+            <div class="modal-body" style="flex:1;overflow-y:auto;padding:0;background:#f8fafc;">
+                <iframe id="geotechReportFrame" style="width:100%;height:100%;border:none;background:#fff;"></iframe>
+            </div>
+            <div class="modal-footer" style="background:#0f172a;border-top:1px solid #334155;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button id="btnPrintGeotechModal" class="btn-action" style="background:#0284c7;color:#fff;font-weight:bold;font-size:12px;padding:8px 16px;cursor:pointer;">
+                        🖨️ A4 PDF Olarak Yazdır / Kaydet
+                    </button>
+                    <button id="btnCopyGeotechWord" class="btn-action" style="background:#2563eb;color:#fff;font-weight:bold;font-size:12px;padding:8px 16px;cursor:pointer;">
+                        📘 Word Rapor Metnini Kopyala
+                    </button>
+                    <button id="btnInsertGeotechToCanvas" class="btn-action" style="background:#10b981;color:#fff;font-weight:bold;font-size:12px;padding:8px 16px;cursor:pointer;">
+                        📌 Kesite Açıklama Kartı Olarak Ekle
+                    </button>
+                    <button id="btnEditCompanyFromGeotechModal" class="btn-action" style="background:#0f766e;color:#fff;font-weight:bold;font-size:12px;padding:8px 14px;cursor:pointer;" title="Rapor başlığı ve imza alanındaki firma adı, logo ve kaşe bilgilerini düzenleyin">
+                        🏢 Firma & Logo Ayarla
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= HARİCİ YAZILIMLAR CAD, CBS & BIM KÖPRÜSÜ MODALI ================= -->
+    <div id="modalCadGisBridge" class="modal-backdrop" style="display:none;">
+        <div class="modal-dialog" style="max-width:880px;width:95vw;max-height:92vh;display:flex;flex-direction:column;">
+            <div class="modal-header" style="background:#0f172a;border-bottom:2px solid #0d9488;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:24px;">🌐</span>
+                    <div>
+                        <h3 style="margin:0;font-size:15px;color:#f8fafc;font-weight:700;">Harici Yazılımlar, CAD, CBS & BIM Köprüsü</h3>
+                        <p style="margin:2px 0 0 0;font-size:11px;color:#94a3b8;">AutoCAD, NetCAD, ArcGIS, Autodesk Revit/BIM ve Statik Tasarım Yazılımları Entegrasyonu</p>
+                    </div>
+                </div>
+                <button id="btnCloseCadGisModal" class="btn-close" style="font-size:22px;color:#fff;background:transparent;border:none;cursor:pointer;">&times;</button>
+            </div>
+            <div class="modal-body" style="background:#0b1120;padding:16px;overflow-y:auto;gap:12px;">
+                <div class="bridge-grid">
+                    
+                    <!-- KART 1: AUTOCAD & CIVIL 3D -->
+                    <div class="bridge-card">
+                        <div>
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                                <span style="font-size:22px;">📐</span>
+                                <div>
+                                    <h4 style="margin:0;color:#38bdf8;font-size:13px;">AutoCAD & Civil 3D</h4>
+                                    <span style="font-size:10px;color:#94a3b8;">Katmanlı DXF ve Otomatik Çizim Scripti</span>
+                                </div>
+                            </div>
+                            <p style="font-size:11px;color:#cbd5e1;line-height:1.4;margin:0 0 10px 0;">
+                                Kesiti ve sondajları AutoCAD'de tüm katmanlarıyla açın veya komut satırından otomatik çizdiren <b>.SCR</b> komut dosyasını indirin.
+                            </p>
+                        </div>
+                        <div style="display:flex;gap:6px;">
+                            <button id="btnBridgeDownloadDXF" class="btn-action" style="flex:1;background:#2563eb;color:#fff;font-weight:bold;font-size:11px;padding:7px;cursor:pointer;" title="Katmanlı DXF dosyasını indir">
+                                📐 DXF Çizimi İndir
+                            </button>
+                            <button id="btnBridgeDownloadAutoCadScript" class="btn-action" style="background:#1d4ed8;color:#fff;font-weight:bold;font-size:11px;padding:7px;cursor:pointer;" title="AutoCAD 'SCRIPT' komutu için otomatik çizim dosyası">
+                                📜 AutoCAD Script (.scr)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- KART 2: NETCAD (.NCZ / DXF / KML) -->
+                    <div class="bridge-card">
+                        <div>
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                                <span style="font-size:22px;">🗺️</span>
+                                <div>
+                                    <h4 style="margin:0;color:#34d399;font-size:13px;">NetCAD (Harita & Jeoloji)</h4>
+                                    <span style="font-size:10px;color:#94a3b8;">NetCAD 5, 7, 8 Uyumlu Tabaka & Kot Formatı</span>
+                                </div>
+                            </div>
+                            <p style="font-size:11px;color:#cbd5e1;line-height:1.4;margin:0 0 10px 0;">
+                                NetCAD çizim standartlarına uygun tabaka adları (NETCAD_TABAKA, NETCAD_SONDAJ) ve güzergah KML verisi.
+                            </p>
+                        </div>
+                        <div style="display:flex;gap:6px;">
+                            <button id="btnBridgeDownloadNetCadDxf" class="btn-action" style="flex:1;background:#059669;color:#fff;font-weight:bold;font-size:11px;padding:7px;cursor:pointer;" title="NetCAD uyumlu DXF indir">
+                                🗺️ NetCAD DXF İndir
+                            </button>
+                            <button id="btnBridgeDownloadNetCadKml" class="btn-action" style="background:#047857;color:#fff;font-size:11px;padding:7px;cursor:pointer;" title="NetCAD GIS için KML">
+                                📌 KML Güzergah
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- KART 3: ARCGIS & QGIS (CBS / GIS) -->
+                    <div class="bridge-card">
+                        <div>
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                                <span style="font-size:22px;">🌍</span>
+                                <div>
+                                    <h4 style="margin:0;color:#f59e0b;font-size:13px;">ArcGIS & QGIS (CBS / GIS)</h4>
+                                    <span style="font-size:10px;color:#94a3b8;">Sondaj Öznitelik Tablosu (Attribute Table)</span>
+                                </div>
+                            </div>
+                            <p style="font-size:11px;color:#cbd5e1;line-height:1.4;margin:0 0 10px 0;">
+                                Sondajların koordinatları, kotları, derinlikleri ve litoloji geçişlerini içeren CBS katmanı.
+                            </p>
+                        </div>
+                        <div style="display:flex;gap:6px;">
+                            <button id="btnBridgeDownloadGeoJson" class="btn-action" style="flex:1;background:#d97706;color:#fff;font-weight:bold;font-size:11px;padding:7px;cursor:pointer;" title="ArcGIS / QGIS için GeoJSON katmanı indir">
+                                🌍 GeoJSON İndir
+                            </button>
+                            <button id="btnBridgeDownloadGoogleKml" class="btn-action" style="background:#b45309;color:#fff;font-size:11px;padding:7px;cursor:pointer;" title="Google Earth & ArcGIS KML">
+                                🌐 Google Earth KML
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- KART 4: AUTODESK REVIT & MİMARİ BIM -->
+                    <div class="bridge-card">
+                        <div>
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                                <span style="font-size:22px;">🏢</span>
+                                <div>
+                                    <h4 style="margin:0;color:#a855f7;font-size:13px;">Autodesk Revit & Mimari BIM</h4>
+                                    <span style="font-size:10px;color:#94a3b8;">Temel Kotu (Df), YAS, Şev & Drenaj Kriterleri</span>
+                                </div>
+                            </div>
+                            <p style="font-size:11px;color:#cbd5e1;line-height:1.4;margin:0 0 10px 0;">
+                                Mimarların vaziyet planı ve temel altı tecrit projeleri için resmi zemin taban verileri.
+                            </p>
+                        </div>
+                        <div style="display:flex;gap:6px;">
+                            <button id="btnBridgeCopyBimReport" class="btn-action" style="flex:1;background:#7e22ce;color:#fff;font-weight:bold;font-size:11px;padding:7px;cursor:pointer;" title="Mimari zemin parametre özetini panoya kopyala">
+                                📋 Mimari Parametreleri Kopyala
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- KART 5: İNŞAAT STATİK (IDECAD, SAP2000, PROTA) -->
+                    <div class="bridge-card">
+                        <div>
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                                <span style="font-size:22px;">🏗️</span>
+                                <div>
+                                    <h4 style="margin:0;color:#ef4444;font-size:13px;">Statik Tasarım (ideCAD / SAP2000)</h4>
+                                    <span style="font-size:10px;color:#94a3b8;">Zemin Yatak Katsayısı (ks) & Taşıma Gücü (qem)</span>
+                                </div>
+                            </div>
+                            <p style="font-size:11px;color:#cbd5e1;line-height:1.4;margin:0 0 10px 0;">
+                                İnşaat mühendislerinin radye ve sürekli temel statik sonlu elemanlar modellerine gireceği yay katsayıları.
+                            </p>
+                        </div>
+                        <div style="display:flex;gap:6px;">
+                            <button id="btnBridgeCopyStatikReport" class="btn-action" style="flex:1;background:#dc2626;color:#fff;font-weight:bold;font-size:11px;padding:7px;cursor:pointer;" title="Statik yay katsayısı ve taşıma gücü raporunu kopyala">
+                                📋 Statik Parametreleri Kopyala
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- KART 6: 3D KATI MODEL (LEAPFROG / 3DS MAX / BLENDER) -->
+                    <div class="bridge-card">
+                        <div>
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                                <span style="font-size:22px;">🧊</span>
+                                <div>
+                                    <h4 style="margin:0;color:#06b6d4;font-size:13px;">3D Katı Model (OBJ Mesh)</h4>
+                                    <span style="font-size:10px;color:#94a3b8;">AutoCAD 3D, Blender, SketchUp, Leapfrog</span>
+                                </div>
+                            </div>
+                            <p style="font-size:11px;color:#cbd5e1;line-height:1.4;margin:0 0 10px 0;">
+                                Sondaj kolonlarını 3 boyutlu tüpler, tabakaları 3D yüzey meshleri olarak doğrudan dışa aktarın.
+                            </p>
+                        </div>
+                        <div style="display:flex;gap:6px;">
+                            <button id="btnBridgeDownload3DObj" class="btn-action" style="flex:1;background:#0891b2;color:#fff;font-weight:bold;font-size:11px;padding:7px;cursor:pointer;" title="3D Wavefront OBJ modelini indir">
+                                💾 3D OBJ İndir
+                            </button>
+                            <button id="btnBridgeOpenInteractive3D" class="btn-action" style="background:#0e7490;color:#fff;font-weight:bold;font-size:11px;padding:7px;cursor:pointer;" title="İnteraktif 3D Görüntüleyiciyi Aç">
+                                👁️ 3D İncele
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer" style="background:#0f172a;border-top:1px solid #334155;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;">
+                <span id="cadGisBridgeFeedback" style="font-size:11.5px;color:#38bdf8;font-weight:bold;"></span>
+                <button id="btnCloseCadGisModalBottom" class="btn-action" style="background:#475569;color:#fff;padding:6px 14px;cursor:pointer;">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= İNTERAKTİF 3D KATI MODEL GÖRSELLEŞTİRİCİ MODALI ================= -->
+    <div id="modal3DGeologyViewer" class="modal-backdrop" style="display:none;">
+        <div class="modal-dialog" style="max-width:940px;width:95vw;height:85vh;display:flex;flex-direction:column;">
+            <div class="modal-header" style="background:#0f172a;border-bottom:2px solid #06b6d4;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:24px;">🧊</span>
+                    <div>
+                        <h3 style="margin:0;font-size:15px;color:#f8fafc;font-weight:700;">JeoCAD - 3D Jeoloji & Sondaj Katı Model Görselleştirici</h3>
+                        <p style="margin:2px 0 0 0;font-size:11px;color:#94a3b8;">Sondaj kolonlarını 3 boyutlu tüpler, tabakaları 3D katı model olarak serbestçe döndürün ve inceleyin</p>
+                    </div>
+                </div>
+                <button id="btnClose3DModal" class="btn-close" style="font-size:22px;color:#fff;background:transparent;border:none;cursor:pointer;">&times;</button>
+            </div>
+            <div class="modal-body" style="background:#090d16;padding:10px;flex:1;display:flex;flex-direction:column;position:relative;">
+                <canvas id="canvas3DViewport" width="900" height="500" style="width:100%;height:100%;display:block;border-radius:6px;cursor:grab;"></canvas>
+            </div>
+            <div class="modal-footer" style="background:#0f172a;border-top:1px solid #334155;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;gap:8px;align-items:center;">
+                    <button id="btn3DResetView" class="btn-action" style="background:#334155;color:#fff;font-size:11px;padding:6px 12px;cursor:pointer;">
+                        🔄 Açıyı Sıfırla
+                    </button>
+                    <button id="btn3DZoomIn" class="btn-action" style="background:#334155;color:#fff;font-size:11px;padding:6px 10px;cursor:pointer;">
+                        🔍+ Yakınlaş
+                    </button>
+                    <button id="btn3DZoomOut" class="btn-action" style="background:#334155;color:#fff;font-size:11px;padding:6px 10px;cursor:pointer;">
+                        🔍- Uzaklaş
+                    </button>
+                </div>
+                <div style="display:flex;gap:8px;">
+                    <button id="btn3DDownloadOBJ" class="btn-action" style="background:#0891b2;color:#fff;font-weight:bold;font-size:11.5px;padding:7px 16px;cursor:pointer;">
+                        💾 3D OBJ Katı Modeli İndir
+                    </button>
+                    <button id="btnClose3DModalBottom" class="btn-action" style="background:#475569;color:#fff;padding:6px 14px;cursor:pointer;">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= AKILLI KLASÖR AYRIŞTIRMA SONUÇ MODALI ================= -->
+    <div id="modalBatchFolderResults" class="modal-backdrop" style="display:none;">
+        <div class="modal-dialog" style="max-width:720px;width:92vw;max-height:88vh;display:flex;flex-direction:column;">
+            <div class="modal-header" style="background:#0f172a;border-bottom:2px solid #10b981;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:24px;">⚡</span>
+                    <div>
+                        <h3 style="margin:0;font-size:15px;color:#f8fafc;font-weight:700;">Akıllı Klasör Ayrıştırma Raporu</h3>
+                        <p style="margin:2px 0 0 0;font-size:11px;color:#94a3b8;">Yüklediğiniz klasördeki tüm mühendislik dosyaları tarandı ve otomatik kategorize edildi</p>
+                    </div>
+                </div>
+                <button id="btnCloseBatchFolderModal" class="btn-close" style="font-size:22px;color:#fff;background:transparent;border:none;cursor:pointer;">&times;</button>
+            </div>
+            <div class="modal-body" style="background:#1e293b;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;">
+                
+                <!-- Özet Gösterge Rozetleri -->
+                <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:8px;">
+                    <div style="background:#0f172a;border:1px solid #334155;border-radius:6px;padding:10px;text-align:center;">
+                        <span style="font-size:10px;color:#94a3b8;display:block;">Sondaj Kuyuları</span>
+                        <strong id="batchCountBoreholes" style="font-size:16px;color:#38bdf8;">0 Adet</strong>
+                    </div>
+                    <div style="background:#0f172a;border:1px solid #334155;border-radius:6px;padding:10px;text-align:center;">
+                        <span style="font-size:10px;color:#94a3b8;display:block;">Geoteknik Deneyler</span>
+                        <strong id="batchCountTests" style="font-size:16px;color:#10b981;">0 Adet</strong>
+                    </div>
+                    <div style="background:#0f172a;border:1px solid #334155;border-radius:6px;padding:10px;text-align:center;">
+                        <span style="font-size:10px;color:#94a3b8;display:block;">Karot Sandığı & Foto</span>
+                        <strong id="batchCountPhotos" style="font-size:16px;color:#fbbf24;">0 Adet</strong>
+                    </div>
+                    <div style="background:#0f172a;border:1px solid #334155;border-radius:6px;padding:10px;text-align:center;">
+                        <span style="font-size:10px;color:#94a3b8;display:block;">Şirket Logosu / Kaşe</span>
+                        <strong id="batchCountBranding" style="font-size:13px;color:#f59e0b;">Bulunamadı</strong>
+                    </div>
+                    <div style="background:#0f172a;border:1px solid #334155;border-radius:6px;padding:10px;text-align:center;">
+                        <span style="font-size:10px;color:#94a3b8;display:block;">Taranan Dosya</span>
+                        <strong id="batchCountTotalFiles" style="font-size:16px;color:#cbd5e1;">0 Dosya</strong>
+                    </div>
+                </div>
+
+                <!-- Taranan Dosyalar Listesi -->
+                <div>
+                    <label style="font-size:11px;color:#cbd5e1;font-weight:bold;margin-bottom:4px;display:block;">Klasör İçeriği ve Eşleşen Görevler:</label>
+                    <div id="batchScanListContainer" class="batch-scan-list">
+                        <!-- Dinamik doldurulur -->
+                    </div>
+                </div>
+
+                <div style="background:rgba(16,185,129,0.1);border:1px solid #10b981;border-radius:6px;padding:10px;font-size:11.5px;color:#34d399;line-height:1.4;">
+                    ✓ Ayrıştırma tamamlandı. <b>"Normal Grafiği Çiz (2D Kesit)"</b> veya <b>"3D Katı Model Grafiği Çiz"</b> butonuna basarak projenizi istediğiniz formatta anında çizdirebilirsiniz.
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background:#0f172a;border-top:1px solid #334155;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:8px;">
+                <button id="btnCloseBatchFolderModalBottom" class="btn-action" style="background:#475569;color:#fff;padding:7px 16px;cursor:pointer;">İptal</button>
+                <div style="display:flex;gap:8px;">
+                    <button id="btnApplyBatchFolder3D" class="btn-action" style="background:linear-gradient(135deg,#0284c7,#0369a1);color:#fff;font-weight:bold;font-size:12px;padding:7px 18px;border-radius:5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;" title="Verileri projeye uygular ve 3 Boyutlu Katı Model olarak açar">
+                        <span>🧊</span> 3D Katı Model Grafiği Çiz
+                    </button>
+                    <button id="btnApplyBatchFolderData" class="btn-action" style="background:linear-gradient(135deg,#059669,#047857);color:#fff;font-weight:bold;font-size:12px;padding:7px 18px;border-radius:5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;" title="Verileri projeye uygular ve 2D CAD jeolojik kesit grafiğini çizer">
+                        <span>🎨</span> Normal Grafiği Çiz (2D Kesit)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Uygulama Scriptleri -->
+    <script src="xlsx.full.min.js"></script>
+    <script src="jszip.min.js"></script>
+    <script src="sample_data.js?v=3.0.0"></script>
+    <script src="company_profile.js?v=3.0.0"></script>
+    <script src="dxf_exporter.js?v=3.0.0"></script>
+    <script src="cad_gis_bridge.js?v=3.0.0"></script>
+    <script src="folder_batch_importer.js?v=3.0.0"></script>
+    <script src="vector_canvas.js?v=3.0.0"></script>
+    <script src="geotech_advisor.js?v=3.0.0"></script>
+    <script src="app.js?v=3.0.0"></script>
+    <!-- Lisans ve Donanım Aktivasyon Sistemi -->
+    <script src="license_env.js"></script>
+    <script src="license_manager.js"></script>
+</body>
+</html>
