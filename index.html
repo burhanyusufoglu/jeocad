@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B & Y JEOCAD | Yeni Nesil Jeolojik Kesit, Sondaj Kolon & 3D CAD Platformu</title>
-    <meta name="description" content="Jeoloji, Geoteknik ve İnşaat Mühendisleri için tek tıkla Excel ve karot fotoğraflarından 2D akıllı litolojik kesitler ve 3D katı modeller üreten milli CAD yazılımı. AutoCAD ve NetCAD tam uyumlu.">
-    <link rel="icon" type="image/png" href="logo.png">
+    <title>BY JEOCAD | Jeoloji, &#304;n&#351;aat ve Mimarl&#305;k &#304;&ccedil;in Ak&#305;ll&#305; CAD Entegrasyonu</title>
+    <meta name="description" content="Zemin verilerini ve sahayı tek tıkla CAD ortamına aktarın. Sondaj loglarını, zemin tabakalaşmalarını ve arazi koordinatlarını saniyeler içinde çizime dönüştüren yerli mühendislik aracı.">
+    <link rel="icon" type="image/png" href="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,7 +70,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(7, 11, 20, 0.85);
+            background: rgba(7, 11, 20, 0.88);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-subtle);
@@ -103,7 +103,7 @@
         }
 
         .brand-logo-group:hover .brand-logo-img {
-            transform: rotate(10deg) scale(1.05);
+            transform: rotate(8deg) scale(1.05);
         }
 
         .brand-title-wrap h1 {
@@ -135,7 +135,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 22px;
             list-style: none;
         }
 
@@ -217,7 +217,7 @@
             border-radius: var(--radius-md);
         }
 
-        /* Hero Section */
+        /* 1. HERO SECTION */
         .hero {
             padding: 70px 0 60px;
             text-align: center;
@@ -230,9 +230,9 @@
             gap: 8px;
             background: rgba(245, 158, 11, 0.1);
             border: 1px solid var(--border-gold);
-            padding: 6px 16px;
+            padding: 7px 18px;
             border-radius: var(--radius-full);
-            font-size: 12.5px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--gold-light);
             margin-bottom: 24px;
@@ -258,7 +258,7 @@
             font-weight: 900;
             letter-spacing: -1px;
             line-height: 1.18;
-            max-width: 950px;
+            max-width: 980px;
             margin: 0 auto 20px;
             background: linear-gradient(180deg, #ffffff 30%, #cbd5e1 100%);
             -webkit-background-clip: text;
@@ -274,9 +274,9 @@
         .hero-subtitle {
             font-size: 18px;
             color: var(--text-muted);
-            max-width: 820px;
+            max-width: 860px;
             margin: 0 auto 36px;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         .hero-cta-group {
@@ -294,7 +294,7 @@
             justify-content: center;
             gap: 24px;
             flex-wrap: wrap;
-            font-size: 12.5px;
+            font-size: 13px;
             color: var(--text-dim);
             font-weight: 600;
         }
@@ -305,31 +305,29 @@
             gap: 6px;
         }
 
-        /* Showcase Preview Container */
+        /* Showcase Preview Vitrine */
         .showcase-wrapper {
             margin: 50px auto 0;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid var(--border-subtle);
+            max-width: 1060px;
+            background: #0b1120;
+            border: 1px solid var(--border-gold);
             border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(245, 158, 11, 0.12);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 35px rgba(245, 158, 11, 0.15);
         }
 
         .showcase-bar {
-            background: #0b1120;
+            background: #0f172a;
             padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid var(--border-subtle);
-            flex-wrap: wrap;
-            gap: 12px;
         }
 
         .mac-dots {
             display: flex;
-            align-items: center;
-            gap: 7px;
+            gap: 6px;
         }
 
         .mac-dot {
@@ -345,16 +343,17 @@
         .showcase-tabs {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         .showcase-tab {
-            background: transparent;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid transparent;
             color: var(--text-muted);
             padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
+            border-radius: var(--radius-sm);
+            font-size: 12.5px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
             display: flex;
@@ -362,21 +361,22 @@
             gap: 6px;
         }
 
-        .showcase-tab.active {
-            background: rgba(245, 158, 11, 0.15);
-            border-color: var(--border-gold);
-            color: var(--gold-light);
+        .showcase-tab:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        .showcase-tab:hover:not(.active) {
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
+        .showcase-tab.active {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--gold-light);
+            border-color: var(--border-gold);
         }
 
         .showcase-content {
+            padding: 8px;
+            background: #030712;
             position: relative;
-            background: #020617;
-            min-height: 480px;
+            min-height: 380px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -385,49 +385,44 @@
         .showcase-img {
             width: 100%;
             height: auto;
+            border-radius: 8px;
             display: block;
-            object-fit: cover;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.2s ease;
         }
 
-        /* Metrics Strip */
+        /* Metric Strip */
         .metrics-strip {
-            padding: 40px 0;
+            padding: 30px 0;
             border-top: 1px solid var(--border-subtle);
             border-bottom: 1px solid var(--border-subtle);
-            background: rgba(11, 17, 32, 0.6);
-            margin: 60px 0;
+            background: rgba(15, 23, 42, 0.5);
         }
 
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
+            gap: 20px;
             text-align: center;
         }
 
         .metric-card h3 {
-            font-size: 38px;
-            font-weight: 900;
             font-family: var(--font-mono);
+            font-size: 32px;
+            font-weight: 900;
             color: var(--gold);
             margin-bottom: 4px;
         }
 
         .metric-card p {
-            font-size: 13.5px;
+            font-size: 12.5px;
             color: var(--text-muted);
             font-weight: 600;
         }
 
-        /* Comparison Section */
-        .comparison-sec {
-            padding: 60px 0;
-        }
-
+        /* Section Headings */
         .sec-header {
             text-align: center;
-            max-width: 760px;
+            max-width: 780px;
             margin: 0 auto 50px;
         }
 
@@ -436,155 +431,207 @@
             background: rgba(56, 189, 248, 0.1);
             color: var(--cyan);
             border: 1px solid rgba(56, 189, 248, 0.25);
-            font-size: 12px;
-            font-weight: 800;
             padding: 4px 14px;
             border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
             margin-bottom: 14px;
-            letter-spacing: 0.5px;
         }
 
         .sec-title {
             font-size: 34px;
             font-weight: 900;
             letter-spacing: -0.5px;
-            margin-bottom: 16px;
             color: #fff;
+            margin-bottom: 14px;
         }
 
         .sec-desc {
             font-size: 15.5px;
             color: var(--text-muted);
+            line-height: 1.6;
         }
 
-        .comp-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
+        /* 2. "NEDEN BY JEOCAD?" (Problem - Çözüm) */
+        .why-sec {
+            padding: 85px 0 75px;
+            position: relative;
         }
 
-        .comp-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 30px;
-            box-shadow: var(--shadow-card);
-        }
-
-        .comp-card.highlight {
-            border-color: var(--border-gold);
-            background: linear-gradient(180deg, rgba(245, 158, 11, 0.08) 0%, rgba(15, 23, 42, 0.9) 100%);
-            box-shadow: var(--shadow-gold);
-        }
-
-        .comp-card-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .comp-card-header h4 {
-            font-size: 18px;
-            font-weight: 800;
-        }
-
-        .comp-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .comp-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .comp-list li strong {
-            color: #fff;
-        }
-
-        /* Features Section */
-        .features-sec {
-            padding: 60px 0;
-        }
-
-        .features-grid {
+        .why-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 26px;
         }
 
-        .feature-card {
+        .why-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 28px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: var(--radius-lg);
+            padding: 34px 28px;
             position: relative;
-            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
+        .why-card:hover {
             border-color: var(--border-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 16px 36px -10px rgba(245, 158, 11, 0.25);
             background: var(--bg-card-hover);
-            box-shadow: var(--shadow-gold);
         }
 
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-icon-box {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
+        .why-icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
             background: rgba(245, 158, 11, 0.12);
             border: 1px solid var(--border-gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 24px;
             margin-bottom: 20px;
-            color: var(--gold);
         }
 
-        .feature-card h3 {
-            font-size: 18px;
+        .why-badge-tag {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: var(--radius-full);
+            margin-bottom: 14px;
+            letter-spacing: 0.3px;
+        }
+
+        .why-card.highlight .why-badge-tag {
+            background: rgba(16, 185, 129, 0.12);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #34d399;
+        }
+
+        .why-card h3 {
+            font-size: 19px;
             font-weight: 800;
             margin-bottom: 12px;
             color: #fff;
+            line-height: 1.35;
         }
 
-        .feature-card p {
+        .why-card p {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+
+        .why-bullet-list {
+            list-style: none;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .why-bullet-list li {
+            font-size: 12.8px;
+            color: var(--text-dim);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .why-bullet-list li strong {
+            color: var(--text-main);
+        }
+
+        /* 3. TEMEL ÖZELLİKLER (4 Kutulu Grid) */
+        .features-sec {
+            padding: 80px 0 70px;
+            background: rgba(15, 23, 42, 0.35);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .features-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .feature-box-4 {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 28px 24px;
+            position: relative;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-box-4:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-4px);
+            background: var(--bg-card-hover);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .feature-num {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.12);
+        }
+
+        .feature-box-4:hover .feature-num {
+            color: var(--gold);
+        }
+
+        .feature-icon-circle {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 18px;
+            color: var(--cyan);
+        }
+
+        .feature-box-4 h3 {
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #fff;
+            line-height: 1.35;
+        }
+
+        .feature-box-4 p {
             font-size: 13.5px;
             color: var(--text-muted);
             line-height: 1.6;
         }
 
-        /* Download Section */
+        /* 4. İNDİRME VE KURULUM */
         .download-sec {
-            padding: 80px 0 60px;
+            padding: 85px 0 70px;
             position: relative;
         }
 
@@ -632,14 +679,14 @@
         .dl-card-top h3 {
             font-size: 21px;
             font-weight: 900;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #fff;
         }
 
         .dl-card-top .dl-meta {
             font-size: 12.5px;
             color: var(--text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .dl-features {
@@ -665,9 +712,30 @@
             font-weight: bold;
         }
 
-        /* Steps Guide */
-        .steps-sec {
-            padding: 40px 0 60px;
+        /* 3 Kurulum Adımları */
+        .install-guide-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 40px 32px;
+            margin-bottom: 35px;
+        }
+
+        .install-guide-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .install-guide-header h4 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .install-guide-header p {
+            font-size: 13.5px;
+            color: var(--text-muted);
         }
 
         .steps-grid {
@@ -677,11 +745,17 @@
         }
 
         .step-item {
-            background: var(--bg-card);
+            background: rgba(7, 11, 20, 0.6);
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius-md);
             padding: 24px;
             position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-3px);
         }
 
         .step-number {
@@ -692,8 +766,8 @@
             margin-bottom: 10px;
         }
 
-        .step-item h4 {
-            font-size: 16px;
+        .step-item h5 {
+            font-size: 15.5px;
             font-weight: 800;
             margin-bottom: 8px;
             color: #fff;
@@ -702,12 +776,31 @@
         .step-item p {
             font-size: 13px;
             color: var(--text-muted);
+            line-height: 1.55;
         }
 
-        /* Author / Visionary Section */
+        /* Requirements Strip */
+        .sys-req-strip {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 20px 28px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .sys-req-strip strong {
+            color: var(--text-main);
+        }
+
+        /* Geliştirici & Mühendis Bölümü */
         .author-sec {
             padding: 60px 0;
-            margin: 40px 0;
+            margin: 20px 0;
             background: linear-gradient(180deg, rgba(15, 23, 42, 0.7) 0%, rgba(7, 11, 20, 0.9) 100%);
             border-top: 1px solid var(--border-subtle);
             border-bottom: 1px solid var(--border-subtle);
@@ -751,43 +844,132 @@
         }
 
         .author-quote {
-            font-size: 15px;
+            font-size: 14.5px;
             color: var(--text-muted);
             line-height: 1.6;
             font-style: italic;
             border-left: 3px solid var(--gold);
             padding-left: 16px;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
 
-        /* Footer */
+        /* 5. İLETİŞİM & LİSANS (FOOTER) */
         footer {
             background: #040711;
-            padding: 50px 0 30px;
+            padding: 60px 0 35px;
             border-top: 1px solid var(--border-subtle);
             font-size: 13px;
             color: var(--text-dim);
         }
 
-        .footer-inner {
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 28px;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 10px;
+            max-width: 380px;
+            line-height: 1.6;
+        }
+
+        .footer-links-col h4 {
+            font-size: 14px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links-col ul {
+            list-style: none;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links-col a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links-col a:hover {
+            color: var(--gold);
+        }
+
+        .footer-contact-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 20px;
+        }
+
+        .footer-contact-box h4 {
+            font-size: 14px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .footer-contact-box p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .contact-email-link {
+            display: inline-flex;
             align-items: center;
+            gap: 8px;
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            padding: 8px 14px;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+        }
+
+        .contact-email-link:hover {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             flex-wrap: wrap;
-            gap: 20px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 24px;
+            gap: 16px;
+            font-size: 12.5px;
         }
 
-        .footer-copy {
-            text-align: center;
-            font-size: 12px;
+        .footer-bottom-copy {
+            color: var(--text-dim);
         }
 
-        /* Responsive */
+        .footer-bottom-copy strong {
+            color: var(--text-muted);
+        }
+
+        /* Responsive Media Queries */
         @media (max-width: 1024px) {
-            .features-grid, .download-cards-grid, .steps-grid {
+            .why-grid, .download-cards-grid, .steps-grid, .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .features-grid-4 {
                 grid-template-columns: repeat(2, 1fr);
             }
             .dl-card.popular {
@@ -808,7 +990,7 @@
             .nav-links {
                 display: none;
             }
-            .comp-grid, .features-grid, .download-cards-grid, .steps-grid, .metrics-grid {
+            .why-grid, .features-grid-4, .download-cards-grid, .steps-grid, .metrics-grid, .footer-grid {
                 grid-template-columns: 1fr;
             }
             .author-box {
@@ -819,6 +1001,10 @@
                 border-left: none;
                 padding-left: 0;
             }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -828,68 +1014,68 @@
     <header class="navbar">
         <div class="container nav-inner">
             <a href="#top" class="brand-logo-group">
-                <img src="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png" alt="B & Y JEOCAD Logo" class="brand-logo-img">
+                <img src="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src='logo.png';}" alt="BY JEOCAD Logo" class="brand-logo-img">
                 <div class="brand-title-wrap">
-                    <h1>B &amp; Y <span class="brand-badge">JEOCAD</span></h1>
-                    <p>Jeolojik Kesit &amp; Sondaj CAD Stüdyosu</p>
+                    <h1>BY <span class="brand-badge">JEOCAD</span></h1>
+                    <p>Zemin &amp; Jeoloji Ak&#305;ll&#305; CAD Entegrasyonu</p>
                 </div>
             </a>
 
             <ul class="nav-links">
-                <li><a href="#ozellikler">Özellikler</a></li>
-                <li><a href="#karsilastirma">Neden JeoCAD?</a></li>
-                <li><a href="#moduller">CAD &amp; 3D Modüller</a></li>
-                <li><a href="#nasil-calisir">Nasıl Çalışır?</a></li>
-                <li><a href="#gelistirici">Geliştirici</a></li>
+                <li><a href="#neden">Neden BY JEOCAD?</a></li>
+                <li><a href="#ozellikler">Temel &Ouml;zellikler</a></li>
+                <li><a href="#indir">&#304;ndirme ve Kurulum</a></li>
+                <li><a href="GITHUB_A_YUKLENECEK_DOSYALAR/JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" target="_blank">Dok&uuml;mantasyon</a></li>
+                <li><a href="#iletisim">&#304;leti&#351;im</a></li>
             </ul>
 
             <div class="nav-actions">
-                <a href="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank" class="btn btn-outline" title="Tarayıcıda Canlı Deneyin">
-                    <span>🚀</span> Web CAD Aç
+                <a href="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank" class="btn btn-outline" title="Taray&#305;c&#305;da Canl&#305; &Ccedil;al&#305;&#351;t&#305;r&#305;n">
+                    <span>🚀</span> Web CAD A&ccedil;
                 </a>
                 <a href="#indir" class="btn btn-gold">
-                    <span>📥</span> İndir (v7.2)
+                    <span>📥</span> &Uuml;cretsiz &#304;ndir (v1.0)
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Karşılama Bölümü -->
+    <!-- 1. GİRİŞ BÖLÜMÜ (HERO / EN ÜST ALAN) -->
     <section class="hero" id="top">
         <div class="container">
             <div class="hero-badge-pill">
                 <span class="hero-badge-dot"></span>
-                <span>👑 v7.2 Kurumsal &amp; Bireysel Sürüm Yayında • %100 Yerli ve Bağımsız</span>
+                <span>Jeoloji, &#304;n&#351;aat ve Mimarl&#305;k &#304;&ccedil;in Ak&#305;ll&#305; CAD Entegrasyonu</span>
             </div>
 
-            <h2 class="hero-title">
-                Zemin ve Jeoloji Mühendisliğinde Kesit Çiziminin &amp; Raporlamanın <span class="highlight-gold">Yeni Zirvesi</span>
-            </h2>
+            <h1 class="hero-title">
+                Zemin Verilerini ve Sahay&#305; Tek T&#305;kla <span class="highlight-gold">CAD Ortam&#305;na Aktar&#305;n</span>
+            </h1>
 
             <p class="hero-subtitle">
-                Excel sondaj loglarınızı, saha karot sandığı fotoğraflarınızı ve geoteknik deneylerinizi tek hamlede sürükleyip bırakın. <strong>2D akıllı litolojik kesitleri</strong> ve <strong>3D katı modelleri</strong> saniyeler içinde çizin. AutoCAD, NetCAD ve CBS ile %100 uyumlu.
+                BY JEOCAD; sondaj loglar&#305;n&#305;, zemin tabakala&#351;malar&#305;n&#305; ve arazi koordinatlar&#305;n&#305; saniyeler i&ccedil;inde &ccedil;izime d&ouml;n&uuml;&#351;t&uuml;ren, &#351;antiye ve ofis aras&#305;ndaki veri kopuklu&#287;unu bitiren yerli m&uuml;hendislik arac&#305;d&#305;r.
             </p>
 
             <div class="hero-cta-group">
                 <a href="GITHUB_A_YUKLENECEK_DOSYALAR/JeoCAD.exe" download="JeoCAD.exe" class="btn btn-gold btn-lg" id="btnHeroExe">
                     <span style="font-size:18px;">💾</span> 
-                    <span>Windows İçin İndir <strong>(.exe Taşınabilir)</strong></span>
+                    <span>&Uuml;cretsiz &#304;ndir (v1.0)</span>
                 </a>
-                <a href="GITHUB_A_YUKLENECEK_DOSYALAR/BY_JEOCAD_v7.2_Masaustu_Paketi.zip" download="BY_JEOCAD_v7.2_Masaustu_Paketi.zip" class="btn btn-outline btn-lg" id="btnHeroZip">
-                    <span style="font-size:18px;">📦</span> 
-                    <span>Tam Mühendislik Paketi (.zip)</span>
+                <a href="GITHUB_A_YUKLENECEK_DOSYALAR/JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" target="_blank" class="btn btn-outline btn-lg" id="btnHeroDocs">
+                    <span style="font-size:18px;">📖</span> 
+                    <span>Tan&#305;t&#305;m Videosunu &#304;zle / Dok&uuml;mantasyon</span>
                 </a>
-                <a href="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank" class="btn btn-blue btn-lg">
+                <a href="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank" class="btn btn-blue btn-lg" id="btnHeroWeb">
                     <span style="font-size:18px;">🚀</span> 
-                    <span>Tarayıcıda Canlı Başlat</span>
+                    <span>Web CAD Canl&#305; Ba&#351;lat</span>
                 </a>
             </div>
 
             <div class="hero-trust-bar">
-                <div class="hero-trust-item"><span>🛡️</span> Kurulum Gerektirmez (Portable)</div>
-                <div class="hero-trust-item"><span>💻</span> Windows 10 &amp; 11 (64-Bit)</div>
-                <div class="hero-trust-item"><span>🔒</span> %100 Çevrimdışı (Verileriniz Sizde Kalır)</div>
-                <div class="hero-trust-item"><span>📐</span> TMMOB &amp; Bakanlık Standartlarında</div>
+                <div class="hero-trust-item"><span>💻</span> Windows 10 / 11 (64-bit)</div>
+                <div class="hero-trust-item"><span>⚡</span> Saniyeler &#304;&ccedil;inde &Ccedil;izim</div>
+                <div class="hero-trust-item"><span>📐</span> AutoCAD &amp; Civil 3D Tam Uyumlu</div>
+                <div class="hero-trust-item"><span>🇹🇷</span> %100 Yerli M&uuml;hendislik Yaz&#305;l&#305;m&#305;</div>
             </div>
 
             <!-- İnteraktif Ekran Görüntüsü Vitrini -->
@@ -903,26 +1089,26 @@
 
                     <div class="showcase-tabs">
                         <button type="button" class="showcase-tab active" onclick="switchPreview('GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_main_ui.png', this)">
-                            <span>🖥️</span> Ana Çalışma Alanı &amp; Arayüz
+                            <span>🖥️</span> Ana &Ccedil;al&#305;&#351;ma Alan&#305; &amp; Aray&uuml;z
                         </button>
                         <button type="button" class="showcase-tab" onclick="switchPreview('GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_2d_section.png', this)">
-                            <span>🎨</span> 2D Eğimli Kesit &amp; Karot Sandığı
+                            <span>🎨</span> 2D Zemin Profili &amp; Karot Sand&#305;&#287;&#305;
                         </button>
                         <button type="button" class="showcase-tab" onclick="switchPreview('GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_3d_model.png', this)">
-                            <span>🧊</span> 3D Katı Model &amp; Orbit
+                            <span>🧊</span> 3D Kat&#305; Zemin Modeli &amp; Orbit
                         </button>
                         <button type="button" class="showcase-tab" onclick="switchPreview('GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_batch_modal.png', this)">
-                            <span>📂</span> Otomatik Excel &amp; Karot Ayrıştırma
+                            <span>📂</span> Otomatik Excel &amp; Saha Ayr&#305;&#351;t&#305;rma
                         </button>
                     </div>
 
                     <div style="font-size:11px;color:#94a3b8;font-family:var(--font-mono);">
-                        ● Canlı Sistem Önizlemesi
+                        ● Canl&#305; &Ccedil;izim Motoru
                     </div>
                 </div>
 
                 <div class="showcase-content">
-                    <img id="showcaseDisplayImg" src="GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_main_ui.png" alt="B & Y JEOCAD Arayüzü" class="showcase-img">
+                    <img id="showcaseDisplayImg" src="GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_main_ui.png" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src='assets/preview_main_ui.png';}" alt="BY JEOCAD Ekran G&ouml;r&uuml;nt&uuml;s&uuml;" class="showcase-img">
                 </div>
             </div>
         </div>
@@ -934,282 +1120,251 @@
             <div class="metrics-grid">
                 <div class="metric-card">
                     <h3>10X</h3>
-                    <p>Daha Hızlı Kesit Çizimi ve Raporlama</p>
+                    <p>Daha H&#305;zl&#305; Log &amp; Kesit &Ccedil;izimi</p>
                 </div>
                 <div class="metric-card">
                     <h3>%100</h3>
-                    <p>Yerli, Bağımsız &amp; Çevrimdışı Çalışma</p>
+                    <p>Yerli M&uuml;hendislik &amp; &Ccedil;evrimd&#305;&#351;&#305; G&uuml;venlik</p>
                 </div>
                 <div class="metric-card">
-                    <h3>4+</h3>
-                    <p>Evrensel CAD &amp; CBS Formatı (DXF, SHP, CAD)</p>
+                    <h3>S&#305;f&#305;r</h3>
+                    <p>Kot, Koordinat ve Katman Hatas&#305;</p>
                 </div>
                 <div class="metric-card">
-                    <h3>5 Katman</h3>
-                    <p>Litoloji, SPT-N, Presiyometre, YAS, Karotlar</p>
+                    <h3>CAD &amp; BIM</h3>
+                    <p>AutoCAD, Civil 3D, DXF &amp; NetCAD Uyumlu</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Neden B & Y JEOCAD? Karşılaştırma -->
-    <section class="comparison-sec" id="karsilastirma">
+    <!-- 2. "NEDEN BY JEOCAD?" (Problem - Çözüm) -->
+    <section class="why-sec" id="neden">
         <div class="container">
             <div class="sec-header">
-                <span class="sec-pill">Verimlilik Devrimi</span>
-                <h3 class="sec-title">Geleneksel Zahmetli Çizimlere Son Verin</h3>
+                <span class="sec-pill">Problem - &Ccedil;&ouml;z&uuml;m</span>
+                <h2 class="sec-title">Neden BY JEOCAD?</h2>
                 <p class="sec-desc">
-                    Yıllardır süregelen manuel kopyalama hatalarını, saatler süren tarama (hatch) boyamalarını ve karmaşık yabancı program lisanslarını tarihe gömün.
+                    Geleneksel zemin kesit &ccedil;izim ve raporlama s&uuml;re&ccedil;lerindeki zaman kayb&#305;n&#305;, aktar&#305;m hatalar&#305;n&#305; ve CAD uyumsuzluklar&#305;n&#305; k&ouml;kten &ccedil;&ouml;z&uuml;yoruz.
                 </p>
             </div>
 
-            <div class="comp-grid">
-                <!-- Eski Yöntemler -->
-                <div class="comp-card">
-                    <div class="comp-card-header">
-                        <span style="font-size:24px;">❌</span>
-                        <div>
-                            <h4>Eski &amp; Geleneksel Yöntemler</h4>
-                            <span style="font-size:12px;color:#ef4444;">Saatler Süren Hata Riski</span>
-                        </div>
-                    </div>
-                    <ul class="comp-list">
-                        <li>
-                            <span>⛔</span>
-                            <div><strong>Excel'den Tek Tek Kopyalama:</strong> Sondaj kotlarını CAD programına aktarırken kayan sayılar ve insan hataları.</div>
-                        </li>
-                        <li>
-                            <span>⛔</span>
-                            <div><strong>Manuel Hatch Tarama Çilesi:</strong> Kuyu aralarını düz çizgilerle birleştirip saatlerce poligon sınırlarını düzeltme zorunluluğu.</div>
-                        </li>
-                        <li>
-                            <span>⛔</span>
-                            <div><strong>Karot Sandığı Karmaşası:</strong> Fotoğrafları Word'e eklerken patlayan mizanpajlar ve hizalanamayan kuyular.</div>
-                        </li>
-                        <li>
-                            <span>⛔</span>
-                            <div><strong>Pahalı Yıllık Lisanslar:</strong> Yurt dışı yazılımlarına her yıl binlerce dolar döviz ödeme mecburiyeti.</div>
-                        </li>
+            <div class="why-grid">
+                <!-- 1. Manuel Çizim Yükünü Azaltın -->
+                <div class="why-card">
+                    <div class="why-icon-box">⏱️</div>
+                    <span class="why-badge-tag">Problem: Saatler S&uuml;ren Manuel &Ccedil;izim</span>
+                    <h3>Manuel &Ccedil;izim Y&uuml;k&uuml;n&uuml; Azalt&#305;n</h3>
+                    <p>Saatler s&uuml;ren log profili &ccedil;izimlerini ve kesit aktar&#305;mlar&#305;n&#305; dakikalara indirin.</p>
+                    <ul class="why-bullet-list">
+                        <li><span>⚡</span> <div><strong>Otomatik Profil:</strong> Kuyu kolonlar&#305; ve zemin profilleri an&#305;nda olu&#351;ur.</div></li>
+                        <li><span>⚡</span> <div><strong>Ak&#305;ll&#305; Spline:</strong> Do&#287;al litoloji k&#305;vr&#305;mlar&#305; manuel u&#287;ra&#351; gerektirmez.</div></li>
+                        <li><span>⚡</span> <div><strong>Vakit Tasarrufu:</strong> Tekrarlayan &ccedil;izimler yerine m&uuml;hendislik analizine odaklan&#305;n.</div></li>
                     </ul>
                 </div>
 
-                <!-- B & Y JEOCAD Farkı -->
-                <div class="comp-card highlight">
-                    <div class="comp-card-header">
-                        <span style="font-size:24px;">⭐</span>
-                        <div>
-                            <h4 style="color:var(--gold-light);">B &amp; Y JEOCAD Teknolojisi</h4>
-                            <span style="font-size:12px;color:#10b981;">30 Saniyede Kusursuz Kesit</span>
-                        </div>
-                    </div>
-                    <ul class="comp-list">
-                        <li>
-                            <span>✅</span>
-                            <div><strong>Tek Tıkla Klasör Bırakma:</strong> İçinde Excel logları, karot fotoğrafları ve deneyler olan klasörü atın; program her şeyi ayrıştırsın.</div>
-                        </li>
-                        <li>
-                            <span>✅</span>
-                            <div><strong>Doğal Catmull-Rom Spline Eğrileri:</strong> Gerçek jeolojik tabakalaşmaya uygun pürüzsüz kıvrımlar ve kuyu tabanında otomatik sonlanma.</div>
-                        </li>
-                        <li>
-                            <span>✅</span>
-                            <div><strong>2D Kesit ve 3D Katı Model Birlikte:</strong> Hem resmi yatay kesit anteti hem de 360° dönebilen 3D silindirik kuyu hacmi.</div>
-                        </li>
-                        <li>
-                            <span>✅</span>
-                            <div><strong>Resmi Bakanlık &amp; TMMOB Formatı:</strong> Tek tıkla Adobe PDF, düzenlenebilir Word (.docx), Excel ve katmanlı DXF çıktısı.</div>
-                        </li>
+                <!-- 2. Hatasız Veri Aktarımı -->
+                <div class="why-card highlight">
+                    <div class="why-icon-box" style="background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:#10b981;">🎯</div>
+                    <span class="why-badge-tag">Problem: &#304;nsan Hatas&#305; &amp; Kayan Kotlar</span>
+                    <h3>Hatas&#305;z Veri Aktar&#305;m&#305;</h3>
+                    <p>Saha verilerini elle girerken yap&#305;lan kot, koordinat ve katman hatalar&#305;n&#305; ortadan kald&#305;r&#305;n.</p>
+                    <ul class="why-bullet-list">
+                        <li><span>🛡️</span> <div><strong>S&#305;f&#305;r Kot Hatas&#305;:</strong> Say&#305;sal arazi modeli &uuml;zerinden kotlar do&#287;rulan&#305;r.</div></li>
+                        <li><span>🛡️</span> <div><strong>Katman Tutarl&#305;l&#305;&#287;&#305;:</strong> &Ccedil;ak&#305;&#351;an veya ters litoloji derinlikleri engellenir.</div></li>
+                        <li><span>🛡️</span> <div><strong>G&uuml;venilir Veri:</strong> Excel ve saha verileri do&#287;rudan &ccedil;izime yans&#305;r.</div></li>
+                    </ul>
+                </div>
+
+                <!-- 3. Tam CAD Uyumluluğu -->
+                <div class="why-card">
+                    <div class="why-icon-box" style="background:rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.3);color:var(--cyan);">📐</div>
+                    <span class="why-badge-tag" style="background:rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.3);color:var(--cyan);">Problem: Uyumsuz Formatlar</span>
+                    <h3>Tam CAD Uyumlulu&#287;u</h3>
+                    <p>&Ccedil;&#305;kt&#305;lar&#305;n&#305;z&#305; do&#287;rudan AutoCAD, Civil 3D ve di&#287;er CAD/BIM yaz&#305;l&#305;mlar&#305;nda katmanl&#305; (layer) ve bloklu olarak a&ccedil;&#305;n.</p>
+                    <ul class="why-bullet-list">
+                        <li><span>📐</span> <div><strong>Katmanl&#305; DXF:</strong> Zemin, SPT, YAS ve antetler ayr&#305; layerlarda d&uuml;zenlenir.</div></li>
+                        <li><span>📐</span> <div><strong>BIM Entegrasyonu:</strong> Statik ve mimari projelerle m&uuml;kemmel &ccedil;ak&#305;&#351;&#305;r.</div></li>
+                        <li><span>📐</span> <div><strong>Tek T&#305;kla D&#305;&#351;a Aktar&#305;m:</strong> DXF, PDF, Word ve Excel formatlar&#305;nda an&#305;nda haz&#305;r.</div></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6 Temel Güç Modülü -->
+    <!-- 3. TEMEL ÖZELLİKLER (3 veya 4 Kutulu Grid) -->
     <section class="features-sec" id="ozellikler">
         <div class="container">
             <div class="sec-header">
-                <span class="sec-pill">Çekirdek Yetenekler</span>
-                <h3 class="sec-title">Mühendisler İçin Tasarlanmış 6 Temel Güç</h3>
+                <span class="sec-pill">G&uuml;&ccedil;l&uuml; Altyap&#305;</span>
+                <h2 class="sec-title">Temel &Ouml;zellikler</h2>
                 <p class="sec-desc">
-                    Jeoloji mühendisleri, zemin araştırma şirketleri, inşaat mühendisleri ve mimarların ihtiyaç duyduğu tüm araçlar tek çatı altında.
+                    Zemin m&uuml;hendisli&#287;i, jeoloji ve in&#351;aat projelerinde saha ile ofisi birle&#351;tiren 4 &ccedil;ekirdek m&uuml;hendislik yetene&#287;i.
                 </p>
             </div>
 
-            <div class="features-grid" id="moduller">
-                <!-- Modül 1 -->
-                <div class="feature-card">
-                    <div class="feature-icon-box">📂</div>
-                    <h3>Akıllı Klasör &amp; Excel Ayrıştırıcı</h3>
-                    <p>Çok sekmeli Excel (.xlsx / .xls) dosyalarını ve saha klasörlerini anında analiz eder. Kuyu derinliklerini, litolojileri, SPT-N vuruşlarını ve Presiyometre değerlerini otomatik okur.</p>
+            <div class="features-grid-4">
+                <!-- 1. Otomatik Log & Profil Çizimi -->
+                <div class="feature-box-4">
+                    <span class="feature-num">01</span>
+                    <div class="feature-icon-circle">📊</div>
+                    <h3>Otomatik Log &amp; Profil &Ccedil;izimi</h3>
+                    <p>Sondaj verilerini standart &#351;ablonlara uygun zemin log profillerine otomatik d&ouml;n&uuml;&#351;t&uuml;r&uuml;r.</p>
                 </div>
 
-                <!-- Modül 2 -->
-                <div class="feature-card">
-                    <div class="feature-icon-box">📷</div>
-                    <h3>Karot Sandığı &amp; Saha Fotoğrafları</h3>
-                    <p>Word belgelerindeki veya klasördeki karot sandığı fotoğraflarını otomatik çıkartır, sınıflandırır ve kesit üzerindeki ilgili sondaj kuyusunun altına bilgi kartı olarak yerleştirir.</p>
+                <!-- 2. Koordinat ve Yükseklik Eşleme -->
+                <div class="feature-box-4">
+                    <span class="feature-num">02</span>
+                    <div class="feature-icon-circle" style="background:rgba(245,158,11,0.12);border-color:var(--border-gold);color:var(--gold);">🌐</div>
+                    <h3>Koordinat ve Y&uuml;kseklik E&#351;leme</h3>
+                    <p>Saha &ouml;l&ccedil;&uuml;mlerini ve GPS verilerini proje koordinat sistemiyle tam uyumlu &ccedil;izer.</p>
                 </div>
 
-                <!-- Modül 3 -->
-                <div class="feature-card">
-                    <div class="feature-icon-box">🎨</div>
-                    <h3>Doğal Eğimli Litoloji Çizim Motoru</h3>
-                    <p>Düz kaba çizgiler yerine doğanın gerçek formunu yansıtan Catmull-Rom oval eğimli litoloji geçişleri. Son kolonda biten akıllı boyama, kova ve damlalık araçları.</p>
+                <!-- 3. Zemin Sınıflandırma Desteği -->
+                <div class="feature-box-4">
+                    <span class="feature-num">03</span>
+                    <div class="feature-icon-circle" style="background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:#10b981;">🪨</div>
+                    <h3>Zemin S&#305;n&#305;fland&#305;rma Deste&#287;i</h3>
+                    <p>Verilen indeks &ouml;zelliklerine g&ouml;re zemin tan&#305;mlamalar&#305;n&#305; ve lejantlar&#305; otomatik yerle&#351;tirir.</p>
                 </div>
 
-                <!-- Modül 4 -->
-                <div class="feature-card">
-                    <div class="feature-icon-box">🧊</div>
-                    <h3>3D İnteraktif Katı Model &amp; Orbit</h3>
-                    <p>Tüm sondaj kuyularını ve yeraltı tabakalarını 3 boyutlu uzayda silindirik kolonlar olarak canlandırın. Fare ile 360° serbestçe döndürün, zum yapın ve katmanları inceleyin.</p>
-                </div>
-
-                <!-- Modül 5 -->
-                <div class="feature-card">
-                    <div class="feature-icon-box">📐</div>
-                    <h3>Evrensel CAD &amp; CBS Entegrasyonu</h3>
-                    <p>AutoCAD, NetCAD, ArcGIS ve Autodesk Civil 3D için katmanlı (layer) vektörel DXF üretir. Kuyu koordinatlarını ITRF96 ve WGS84 formatlarına dönüştürür.</p>
-                </div>
-
-                <!-- Modül 6 -->
-                <div class="feature-card">
-                    <div class="feature-icon-box">🏗️</div>
-                    <h3>Zemin İyileştirme &amp; Geoteknik Analiz</h3>
-                    <p>Jet Grouting, Fore Kazık ve Taş Kolon parametrelerini modelleyin. Sıvılaşma riski, taşıma gücü ve oturma analizlerini kesit üzerinde anında görselleştirin.</p>
+                <!-- 4. Katman (Layer) Hiyerarşisi -->
+                <div class="feature-box-4">
+                    <span class="feature-num">04</span>
+                    <div class="feature-icon-circle" style="background:rgba(168,85,247,0.12);border-color:rgba(168,85,247,0.3);color:#c084fc;">📑</div>
+                    <h3>Katman (Layer) Hiyerar&#351;isi</h3>
+                    <p>Mimari ve statik projelere altl&#305;k olacak temiz, gereksiz &ccedil;izgilerden ar&#305;nd&#305;r&#305;lm&#305;&#351; &ccedil;izim &ccedil;&#305;kt&#305;s&#305; verir.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3 Adımda Başlangıç Rehberi -->
-    <section class="steps-sec" id="nasil-calisir">
-        <div class="container">
-            <div class="sec-header">
-                <span class="sec-pill">Kolay Kullanım</span>
-                <h3 class="sec-title">3 Kolay Adımda Raporunuz Hazır</h3>
-                <p class="sec-desc">Karmaşık eğitimlere, günlerce süren kurslara gerek yok. Anlaşılır arayüzü sayesinde 2 dakikada uzmanlaşın.</p>
-            </div>
-
-            <div class="steps-grid">
-                <div class="step-item">
-                    <div class="step-number">01</div>
-                    <h4>İndir ve Tıkla</h4>
-                    <p>Kurulum veya kurulum sihirbazı gerekmez. İndirdiğiniz <code>JeoCAD.exe</code> dosyasını doğrudan çalıştırın.</p>
-                </div>
-
-                <div class="step-item">
-                    <div class="step-number">02</div>
-                    <h4>Klasörünü Bırak</h4>
-                    <p>Şantiyeden gelen Excel loglarınızı ve karot sandığı fotoğraflarınızı içeren klasörü ekrana sürükleyip bırakın.</p>
-                </div>
-
-                <div class="step-item">
-                    <div class="step-number">03</div>
-                    <h4>Grafiği Çiz &amp; Raporu Al</h4>
-                    <p><strong>"Normal Grafiği Çiz (2D)"</strong> veya <strong>"3D Katı Model Çiz"</strong> butonuna basın. Adobe PDF veya DXF olarak kaydedin.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- İndirme Merkezi (Download Hub) -->
+    <!-- 4. İNDİRME VE KURULUM -->
     <section class="download-sec" id="indir">
         <div class="container">
             <div class="sec-header">
-                <span class="sec-pill" style="background:rgba(245,158,11,0.15);color:var(--gold-light);border-color:var(--border-gold);">Hemen Başlayın</span>
-                <h3 class="sec-title">B &amp; Y JEOCAD v7.2 İndirme Merkezi</h3>
+                <span class="sec-pill" style="background:rgba(245,158,11,0.15);color:var(--gold-light);border-color:var(--border-gold);">H&#305;zl&#305; Ba&#351;lang&#305;&ccedil;</span>
+                <h2 class="sec-title">&#304;ndirme ve Kurulum</h2>
                 <p class="sec-desc">
-                    Bilgisayarınıza uygun dağıtım seçeneğini tercih edin. Hiçbir kurulum yapmadan USB belleğinizden dahi hemen çalıştırabilirsiniz.
+                    BY JEOCAD v1.0 s&uuml;r&uuml;m&uuml;yle &#351;antiye ve ofis aras&#305;ndaki veri ak&#305;&#351;&#305;n&#305; dakikalar i&ccedil;inde y&ouml;netmeye ba&#351;lay&#305;n.
                 </p>
             </div>
 
+            <!-- Dağıtım Kartları -->
             <div class="download-cards-grid">
-                <!-- Seçenek 1: Portable EXE -->
+                <!-- Seçenek 1: BY JEOCAD v1.0 (.exe) -->
                 <div class="dl-card popular">
-                    <span class="popular-badge">⭐ EN ÇOK TERCİH EDİLEN</span>
+                    <span class="popular-badge">⭐ G&Uuml;NCEL S&Uuml;R&Uuml;M</span>
                     <div class="dl-card-top">
-                        <h3>Windows Taşınabilir (.exe)</h3>
-                        <div class="dl-meta">Sürüm: v7.2 Resmi Sürüm • Boyut: ~49 KB</div>
+                        <h3>BY JEOCAD v1.0</h3>
+                        <div class="dl-meta">G&uuml;ncel S&uuml;r&uuml;m: <strong>v1.0</strong> &bull; Platform: <strong>Windows 10 / 11 (64-bit)</strong></div>
                         <ul class="dl-features">
-                            <li><span>✓</span> Kurulum Gerektirmez (Tıkla-Çalıştır)</li>
-                            <li><span>✓</span> Yönetici Yetkisi İstemez</li>
-                            <li><span>✓</span> USB Bellekten Taşınabilir</li>
-                            <li><span>✓</span> Donanım Kilitli Güvenli Lisans</li>
-                            <li><span>✓</span> Windows 10 &amp; Windows 11 Uyumlu</li>
+                            <li><span>✓</span> Kurulum dosyas&#305;n&#305; (.exe) hemen indirin</li>
+                            <li><span>✓</span> Y&ouml;netici yetkisi istemez, t&#305;kla-&ccedil;al&#305;&#351;t&#305;r</li>
+                            <li><span>✓</span> USB bellekten do&#287;rudan ta&#351;&#305;nabilir</li>
+                            <li><span>✓</span> Zemin verilerini tek t&#305;kla CAD'e aktar&#305;r</li>
+                            <li><span>✓</span> Windows 10 &amp; Windows 11 tam uyumlu</li>
                         </ul>
                     </div>
                     <a href="GITHUB_A_YUKLENECEK_DOSYALAR/JeoCAD.exe" download="JeoCAD.exe" class="btn btn-gold btn-lg" style="width:100%;">
-                        <span>📥</span> JeoCAD.exe İndir
+                        <span>📥</span> &Uuml;cretsiz &#304;ndir (v1.0)
                     </a>
                 </div>
 
                 <!-- Seçenek 2: Tam Paket ZIP -->
                 <div class="dl-card">
                     <div class="dl-card-top">
-                        <h3>Tam Dağıtım Paketi (.zip)</h3>
-                        <div class="dl-meta">Tüm Kılavuzlar, Şablonlar &amp; Örnek Loglar Dahil</div>
+                        <h3>Tam M&uuml;hendislik Paketi (.zip)</h3>
+                        <div class="dl-meta">T&uuml;m K&#305;lavuzlar, &#350;ablonlar &amp; &Ouml;rnek Loglar Dahil</div>
                         <ul class="dl-features">
-                            <li><span>✓</span> JeoCAD.exe Başlatıcı</li>
-                            <li><span>✓</span> Örnek Excel Sondaj Şablonları</li>
-                            <li><span>✓</span> Resimli Kullanım Kılavuzu (.html)</li>
-                            <li><span>✓</span> Lisans ve Anahtar Üretici Aracı</li>
-                            <li><span>✓</span> Çevrimdışı SheetJS &amp; JSZip Kütüphaneleri</li>
+                            <li><span>✓</span> JeoCAD.exe v1.0 &Ccedil;al&#305;&#351;t&#305;r&#305;c&#305;</li>
+                            <li><span>✓</span> &Ouml;rnek Excel Sondaj Log &#350;ablonlar&#305;</li>
+                            <li><span>✓</span> Resimli Kullan&#305;m K&#305;lavuzu (.html)</li>
+                            <li><span>✓</span> Lisans ve Anahtar Y&ouml;netim Arac&#305;</li>
+                            <li><span>✓</span> &Ccedil;evrimd&#305;&#351;&#305; M&uuml;hendislik K&uuml;t&uuml;phaneleri</li>
                         </ul>
                     </div>
                     <a href="GITHUB_A_YUKLENECEK_DOSYALAR/BY_JEOCAD_v7.2_Masaustu_Paketi.zip" download="BY_JEOCAD_v7.2_Masaustu_Paketi.zip" class="btn btn-outline btn-lg" style="width:100%;">
-                        <span>📦</span> Tam Paketi İndir (.zip)
+                        <span>📦</span> Tam Paketi &#304;ndir (.zip)
                     </a>
                 </div>
 
                 <!-- Seçenek 3: Web CAD Canlı -->
                 <div class="dl-card">
                     <div class="dl-card-top">
-                        <h3>Web CAD Canlı Başlat</h3>
-                        <div class="dl-meta">İndirmeden Doğrudan Tarayıcıda Çalıştırın</div>
+                        <h3>Web CAD Canl&#305; Ba&#351;lat</h3>
+                        <div class="dl-meta">&#304;ndirmeden Do&#287;rudan Taray&#305;c&#305;da &Ccedil;al&#305;&#351;t&#305;r&#305;n</div>
                         <ul class="dl-features">
-                            <li><span>✓</span> Edge, Chrome, Safari ve Firefox Uyumlu</li>
-                            <li><span>✓</span> Hiçbir Dosya İndirmenize Gerek Yok</li>
-                            <li><span>✓</span> Anında Çizim ve Test İmkanı</li>
-                            <li><span>✓</span> Proje Kaydetme &amp; Açma (JSON)</li>
-                            <li><span>✓</span> Mobil ve Tablet Destekli İnceleme</li>
+                            <li><span>✓</span> Hi&ccedil;bir dosya indirmenize gerek yok</li>
+                            <li><span>✓</span> Chrome, Edge, Safari ve Firefox uyumlu</li>
+                            <li><span>✓</span> An&#305;nda zemin profili ve kesit testi</li>
+                            <li><span>✓</span> Katmanl&#305; DXF ve PDF &ccedil;&#305;kt&#305; deste&#287;i</li>
+                            <li><span>✓</span> Tablet ve diz&uuml;st&uuml; ile tam uyumlu</li>
                         </ul>
                     </div>
                     <a href="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank" class="btn btn-blue btn-lg" style="width:100%;">
-                        <span>🚀</span> Web CAD'i Şimdi Başlat
+                        <span>🚀</span> Web CAD'i &#350;imdi Ba&#351;lat
                     </a>
                 </div>
             </div>
 
+            <!-- Kurulum Adımları (3 Adım) -->
+            <div class="install-guide-box">
+                <div class="install-guide-header">
+                    <h4>Kurulum Ad&#305;mlar&#305;</h4>
+                    <p>3 kolay ad&#305;mda BY JEOCAD'i hemen kullanmaya ba&#351;lay&#305;n</p>
+                </div>
+
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-number">01</div>
+                        <h5>1. Kurulum dosyas&#305;n&#305; (.exe / .msi) indirin.</h5>
+                        <p>Yukar&#305;daki butona t&#305;klayarak g&uuml;ncel <code>JeoCAD.exe</code> &ccedil;al&#305;&#351;t&#305;r&#305;c&#305; dosyas&#305;n&#305; bilgisayar&#305;n&#305;za kaydedin.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">02</div>
+                        <h5>2. Kurulum sihirbaz&#305;n&#305; tamamlay&#305;n.</h5>
+                        <p>&#304;ndirilen dosyaya &ccedil;ift t&#305;klay&#305;n. Ta&#351;&#305;nabilir altyap&#305;s&#305; sayesinde beklemeden &ccedil;al&#305;&#351;ma alan&#305; kar&#351;&#305;n&#305;za a&ccedil;&#305;l&#305;r.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">03</div>
+                        <h5>3. Lisans kodunuzu girerek veya deneme s&uuml;r&uuml;m&uuml;yle hemen kullanmaya ba&#351;lay&#305;n.</h5>
+                        <p>Lisans kodunuzu girin veya &uuml;cretsiz deneme modunu se&ccedil;erek zemin loglar&#305;n&#305;z&#305; an&#305;nda CAD'e d&ouml;n&uuml;&#351;t&uuml;r&uuml;n.</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Sistem Gereksinimleri -->
-            <div style="max-width:850px;margin:0 auto;background:rgba(15,23,42,0.6);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:24px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--text-muted);">
-                <div><strong>💻 İşletim Sistemi:</strong> Windows 10 / 11 (64-bit)</div>
-                <div><strong>🧠 Bellek (RAM):</strong> Min. 4 GB (Önerilen 8 GB)</div>
-                <div><strong>🎮 Grafik Kartı:</strong> WebGL 2.0 Destekli Standart GPU</div>
-                <div><strong>💾 Disk Alanı:</strong> Yalnızca 5 MB</div>
+            <div class="sys-req-strip">
+                <div><strong>G&uuml;ncel S&uuml;r&uuml;m:</strong> BY JEOCAD v1.0</div>
+                <div><strong>Platform:</strong> Windows 10 / 11 (64-bit)</div>
+                <div><strong>Bellek (RAM):</strong> Min. 4 GB (8 GB &Ouml;nerilen)</div>
+                <div><strong>CAD Deste&#287;i:</strong> AutoCAD, Civil 3D, NetCAD (DXF Katmanl&#305;)</div>
             </div>
         </div>
     </section>
 
-    <!-- Geliştirici & Baş Mühendis Bölümü -->
-    <section class="author-sec" id="gelistirici">
+    <!-- Geliştirici & Mühendis Bölümü -->
+    <section class="author-sec">
         <div class="container">
             <div class="author-box">
                 <div class="author-avatar-wrap">
-                    <img src="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png" alt="Burhan Yusufoğlu - B & Y JEOCAD" class="author-avatar">
+                    <img src="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src='logo.png';}" alt="Burhan Yusufo&#287;lu - BY JEOCAD" class="author-avatar">
                 </div>
                 <div class="author-content">
-                    <h3>Burhan Yusufoğlu</h3>
-                    <span class="author-role">Jeoloji Mühendisi &amp; Baş Yazılım Mimarı</span>
+                    <h3>Burhan Yusufo&#287;lu</h3>
+                    <span class="author-role">Jeoloji M&uuml;hendisi &amp; Ba&#351; Yaz&#305;l&#305;m Mimar&#305;</span>
                     <p class="author-quote">
-                        "Bu yazılımı, sahada çamurda sondaj yapan, ofiste sabahlara kadar AutoCAD başında hatch taramaları ve Excel tablolarıyla boğuşan tüm meslektaşlarım için geliştirdim. Amacım; saatler süren rapor ve kesit hazırlama sürecini saniyelere indirip mühendislerimizin asıl işi olan yorumlama ve mühendislik analizine odaklanmalarını sağlamaktır."
+                        "Bu yaz&#305;l&#305;m&#305;; sahada &ccedil;amurda sondaj yapan, ofiste sabahlara kadar AutoCAD ba&#351;&#305;nda hatch taramalar&#305; ve koordinat hatalar&#305;yla bo&#287;u&#351;an t&uuml;m meslekta&#351;lar&#305;m i&ccedil;in geli&#351;tirdim. Amac&#305;m&#305;z, &#351;antiye ile ofis aras&#305;ndaki veri kopuklu&#287;unu bitirip saatler s&uuml;ren &ccedil;izim y&uuml;k&uuml;n&uuml; saniyelere indirmektir."
                     </p>
                     <div style="display:flex;gap:12px;flex-wrap:wrap;">
                         <a href="GITHUB_A_YUKLENECEK_DOSYALAR/JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" target="_blank" class="btn btn-outline" style="font-size:12.5px;">
-                            <span>📖</span> Resmi Tanıtım &amp; Kurulum Rehberi
+                            <span>📖</span> Resmi Dok&uuml;mantasyon &amp; K&#305;lavuz
                         </a>
                         <a href="GITHUB_A_YUKLENECEK_DOSYALAR/JeoCAD_Lisans_Ureteci.html" target="_blank" class="btn btn-outline" style="font-size:12.5px;">
-                            <span>🔑</span> Lisans Yönetim Paneli
+                            <span>🔑</span> Lisans Y&ouml;netim Paneli
                         </a>
                     </div>
                 </div>
@@ -1217,27 +1372,56 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- 5. İLETİŞİM & LİSANS (FOOTER) -->
+    <footer id="iletisim">
         <div class="container">
-            <div class="footer-inner">
-                <div class="brand-logo-group">
-                    <img src="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png" alt="B & Y JEOCAD" style="width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gold);">
-                    <div class="brand-title-wrap">
-                        <h2 style="font-size:15px;color:#fff;margin:0;">B &amp; Y JEOCAD</h2>
-                        <p style="font-size:11px;color:#64748b;margin:0;">Jeolojik Kesit &amp; Sondaj CAD Tasarım Platformu</p>
+            <div class="footer-grid">
+                <!-- Kolon 1: Marka & Açıklama -->
+                <div class="footer-brand">
+                    <div class="brand-logo-group">
+                        <img src="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src='logo.png';}" alt="BY JEOCAD Logo" style="width:38px;height:38px;border-radius:50%;border:1.5px solid var(--gold);">
+                        <div class="brand-title-wrap">
+                            <h2 style="font-size:16px;color:#fff;margin:0;">BY JEOCAD</h2>
+                            <p style="font-size:11px;color:#64748b;margin:0;">Zemin &amp; Jeoloji Ak&#305;ll&#305; CAD Entegrasyonu</p>
+                        </div>
                     </div>
+                    <p>
+                        Sondaj loglar&#305;n&#305;, zemin tabakala&#351;malar&#305;n&#305; ve arazi koordinatlar&#305;n&#305; saniyeler i&ccedil;inde CAD ortam&#305;na aktaran, &#351;antiye ve ofis aras&#305;ndaki veri kopuklu&#287;unu bitiren yerli m&uuml;hendislik yaz&#305;l&#305;m&#305;.
+                    </p>
                 </div>
 
-                <div style="display:flex;gap:20px;font-size:12.5px;">
-                    <a href="#top" style="color:#94a3b8;text-decoration:none;">Yukarı Dön ↑</a>
-                    <a href="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank" style="color:#94a3b8;text-decoration:none;">Canlı Çizim</a>
-                    <a href="GITHUB_A_YUKLENECEK_DOSYALAR/JeoCAD.exe" download="JeoCAD.exe" style="color:#f59e0b;text-decoration:none;font-weight:bold;">Windows İndir (.exe)</a>
+                <!-- Kolon 2: Hızlı Bağlantılar -->
+                <div class="footer-links-col">
+                    <h4>H&#305;zl&#305; Men&uuml;</h4>
+                    <ul>
+                        <li><a href="#neden">Neden BY JEOCAD?</a></li>
+                        <li><a href="#ozellikler">Temel &Ouml;zellikler</a></li>
+                        <li><a href="#indir">&#304;ndirme ve Kurulum</a></li>
+                        <li><a href="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank">Web CAD Canl&#305; &Ccedil;al&#305;&#351;t&#305;r</a></li>
+                        <li><a href="GITHUB_A_YUKLENECEK_DOSYALAR/JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" target="_blank">Dok&uuml;mantasyon Rehberi</a></li>
+                        <li><a href="#top">Yukar&#305; D&ouml;n &uarr;</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kolon 3: Teknik Destek & Kurumsal Lisans -->
+                <div class="footer-links-col">
+                    <div class="footer-contact-box">
+                        <h4>Teknik Destek &amp; Kurumsal Lisans</h4>
+                        <p>Kurumsal lisanslama, &ouml;zel CAD &#351;ablon entegrasyonu ve teknik sorular&#305;n&#305;z i&ccedil;in do&#287;rudan bize ula&#351;&#305;n:</p>
+                        <a href="mailto:iletisim@byjeocad.com.tr" class="contact-email-link">
+                            <span>📧</span> iletisim@byjeocad.com.tr
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="footer-copy">
-                © 2026 B &amp; Y JEOCAD | Tüm Hakları Saklıdır. Tasarım &amp; Mühendislik: <strong>Burhan Yusufoğlu</strong>
+            <div class="footer-bottom">
+                <div class="footer-bottom-copy">
+                    T&uuml;m haklar&#305; sakl&#305;d&#305;r &copy; 2026 <strong>BY JEOCAD</strong>.
+                </div>
+                <div style="font-size:12px;color:var(--text-dim);">
+                    Proje &amp; Yaz&#305;l&#305;m Mimarisi: <strong>Burhan Yusufo&#287;lu</strong> (Jeoloji M&uuml;hendisi)
+                </div>
             </div>
         </div>
     </footer>
@@ -1250,6 +1434,12 @@
                 img.style.opacity = '0.3';
                 setTimeout(function() {
                     img.src = imgSrc;
+                    img.onerror = function() {
+                        if (!this.dataset.fallback) {
+                            this.dataset.fallback = '1';
+                            this.src = imgSrc.replace('GITHUB_A_YUKLENECEK_DOSYALAR/', '');
+                        }
+                    };
                     img.style.opacity = '1';
                 }, 150);
             }
