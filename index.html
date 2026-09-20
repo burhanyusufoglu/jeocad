@@ -3,14 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BY JEOCAD | Jeoloji, &#304;n&#351;aat ve Mimarl&#305;k &#304;&ccedil;in Ak&#305;ll&#305; CAD Entegrasyonu</title>
+    <title>BY JEOCAD v1.0 | Jeoloji, &#304;n&#351;aat ve Mimarl&#305;k &#304;&ccedil;in Ak&#305;ll&#305; CAD Entegrasyonu</title>
     <meta name="description" content="Zemin verilerini ve sahayı tek tıkla CAD ortamına aktarın. Sondaj loglarını, zemin tabakalaşmalarını ve arazi koordinatlarını saniyeler içinde çizime dönüştüren yerli mühendislik aracı.">
-    <link rel="icon" type="image/png" href="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png">
+    <link rel="icon" type="image/png" href="logo.png" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Akıllı Otomatik Yol Çözümleyici (Smart Path Normalizer) -->
+    <script>
+        (function() {
+            var probe = new Image();
+            probe.onerror = function() {
+                // Kök dizinde logo.png yok; dosyalar GITHUB_A_YUKLENECEK_DOSYALAR alt klasöründe!
+                window.IS_SUBFOLDER_DEPLOY = true;
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelectorAll('a[data-sub]').forEach(function(el) {
+                        el.href = el.getAttribute('data-sub');
+                    });
+                    document.querySelectorAll('img[data-sub]').forEach(function(img) {
+                        img.src = img.getAttribute('data-sub');
+                    });
+                });
+            };
+            probe.onload = function() {
+                window.IS_SUBFOLDER_DEPLOY = false;
+            };
+            probe.src = 'logo.png';
+        })();
+    </script>
 
     <style>
         :root {
@@ -58,14 +81,13 @@
             background-attachment: fixed;
         }
 
-        /* Container */
         .container {
             max-width: 1240px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Header / Sticky Navigation */
+        /* Navbar */
         .navbar {
             position: sticky;
             top: 0;
@@ -217,7 +239,7 @@
             border-radius: var(--radius-md);
         }
 
-        /* 1. HERO SECTION */
+        /* Hero */
         .hero {
             padding: 70px 0 60px;
             text-align: center;
@@ -380,6 +402,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: zoom-in;
         }
 
         .showcase-img {
@@ -388,6 +411,21 @@
             border-radius: 8px;
             display: block;
             transition: opacity 0.2s ease;
+        }
+
+        .showcase-zoom-hint {
+            position: absolute;
+            bottom: 16px;
+            right: 18px;
+            background: rgba(7, 11, 20, 0.85);
+            border: 1px solid var(--border-gold);
+            color: var(--gold-light);
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            pointer-events: none;
+            backdrop-filter: blur(8px);
         }
 
         /* Metric Strip */
@@ -454,7 +492,7 @@
             line-height: 1.6;
         }
 
-        /* 2. "NEDEN BY JEOCAD?" (Problem - Çözüm) */
+        /* 2. "NEDEN BY JEOCAD?" */
         .why-sec {
             padding: 85px 0 75px;
             position: relative;
@@ -554,7 +592,7 @@
             color: var(--text-main);
         }
 
-        /* 3. TEMEL ÖZELLİKLER (4 Kutulu Grid) */
+        /* 3. TEMEL ÖZELLİKLER */
         .features-sec {
             padding: 80px 0 70px;
             background: rgba(15, 23, 42, 0.35);
@@ -712,7 +750,7 @@
             font-weight: bold;
         }
 
-        /* 3 Kurulum Adımları */
+        /* Kurulum Adımları */
         .install-guide-box {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
@@ -779,7 +817,7 @@
             line-height: 1.55;
         }
 
-        /* Requirements Strip */
+        /* Sistem Gereksinimleri */
         .sys-req-strip {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border-subtle);
@@ -853,7 +891,7 @@
             margin-bottom: 18px;
         }
 
-        /* 5. İLETİŞİM & LİSANS (FOOTER) */
+        /* Footer */
         footer {
             background: #040711;
             padding: 60px 0 35px;
@@ -864,7 +902,7 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1.5fr;
+            grid-template-columns: 2fr 1fr 1.6fr;
             gap: 40px;
             padding-bottom: 40px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -923,6 +961,7 @@
             font-size: 12.5px;
             color: var(--text-muted);
             margin-bottom: 12px;
+            line-height: 1.5;
         }
 
         .contact-email-link {
@@ -947,6 +986,12 @@
             transform: translateY(-2px);
         }
 
+        .contact-note {
+            margin-top: 10px;
+            font-size: 11.5px;
+            color: var(--text-dim);
+        }
+
         .footer-bottom {
             display: flex;
             align-items: center;
@@ -964,7 +1009,64 @@
             color: var(--text-muted);
         }
 
-        /* Responsive Media Queries */
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(3, 7, 18, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+        }
+
+        .lightbox-img-wrapper {
+            position: relative;
+            max-width: 95vw;
+            max-height: 92vh;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--border-gold);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .lightbox-img {
+            max-width: 95vw;
+            max-height: 90vh;
+            display: block;
+            object-fit: contain;
+        }
+
+        .lightbox-close-btn {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            background: var(--gold);
+            color: #070b14;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive */
         @media (max-width: 1024px) {
             .why-grid, .download-cards-grid, .steps-grid, .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1014,9 +1116,9 @@
     <header class="navbar">
         <div class="container nav-inner">
             <a href="#top" class="brand-logo-group">
-                <img src="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src='logo.png';}" alt="BY JEOCAD Logo" class="brand-logo-img">
+                <img src="logo.png" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png" onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src='GITHUB_A_YUKLENECEK_DOSYALAR/logo.png';}" alt="BY JEOCAD Logo" class="brand-logo-img">
                 <div class="brand-title-wrap">
-                    <h1>BY <span class="brand-badge">JEOCAD</span></h1>
+                    <h1>BY <span class="brand-badge">JEOCAD v1.0</span></h1>
                     <p>Zemin &amp; Jeoloji Ak&#305;ll&#305; CAD Entegrasyonu</p>
                 </div>
             </a>
@@ -1025,12 +1127,12 @@
                 <li><a href="#neden">Neden BY JEOCAD?</a></li>
                 <li><a href="#ozellikler">Temel &Ouml;zellikler</a></li>
                 <li><a href="#indir">&#304;ndirme ve Kurulum</a></li>
-                <li><a href="GITHUB_A_YUKLENECEK_DOSYALAR/JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" target="_blank">Dok&uuml;mantasyon</a></li>
+                <li><a href="JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" target="_blank">Dok&uuml;mantasyon</a></li>
                 <li><a href="#iletisim">&#304;leti&#351;im</a></li>
             </ul>
 
             <div class="nav-actions">
-                <a href="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank" class="btn btn-outline" title="Taray&#305;c&#305;da Canl&#305; &Ccedil;al&#305;&#351;t&#305;r&#305;n">
+                <a href="app.html" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank" class="btn btn-outline" title="Taray&#305;c&#305;da Canl&#305; &Ccedil;al&#305;&#351;t&#305;r&#305;n">
                     <span>🚀</span> Web CAD A&ccedil;
                 </a>
                 <a href="#indir" class="btn btn-gold">
@@ -1057,15 +1159,15 @@
             </p>
 
             <div class="hero-cta-group">
-                <a href="GITHUB_A_YUKLENECEK_DOSYALAR/JeoCAD.exe" download="JeoCAD.exe" class="btn btn-gold btn-lg" id="btnHeroExe">
+                <a href="JeoCAD.exe" download="JeoCAD.exe" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/JeoCAD.exe" class="btn btn-gold btn-lg" id="btnHeroExe">
                     <span style="font-size:18px;">💾</span> 
                     <span>&Uuml;cretsiz &#304;ndir (v1.0)</span>
                 </a>
-                <a href="GITHUB_A_YUKLENECEK_DOSYALAR/JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" target="_blank" class="btn btn-outline btn-lg" id="btnHeroDocs">
+                <a href="JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" target="_blank" class="btn btn-outline btn-lg" id="btnHeroDocs">
                     <span style="font-size:18px;">📖</span> 
                     <span>Tan&#305;t&#305;m Videosunu &#304;zle / Dok&uuml;mantasyon</span>
                 </a>
-                <a href="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank" class="btn btn-blue btn-lg" id="btnHeroWeb">
+                <a href="app.html" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank" class="btn btn-blue btn-lg" id="btnHeroWeb">
                     <span style="font-size:18px;">🚀</span> 
                     <span>Web CAD Canl&#305; Ba&#351;lat</span>
                 </a>
@@ -1088,27 +1190,28 @@
                     </div>
 
                     <div class="showcase-tabs">
-                        <button type="button" class="showcase-tab active" onclick="switchPreview('GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_main_ui.png', this)">
+                        <button type="button" class="showcase-tab active" onclick="switchPreview('preview_main_ui.png', this)">
                             <span>🖥️</span> Ana &Ccedil;al&#305;&#351;ma Alan&#305; &amp; Aray&uuml;z
                         </button>
-                        <button type="button" class="showcase-tab" onclick="switchPreview('GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_2d_section.png', this)">
+                        <button type="button" class="showcase-tab" onclick="switchPreview('preview_2d_section.png', this)">
                             <span>🎨</span> 2D Zemin Profili &amp; Karot Sand&#305;&#287;&#305;
                         </button>
-                        <button type="button" class="showcase-tab" onclick="switchPreview('GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_3d_model.png', this)">
+                        <button type="button" class="showcase-tab" onclick="switchPreview('preview_3d_model.png', this)">
                             <span>🧊</span> 3D Kat&#305; Zemin Modeli &amp; Orbit
                         </button>
-                        <button type="button" class="showcase-tab" onclick="switchPreview('GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_batch_modal.png', this)">
+                        <button type="button" class="showcase-tab" onclick="switchPreview('preview_batch_modal.png', this)">
                             <span>📂</span> Otomatik Excel &amp; Saha Ayr&#305;&#351;t&#305;rma
                         </button>
                     </div>
 
                     <div style="font-size:11px;color:#94a3b8;font-family:var(--font-mono);">
-                        ● Canl&#305; &Ccedil;izim Motoru
+                        ● Canl&#305; Sistem &Ouml;nizlemesi
                     </div>
                 </div>
 
-                <div class="showcase-content">
-                    <img id="showcaseDisplayImg" src="GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_main_ui.png" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src='assets/preview_main_ui.png';}" alt="BY JEOCAD Ekran G&ouml;r&uuml;nt&uuml;s&uuml;" class="showcase-img">
+                <div class="showcase-content" onclick="openLightbox()" title="B&uuml;y&uuml;tmek i&ccedil;in t&#305;klay&#305;n">
+                    <img id="showcaseDisplayImg" src="assets/preview_main_ui.png" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_main_ui.png" onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src='GITHUB_A_YUKLENECEK_DOSYALAR/assets/preview_main_ui.png';}" alt="BY JEOCAD Ekran G&ouml;r&uuml;nt&uuml;s&uuml;" class="showcase-img">
+                    <div class="showcase-zoom-hint">🔍 B&uuml;y&uuml;tmek &#304;&ccedil;in T&#305;klay&#305;n</div>
                 </div>
             </div>
         </div>
@@ -1192,7 +1295,7 @@
         </div>
     </section>
 
-    <!-- 3. TEMEL ÖZELLİKLER (3 veya 4 Kutulu Grid) -->
+    <!-- 3. TEMEL ÖZELLİKLER (4 Kutulu Grid) -->
     <section class="features-sec" id="ozellikler">
         <div class="container">
             <div class="sec-header">
@@ -1250,14 +1353,14 @@
                 </p>
             </div>
 
-            <!-- Dağıtım Kartları -->
+            <!-- Dağıtım Kartları (Tutarlı v1.0 Sürümü) -->
             <div class="download-cards-grid">
                 <!-- Seçenek 1: BY JEOCAD v1.0 (.exe) -->
                 <div class="dl-card popular">
-                    <span class="popular-badge">⭐ G&Uuml;NCEL S&Uuml;R&Uuml;M</span>
+                    <span class="popular-badge">⭐ G&Uuml;NCEL RESM&#304; S&Uuml;R&Uuml;M</span>
                     <div class="dl-card-top">
                         <h3>BY JEOCAD v1.0</h3>
-                        <div class="dl-meta">G&uuml;ncel S&uuml;r&uuml;m: <strong>v1.0</strong> &bull; Platform: <strong>Windows 10 / 11 (64-bit)</strong></div>
+                        <div class="dl-meta">G&uuml;ncel S&uuml;r&uuml;m: <strong>v1.0 (Windows Taşınabilir)</strong> &bull; Platform: <strong>Windows 10 / 11 (64-bit)</strong></div>
                         <ul class="dl-features">
                             <li><span>✓</span> Kurulum dosyas&#305;n&#305; (.exe) hemen indirin</li>
                             <li><span>✓</span> Y&ouml;netici yetkisi istemez, t&#305;kla-&ccedil;al&#305;&#351;t&#305;r</li>
@@ -1266,15 +1369,15 @@
                             <li><span>✓</span> Windows 10 &amp; Windows 11 tam uyumlu</li>
                         </ul>
                     </div>
-                    <a href="GITHUB_A_YUKLENECEK_DOSYALAR/JeoCAD.exe" download="JeoCAD.exe" class="btn btn-gold btn-lg" style="width:100%;">
+                    <a href="JeoCAD.exe" download="JeoCAD.exe" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/JeoCAD.exe" class="btn btn-gold btn-lg" style="width:100%;">
                         <span>📥</span> &Uuml;cretsiz &#304;ndir (v1.0)
                     </a>
                 </div>
 
-                <!-- Seçenek 2: Tam Paket ZIP -->
+                <!-- Seçenek 2: Tam Paket ZIP (v1.0) -->
                 <div class="dl-card">
                     <div class="dl-card-top">
-                        <h3>Tam M&uuml;hendislik Paketi (.zip)</h3>
+                        <h3>Tam M&uuml;hendislik Paketi (v1.0 .zip)</h3>
                         <div class="dl-meta">T&uuml;m K&#305;lavuzlar, &#350;ablonlar &amp; &Ouml;rnek Loglar Dahil</div>
                         <ul class="dl-features">
                             <li><span>✓</span> JeoCAD.exe v1.0 &Ccedil;al&#305;&#351;t&#305;r&#305;c&#305;</li>
@@ -1284,8 +1387,8 @@
                             <li><span>✓</span> &Ccedil;evrimd&#305;&#351;&#305; M&uuml;hendislik K&uuml;t&uuml;phaneleri</li>
                         </ul>
                     </div>
-                    <a href="GITHUB_A_YUKLENECEK_DOSYALAR/BY_JEOCAD_v7.2_Masaustu_Paketi.zip" download="BY_JEOCAD_v7.2_Masaustu_Paketi.zip" class="btn btn-outline btn-lg" style="width:100%;">
-                        <span>📦</span> Tam Paketi &#304;ndir (.zip)
+                    <a href="BY_JEOCAD_v1.0_Masaustu_Paketi.zip" download="BY_JEOCAD_v1.0_Masaustu_Paketi.zip" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/BY_JEOCAD_v1.0_Masaustu_Paketi.zip" class="btn btn-outline btn-lg" style="width:100%;">
+                        <span>📦</span> Tam Paketi &#304;ndir (v1.0 .zip)
                     </a>
                 </div>
 
@@ -1302,7 +1405,7 @@
                             <li><span>✓</span> Tablet ve diz&uuml;st&uuml; ile tam uyumlu</li>
                         </ul>
                     </div>
-                    <a href="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank" class="btn btn-blue btn-lg" style="width:100%;">
+                    <a href="app.html" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank" class="btn btn-blue btn-lg" style="width:100%;">
                         <span>🚀</span> Web CAD'i &#350;imdi Ba&#351;lat
                     </a>
                 </div>
@@ -1351,7 +1454,7 @@
         <div class="container">
             <div class="author-box">
                 <div class="author-avatar-wrap">
-                    <img src="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src='logo.png';}" alt="Burhan Yusufo&#287;lu - BY JEOCAD" class="author-avatar">
+                    <img src="logo.png" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png" onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src='GITHUB_A_YUKLENECEK_DOSYALAR/logo.png';}" alt="Burhan Yusufo&#287;lu - BY JEOCAD" class="author-avatar">
                 </div>
                 <div class="author-content">
                     <h3>Burhan Yusufo&#287;lu</h3>
@@ -1360,10 +1463,10 @@
                         "Bu yaz&#305;l&#305;m&#305;; sahada &ccedil;amurda sondaj yapan, ofiste sabahlara kadar AutoCAD ba&#351;&#305;nda hatch taramalar&#305; ve koordinat hatalar&#305;yla bo&#287;u&#351;an t&uuml;m meslekta&#351;lar&#305;m i&ccedil;in geli&#351;tirdim. Amac&#305;m&#305;z, &#351;antiye ile ofis aras&#305;ndaki veri kopuklu&#287;unu bitirip saatler s&uuml;ren &ccedil;izim y&uuml;k&uuml;n&uuml; saniyelere indirmektir."
                     </p>
                     <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                        <a href="GITHUB_A_YUKLENECEK_DOSYALAR/JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" target="_blank" class="btn btn-outline" style="font-size:12.5px;">
+                        <a href="JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" target="_blank" class="btn btn-outline" style="font-size:12.5px;">
                             <span>📖</span> Resmi Dok&uuml;mantasyon &amp; K&#305;lavuz
                         </a>
-                        <a href="GITHUB_A_YUKLENECEK_DOSYALAR/JeoCAD_Lisans_Ureteci.html" target="_blank" class="btn btn-outline" style="font-size:12.5px;">
+                        <a href="JeoCAD_Lisans_Ureteci.html" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/JeoCAD_Lisans_Ureteci.html" target="_blank" class="btn btn-outline" style="font-size:12.5px;">
                             <span>🔑</span> Lisans Y&ouml;netim Paneli
                         </a>
                     </div>
@@ -1379,9 +1482,9 @@
                 <!-- Kolon 1: Marka & Açıklama -->
                 <div class="footer-brand">
                     <div class="brand-logo-group">
-                        <img src="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src='logo.png';}" alt="BY JEOCAD Logo" style="width:38px;height:38px;border-radius:50%;border:1.5px solid var(--gold);">
+                        <img src="logo.png" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/logo.png" onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src='GITHUB_A_YUKLENECEK_DOSYALAR/logo.png';}" alt="BY JEOCAD Logo" style="width:38px;height:38px;border-radius:50%;border:1.5px solid var(--gold);">
                         <div class="brand-title-wrap">
-                            <h2 style="font-size:16px;color:#fff;margin:0;">BY JEOCAD</h2>
+                            <h2 style="font-size:16px;color:#fff;margin:0;">BY JEOCAD v1.0</h2>
                             <p style="font-size:11px;color:#64748b;margin:0;">Zemin &amp; Jeoloji Ak&#305;ll&#305; CAD Entegrasyonu</p>
                         </div>
                     </div>
@@ -1396,9 +1499,9 @@
                     <ul>
                         <li><a href="#neden">Neden BY JEOCAD?</a></li>
                         <li><a href="#ozellikler">Temel &Ouml;zellikler</a></li>
-                        <li><a href="#indir">&#304;ndirme ve Kurulum</a></li>
-                        <li><a href="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank">Web CAD Canl&#305; &Ccedil;al&#305;&#351;t&#305;r</a></li>
-                        <li><a href="GITHUB_A_YUKLENECEK_DOSYALAR/JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" target="_blank">Dok&uuml;mantasyon Rehberi</a></li>
+                        <li><a href="#indir">&#304;ndirme ve Kurulum (v1.0)</a></li>
+                        <li><a href="app.html" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/app.html" target="_blank">Web CAD Canl&#305; &Ccedil;al&#305;&#351;t&#305;r</a></li>
+                        <li><a href="JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" data-sub="GITHUB_A_YUKLENECEK_DOSYALAR/JEOCAD_Urun_Tanitim_ve_Kurulum_Rehberi.html" target="_blank">Dok&uuml;mantasyon Rehberi</a></li>
                         <li><a href="#top">Yukar&#305; D&ouml;n &uarr;</a></li>
                     </ul>
                 </div>
@@ -1408,9 +1511,12 @@
                     <div class="footer-contact-box">
                         <h4>Teknik Destek &amp; Kurumsal Lisans</h4>
                         <p>Kurumsal lisanslama, &ouml;zel CAD &#351;ablon entegrasyonu ve teknik sorular&#305;n&#305;z i&ccedil;in do&#287;rudan bize ula&#351;&#305;n:</p>
-                        <a href="mailto:iletisim@byjeocad.com.tr" class="contact-email-link">
+                        <a href="mailto:iletisim@byjeocad.com.tr?subject=BY%20JEOCAD%20v1.0%20Lisans%20ve%20Destek%20Talebi" class="contact-email-link">
                             <span>📧</span> iletisim@byjeocad.com.tr
                         </a>
+                        <div class="contact-note">
+                            💡 E-posta istemciniz a&ccedil;&#305;lmazsa adresi kopyalayarak do&#287;rudan mesaj g&ouml;nderebilirsiniz.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1426,20 +1532,36 @@
         </div>
     </footer>
 
-    <!-- İnteraktif Vitrin Değiştirici JavaScript -->
+    <!-- İnteraktif Lightbox (Tam Ekran İnceleme Modalı) -->
+    <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
+        <div class="lightbox-img-wrapper">
+            <button class="lightbox-close-btn" onclick="closeLightbox(event)">&times;</button>
+            <img id="lightboxImg" class="lightbox-img" src="assets/preview_main_ui.png" alt="Tam Ekran G&ouml;r&uuml;nt&uuml;">
+        </div>
+    </div>
+
+    <!-- JavaScript Vitrin ve Önizleme Kontrolcüsü -->
     <script>
-        function switchPreview(imgSrc, btnElement) {
+        function getResolvedPath(fileName) {
+            var isSub = window.IS_SUBFOLDER_DEPLOY || (document.getElementById('showcaseDisplayImg') && document.getElementById('showcaseDisplayImg').src.indexOf('GITHUB_A_YUKLENECEK_DOSYALAR') !== -1);
+            return isSub ? 'GITHUB_A_YUKLENECEK_DOSYALAR/assets/' + fileName : 'assets/' + fileName;
+        }
+
+        function switchPreview(fileName, btnElement) {
             var img = document.getElementById('showcaseDisplayImg');
+            var lightboxImg = document.getElementById('lightboxImg');
             if (img) {
+                var targetPath = getResolvedPath(fileName);
                 img.style.opacity = '0.3';
                 setTimeout(function() {
-                    img.src = imgSrc;
+                    img.src = targetPath;
                     img.onerror = function() {
-                        if (!this.dataset.fallback) {
-                            this.dataset.fallback = '1';
-                            this.src = imgSrc.replace('GITHUB_A_YUKLENECEK_DOSYALAR/', '');
+                        if (!this.dataset.triedFallback) {
+                            this.dataset.triedFallback = '1';
+                            this.src = (targetPath.indexOf('GITHUB_A_YUKLENECEK_DOSYALAR') !== -1) ? 'assets/' + fileName : 'GITHUB_A_YUKLENECEK_DOSYALAR/assets/' + fileName;
                         }
                     };
+                    if (lightboxImg) lightboxImg.src = img.src;
                     img.style.opacity = '1';
                 }, 150);
             }
@@ -1449,6 +1571,30 @@
                 btnElement.classList.add('active');
             }
         }
+
+        function openLightbox() {
+            var img = document.getElementById('showcaseDisplayImg');
+            var modal = document.getElementById('lightboxModal');
+            var lightboxImg = document.getElementById('lightboxImg');
+            if (modal && img && lightboxImg) {
+                lightboxImg.src = img.src;
+                modal.classList.add('active');
+            }
+        }
+
+        function closeLightbox(e) {
+            var modal = document.getElementById('lightboxModal');
+            if (modal && (e.target === modal || e.target.classList.contains('lightbox-close-btn'))) {
+                modal.classList.remove('active');
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                var modal = document.getElementById('lightboxModal');
+                if (modal) modal.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
